@@ -1,11 +1,12 @@
-<script is:inline>
+---
 interface Props {
   plausibleDomain?: string;
   ga4Id?: string;
+  enableConsentBanner?: boolean;
 }
 
-const { plausibleDomain, ga4Id } = Astro.props;
-</script>
+const { plausibleDomain, ga4Id, enableConsentBanner } = Astro.props;
+---
 
 {plausibleDomain && (
   <script
@@ -27,7 +28,7 @@ const { plausibleDomain, ga4Id } = Astro.props;
         window.dataLayer.push(args);
       }
       gtag('js', new Date());
-      gtag('config', `{ga4Id}`);
+      gtag('config', ga4Id);
     </script>
   </>
 )}

@@ -1,4 +1,5 @@
-﻿---
+---
+import { ANALYTICS } from '../constants/analytics';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
@@ -102,6 +103,9 @@ const faqs = [
 ---
 
 <Layout
+  plausibleDomain={ANALYTICS.plausibleDomain}
+  ga4Id={ANALYTICS.ga4MeasurementId}
+  enableConsentBanner={ANALYTICS.enableConsentBanner}
   title="Neurological Services & Diagnostic Procedures | Dr. Rajib Das"
   description="Explore neurology services by Dr. Rajib Das: Stroke management, Chronic Migraine therapy, Epilepsy, Parkinson's, EEG, EMG/NCV diagnostics."
   currentPage="/services"
@@ -251,7 +255,7 @@ const faqs = [
                   data-open-modal="booking"
                   class="w-full py-2 rounded-xl bg-white hover:bg-teal-50 text-teal-800 border border-slate-200 text-xs font-bold transition cursor-pointer text-center"
                 >
-                  Book Consultation for this condition →
+                  Book Consultation for this condition ?
                 </button>
               </div>
             </div>
@@ -326,3 +330,5 @@ const faqs = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
+
+
