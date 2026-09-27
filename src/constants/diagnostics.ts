@@ -1,0 +1,38 @@
+﻿export const DIAGNOSTIC_TESTS = [
+  {
+    id: "eeg",
+    name: "Electroencephalogram",
+    shortName: "EEG",
+    duration: "30-60 min",
+    desc: "Records electrical activity of the brain to diagnose epilepsy, sleep disorders, and other neurological conditions.",
+    prep: "Wash hair without conditioner; avoid caffeine; sleep deprivation may be required.",
+    image: "/images/diagnostics/eeg.svg",
+  },
+  {
+    id: "emg",
+    name: "Electromyography",
+    shortName: "EMG",
+    duration: "30-90 min",
+    desc: "Evaluates the health of muscles and the nerve cells that control them to detect neuromuscular disorders.",
+    prep: "Avoid lotions or oils on skin; inform doctor if you have a pacemaker or take blood thinners.",
+    image: "/images/diagnostics/emg.svg",
+  },
+  {
+    id: "evoked",
+    name: "Evoked Potentials",
+    shortName: "EP",
+    duration: "45-60 min",
+    desc: "Measures the brain electrical response to visual, auditory, or sensory stimuli to assess nerve pathway function.",
+    prep: "Bring glasses or hearing aids if used; wash hair without products; avoid caffeine.",
+    image: "/images/diagnostics/evoked.svg",
+  },
+  {
+    id: "cognitive",
+    name: "Cognitive Testing",
+    shortName: "COG",
+    duration: "60-120 min",
+    desc: "Comprehensive assessment of memory, attention, language, and executive function for dementia and brain injury evaluation.",
+    prep: "Get adequate sleep; bring glasses/hearing aids; take medications as prescribed.",
+    image: "/images/diagnostics/cognitive.svg",
+  },
+] as const;

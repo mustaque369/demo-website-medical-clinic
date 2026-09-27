@@ -1,0 +1,96 @@
+﻿---
+import PhoneIcon from './icons/PhoneIcon.astro';
+import WhatsAppIcon from './icons/WhatsAppIcon.astro';
+
+const phone = "+91 98765 43210";
+const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello Dr. Rajib Das Clinic, I would like to book an appointment.");
+---
+
+<footer class="bg-slate-900 text-slate-300 border-t border-slate-800 pt-14 pb-10 text-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+      
+      <div class="space-y-3.5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-teal-700 flex items-center justify-center text-white font-black shadow-xs" aria-hidden="true">
+            RD
+          </div>
+          <div>
+            <h3 class="text-white font-bold text-lg">Dr. Rajib Das</h3>
+            <p class="text-xs text-teal-400 font-semibold">MBBS, MD (Neurology)</p>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Senior Consultant Neurologist dedicated to precision diagnosis and patient-centered clinical care for brain, spine, and neuromuscular disorders.
+        </p>
+        <div class="pt-1">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true"></span>
+            Certified Clinical Neurologist
+          </span>
+        </div>
+      </div>
+
+      <nav aria-label="Footer">
+        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3.5 border-l-2 border-teal-500 pl-2">Quick Navigation</h4>
+        <ul class="space-y-2 text-xs list-none">
+          <li><a href="/" class="text-slate-400 hover:text-teal-400 transition-colors">Home Page</a></li>
+          <li><a href="/about" class="text-slate-400 hover:text-teal-400 transition-colors">Doctor Profile & Pedigree</a></li>
+          <li><a href="/services" class="text-slate-400 hover:text-teal-400 transition-colors">Neurological Services & Diagnostics</a></li>
+          <li><a href="/contact" class="text-slate-400 hover:text-teal-400 transition-colors">Clinic Location & Directions</a></li>
+          <li><a href="/services#faq" class="text-slate-400 hover:text-teal-400 transition-colors">Patient FAQs</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3.5 border-l-2 border-teal-500 pl-2">Specialized Care</h4>
+        <ul class="space-y-2 text-xs text-slate-400 list-none">
+          <li><a href="/services" class="hover:text-teal-400 transition-colors">Stroke & Brain Attack Recovery</a></li>
+          <li><a href="/services" class="hover:text-teal-400 transition-colors">Chronic Migraine & Headache Clinic</a></li>
+          <li><a href="/services" class="hover:text-teal-400 transition-colors">Epilepsy & Digital EEG Diagnostics</a></li>
+          <li><a href="/services" class="hover:text-teal-400 transition-colors">Parkinson's & Tremor Management</a></li>
+          <li><a href="/services" class="hover:text-teal-400 transition-colors">Neuropathy & EMG/NCV Testing</a></li>
+          <li><a href="/services" class="hover:text-teal-400 transition-colors">Memory Loss & Dementia Screening</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3.5 border-l-2 border-teal-500 pl-2">Clinic Information</h4>
+        <ul class="space-y-3 text-xs text-slate-400 list-none">
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-teal-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            </svg>
+            <span>Suite 402, Apex Neurosciences Center, Park View Medical Enclave, Main Arterial Road</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <PhoneIcon class="w-4 h-4 text-teal-400 shrink-0" />
+            <a href={`tel:${phone}`} class="hover:text-white transition-colors font-semibold text-slate-200">{phone}</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded-full bg-[#25D366] flex items-center justify-center text-white shrink-0" aria-hidden="true">
+              <WhatsAppIcon class="w-2.5 h-2.5" />
+            </span>
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors text-slate-300 font-medium">WhatsApp Consultation Available</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-teal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>Mon – Sat: 9:00 AM – 7:00 PM</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 gap-3">
+      <p>© {new Date().getFullYear()} Dr. Rajib Das, MBBS, MD (Neurology). All rights reserved.</p>
+      <div class="flex items-center space-x-5">
+        <a href="/contact" class="hover:text-white transition">Emergency Notice</a>
+        <a href="/contact" class="hover:text-white transition">Patient Privacy</a>
+        <a href="/contact" class="hover:text-white transition">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>

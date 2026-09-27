@@ -1,0 +1,129 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  currentPage?: string;
+}
+
+const {
+  title = "Dr. Rajib Das, MBBS, MD (Neurology) | Neurologist & Brain Specialist",
+  description = "Expert neurological care by Dr. Rajib Das, MBBS, MD (Neurology). Specialized treatment for Stroke, Migraine, Epilepsy, Parkinson's, Nerve Pain, EEG & EMG diagnostics. Book appointment or WhatsApp today.",
+  currentPage = "/"
+} = Astro.props;
+
+const clinicPhone = "+91 98765 43210";
+// Canonical URL aware of DEPLOY_BASE: Astro.url.pathname already includes the base.
+const siteOrigin = Astro.site ? Astro.site.origin : 'https://mustaque369.github.io';
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
+const ogImageURL = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1200&h=630&q=80';
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Google Fonts: Plus Jakarta Sans (UI) + Source Serif 4 (doctor headings, full 400-900 range so font-black renders true) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..900;1,8..60,400..900&display=swap" rel="stylesheet">
+
+    <!-- No-JS fallback: scroll-reveal starts at opacity 0, so without JavaScript
+         every .reveal section would stay invisible. Force them visible instead. -->
+    <noscript>
+      <style>
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Dr. Rajib Das Neurological Clinic" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="theme-color" content="#0f766e" />
+
+    <!-- Schema.org JSON-LD for Medical Business & Physician -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Physician",
+      "name": "Dr. Rajib Das",
+      "medicalSpecialty": "Neurology",
+      "description": description,
+      "url": canonicalURL,
+      "telephone": clinicPhone,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Suite 402, Apex Neurosciences Center, Park View Medical Enclave",
+        "addressLocality": "Metro City",
+        "addressRegion": "State",
+        "postalCode": "700001",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "22.5726",
+        "longitude": "88.3639"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "248"
+      }
+    })} />
+  </head>
+  <body class="bg-[#fbfcfc] text-slate-700 antialiased flex flex-col min-h-screen text-[14.5px] leading-relaxed pb-16 md:pb-0 font-sans selection:bg-teal-600 selection:text-white">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <slot />
+    <script>
+      // Scroll-reveal: adds .is-revealed to .reveal elements as they enter view.
+      // Skips animation entirely for reduced-motion users (CSS also neutralizes it).
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealEls = document.querySelectorAll<HTMLElement>('.reveal');
+      if (prefersReduced || !('IntersectionObserver' in window)) {
+        revealEls.forEach((el) => el.classList.add('is-revealed'));
+      } else {
+        const revealObserver = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                (entry.target as HTMLElement).classList.add('is-revealed');
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
+        revealEls.forEach((el) => revealObserver.observe(el));
+      }
+    </script>
+  </body>
+</html>

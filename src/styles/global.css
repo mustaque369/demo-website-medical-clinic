@@ -1,0 +1,136 @@
+﻿@import "tailwindcss";
+
+@theme {
+  /* Neutral Warm Medical Clinic Palette (Sage / Slate / Deep Hospital Teal) */
+  --color-medical-teal: #0f766e;        /* Deep Hospital Teal / Sage primary */
+  --color-medical-teal-dark: #115e59;   /* Hover teal */
+  --color-medical-teal-light: #f0fdfa;  /* Subtle tinted teal surface */
+  --color-medical-navy: #0f172a;        /* High-contrast headings */
+  --color-medical-slate: #334155;       /* Refined text */
+  --color-medical-bg: #f8fafc;          /* Ultra clean clinical light */
+  --color-medical-card: #ffffff;        /* Crisp card */
+  --color-medical-border: #e2e8f0;      /* Subtle border */
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #1ebe5d;
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, Cambria, 'Times New Roman', serif;
+}
+
+@layer utilities {
+  .hero-medical-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(15, 118, 110, 0.08) 0%, rgba(13, 148, 136, 0.04) 50%, transparent 75%);
+  }
+
+  .medical-card-hover {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.25s ease;
+  }
+  .medical-card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -4px rgba(15, 118, 110, 0.1), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
+  }
+
+  /* Scroll-reveal entrance (JS adds .is-revealed) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Skip link — first tab stop, visible only on focus */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  background: #0f766e;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.6rem 1.1rem;
+  border-radius: 0 0 0.75rem 0.75rem;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Consistent visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid #0f766e;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Hide Safari's native details marker */
+summary::-webkit-details-marker {
+  display: none;
+}
+summary {
+  list-style: none;
+}
+
+/* Infinite Marquee for reviews.
+   Track content is duplicated 2x. One loop cycle = 50% of track width PLUS the
+   single 1rem gap (gap-4) between the two halves, so -50% - 0.5rem lands exactly
+   on the loop point — no visible jump. Hover/focus pauses; reduced-motion kills it. */
+@keyframes scrollReviews {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: scrollReviews 38s linear infinite;
+}
+
+.animate-marquee:hover,
+.animate-marquee:focus-within {
+  animation-play-state: paused;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+body {
+  color: #334155;
+  background-color: #f8fafc;
+  overflow-x: hidden;
+}
+
+/* Respect prefers-reduced-motion: freeze marquee, reveals, smooth scroll.
+   Counters render final values in HTML, so they stay correct without JS/animation. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,4 @@
+﻿User-agent: *
+Allow: /
+
+Sitemap: https://mustaque369.github.io/demo-website-medical-clinic/sitemap.xml
