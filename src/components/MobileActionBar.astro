@@ -1,6 +1,9 @@
-﻿---
-import PhoneIcon from './icons/PhoneIcon.astro';
-import WhatsAppIcon from './icons/WhatsAppIcon.astro';
+﻿<!--
+  Mobile action bar with quick contact buttons
+-->
+---
+import PhoneIcon from "./icons/PhoneIcon.astro";
+import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
 
 const phone = "+91 98765 43210";
 const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello Dr. Rajib Das Clinic, I need an urgent neurology consultation.");
@@ -25,6 +28,7 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
       href={whatsapp}
       target="_blank"
       rel="noopener noreferrer"
+      data-analytics-event="whatsapp_click"
       class="flex items-center justify-center gap-2 py-2.5 px-3.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-sm active:scale-95 transition shadow-xs"
       aria-label="Chat with the clinic on WhatsApp"
     >

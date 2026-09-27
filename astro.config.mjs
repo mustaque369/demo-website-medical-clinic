@@ -1,4 +1,4 @@
-// @ts-check
+# @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
@@ -12,10 +12,10 @@ const siteOrigin = 'https://mustaque369.github.io';
 
 // https://astro.build/config
 export default defineConfig({
+  viewTransitions: true,
   site: `${siteOrigin}${deployBase === '/' ? '' : deployBase.replace(/\/$/, '')}`,
   base: deployBase,
   vite: {
     plugins: [tailwindcss()],
   },
 });
-

@@ -1,23 +1,33 @@
+﻿<!--
+  Main layout with SEO, meta tags, and analytics
+-->
 ---
-import '../styles/global.css';
+import "../styles/global.css";
+import Analytics from "../components/Analytics.astro";
 
 interface Props {
   title?: string;
   description?: string;
   currentPage?: string;
+  plausibleDomain?: string;
+  ga4Id?: string;
+  enableConsentBanner?: boolean;
 }
 
 const {
   title = "Dr. Rajib Das, MBBS, MD (Neurology) | Neurologist & Brain Specialist",
-  description = "Expert neurological care by Dr. Rajib Das, MBBS, MD (Neurology). Specialized treatment for Stroke, Migraine, Epilepsy, Parkinson's, Nerve Pain, EEG & EMG diagnostics. Book appointment or WhatsApp today.",
-  currentPage = "/"
+  description = "Expert neurological care by Dr. Rajib Das, MBBS, MD (Neurology). Specialized treatment for Stroke, Migraine, Epilepsy, Parkinson&apos;s, Nerve Pain, EEG & EMG diagnostics. Book appointment or WhatsApp today.",
+  currentPage = "/",
+  plausibleDomain,
+  ga4Id,
+  enableConsentBanner = false,
 } = Astro.props;
 
 const clinicPhone = "+91 98765 43210";
 // Canonical URL aware of DEPLOY_BASE: Astro.url.pathname already includes the base.
-const siteOrigin = Astro.site ? Astro.site.origin : 'https://mustaque369.github.io';
+const siteOrigin = Astro.site ? Astro.site.origin : "https://mustaque369.github.io";
 const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
-const ogImageURL = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1200&h=630&q=80';
+const ogImageURL = "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1200&h=630&q=80";
 ---
 
 <!doctype html>
@@ -99,6 +109,13 @@ const ogImageURL = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d
         "reviewCount": "248"
       }
     })} />
+
+    <!-- Analytics -->
+    <Analytics
+      plausibleDomain={plausibleDomain}
+      ga4Id={ga4Id}
+      enableConsentBanner={enableConsentBanner}
+    />
   </head>
   <body class="bg-[#fbfcfc] text-slate-700 antialiased flex flex-col min-h-screen text-[14.5px] leading-relaxed pb-16 md:pb-0 font-sans selection:bg-teal-600 selection:text-white">
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -106,21 +123,21 @@ const ogImageURL = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d
     <script>
       // Scroll-reveal: adds .is-revealed to .reveal elements as they enter view.
       // Skips animation entirely for reduced-motion users (CSS also neutralizes it).
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const revealEls = document.querySelectorAll<HTMLElement>('.reveal');
-      if (prefersReduced || !('IntersectionObserver' in window)) {
-        revealEls.forEach((el) => el.classList.add('is-revealed'));
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const revealEls = document.querySelectorAll<HTMLElement>(".reveal");
+      if (prefersReduced || !("IntersectionObserver" in window)) {
+        revealEls.forEach((el) => el.classList.add("is-revealed"));
       } else {
         const revealObserver = new IntersectionObserver(
           (entries, obs) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                (entry.target as HTMLElement).classList.add('is-revealed');
+                (entry.target as HTMLElement).classList.add("is-revealed");
                 obs.unobserve(entry.target);
               }
             });
           },
-          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
         );
         revealEls.forEach((el) => revealObserver.observe(el));
       }
