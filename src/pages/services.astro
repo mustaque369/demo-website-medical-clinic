@@ -1,5 +1,6 @@
 ---
 import { ANALYTICS } from '../constants/analytics';
+import { CLINIC } from '../constants';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
@@ -9,8 +10,8 @@ import PhoneIcon from '../components/icons/PhoneIcon.astro';
 import WhatsAppIcon from '../components/icons/WhatsAppIcon.astro';
 import CalendarIcon from '../components/icons/CalendarIcon.astro';
 
-const phone = "+91 98765 43210";
-const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello Dr. Rajib Das Clinic, I have a query regarding neurological services.");
+const phoneHref = CLINIC.phoneHref;
+const whatsapp = CLINIC.whatsappUrl;
 
 const diagnosticTests = [
   {
@@ -93,7 +94,7 @@ const faqs = [
   },
   {
     q: "How can I book an urgent appointment for acute stroke or severe flare-ups?",
-    a: "For acute emergencies (sudden speech loss, facial weakness, severe seizure), visit an emergency hospital immediately or call our clinic emergency line directly at +91 98765 43210."
+    a: "For acute emergencies (sudden speech loss, facial weakness, severe seizure), visit an emergency hospital immediately or call our clinic emergency line directly at +91 90000 00000."
   },
   {
     q: "Does the clinic offer EEG and EMG/NCV testing on-site?",
@@ -103,12 +104,12 @@ const faqs = [
 ---
 
 <Layout
-  plausibleDomain={ANALYTICS.plausibleDomain}
-  ga4Id={ANALYTICS.ga4MeasurementId}
-  enableConsentBanner={ANALYTICS.enableConsentBanner}
   title="Neurological Services & Diagnostic Procedures | Dr. Rajib Das"
   description="Explore neurology services by Dr. Rajib Das: Stroke management, Chronic Migraine therapy, Epilepsy, Parkinson's, EEG, EMG/NCV diagnostics."
   currentPage="/services"
+  plausibleDomain={ANALYTICS.plausibleDomain}
+  ga4Id={ANALYTICS.ga4MeasurementId}
+  enableConsentBanner={ANALYTICS.enableConsentBanner}
 >
   <Navbar currentPage="/services" />
 
@@ -120,7 +121,7 @@ const faqs = [
           Clinical Neurological Care
         </span>
         <h1 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 tracking-tight font-serif">
-          Specialized Services &amp; Neuro-Diagnostics
+          Specialized Services & Neuro-Diagnostics
         </h1>
         <p class="text-sm text-slate-600 mt-2.5 leading-relaxed">
           From advanced in-house electrophysiology (EEG, EMG) to specialized clinical care for stroke, migraine, and tremors by Dr. Rajib Das, MBBS, MD (Neurology).
@@ -129,7 +130,7 @@ const faqs = [
         <div class="mt-6 flex flex-wrap justify-center gap-2.5">
           <button
             data-open-modal="booking"
-            class="px-5 py-2.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-sm shadow-xs cursor-pointer flex items-center gap-1.5"
+            class="btn-glass-teal px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-1.5 cursor-pointer"
           >
             <CalendarIcon class="w-3.5 h-3.5" />
             <span>Schedule Consultation</span>
@@ -138,9 +139,9 @@ const faqs = [
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            class="px-5 py-2.5 rounded-xl bg-white border-2 border-teal-700 text-teal-800 hover:bg-teal-50 font-bold text-sm flex items-center gap-1.5"
+            class="btn-glass-whatsapp px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-1.5"
           >
-            <span class="w-4 h-4 rounded-full bg-[#25D366] flex items-center justify-center text-white shrink-0" aria-hidden="true">
+            <span class="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0" aria-hidden="true">
               <WhatsAppIcon class="w-2.5 h-2.5" />
             </span>
             <span>Inquire via WhatsApp</span>
@@ -157,7 +158,7 @@ const faqs = [
           <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
             Diagnostic Accuracy
           </span>
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2 font-serif">Electrophysiology &amp; Diagnostics</h2>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2 font-serif">Electrophysiology & Diagnostics</h2>
           <p class="text-slate-600 text-sm mt-1">Accurate diagnostic mapping is the cornerstone of effective neurological therapy.</p>
         </div>
 
@@ -220,7 +221,7 @@ const faqs = [
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {clinicalConditions.map((cond, i) => (
-            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-xs hover:border-teal-300 transition flex flex-col justify-between reveal" style={`transition-delay: ${i * 50}ms`}>
+            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-xs hover:border-teal-300 transition flex flex-col justify-between medical-card-enhanced reveal" style={`transition-delay: ${i * 50}ms`}>
               <div>
                 <div class="h-32 w-full overflow-hidden relative bg-slate-100">
                   <img
@@ -253,7 +254,7 @@ const faqs = [
               <div class="p-4 pt-0">
                 <button
                   data-open-modal="booking"
-                  class="w-full py-2 rounded-xl bg-white hover:bg-teal-50 text-teal-800 border border-slate-200 text-xs font-bold transition cursor-pointer text-center"
+                  class="btn-glass-teal w-full py-2 rounded-xl text-xs font-bold text-center cursor-pointer"
                 >
                   Book Consultation for this condition ?
                 </button>
@@ -307,18 +308,18 @@ const faqs = [
         <div class="mt-5 flex flex-wrap justify-center gap-2.5">
           <button
             data-open-modal="booking"
-            class="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-xs cursor-pointer"
+            class="btn-glass-slate px-6 py-2.5 rounded-xl font-bold text-sm cursor-pointer"
           >
             Book Appointment Slot
           </button>
           <a
-            href={`tel:${phone}`}
-            class="px-5 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-sm flex items-center gap-1.5"
+            href={phoneHref}
+            class="btn-glass-outline px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-1.5"
           >
             <span class="w-3.5 h-3.5 rounded-full bg-white/20 flex items-center justify-center text-white" aria-hidden="true">
               <PhoneIcon class="w-2.5 h-2.5" />
             </span>
-            <span>Call {phone}</span>
+            <span>Call {CLINIC.phone}</span>
           </a>
         </div>
       </div>
@@ -330,5 +331,3 @@ const faqs = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
-
-

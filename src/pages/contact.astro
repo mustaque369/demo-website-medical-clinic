@@ -1,5 +1,6 @@
 ---
 import { ANALYTICS } from '../constants/analytics';
+import { CLINIC } from '../constants';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
@@ -9,8 +10,8 @@ import PhoneIcon from '../components/icons/PhoneIcon.astro';
 import WhatsAppIcon from '../components/icons/WhatsAppIcon.astro';
 import CalendarIcon from '../components/icons/CalendarIcon.astro';
 
-const phone = "+91 98765 43210";
-const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello Dr. Rajib Das Clinic, I would like to book a consultation.");
+const phoneHref = CLINIC.phoneHref;
+const whatsapp = CLINIC.whatsappUrl;
 ---
 
 <Layout
@@ -31,7 +32,7 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
           Reach Our Clinic
         </span>
         <h1 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 tracking-tight font-serif">
-          Appointments &amp; Clinic Location
+          Appointments & Clinic Location
         </h1>
         <p class="text-sm text-slate-600 mt-2.5 leading-relaxed">
           Schedule your consultation with Dr. Rajib Das, MBBS, MD (Neurology) or connect with our clinic patient support team directly.
@@ -48,11 +49,11 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
           <!-- Clinic details & fast contact -->
           <div class="lg:col-span-5 space-y-5 reveal">
             
-            <div class="bg-white rounded-2xl p-5 sm:p-7 border border-slate-200 shadow-xs space-y-5">
+            <div class="medical-card-enhanced p-5 sm:p-7 space-y-5">
               <h2 class="text-lg font-black text-slate-900 border-b border-slate-100 pb-2.5 font-serif">Clinic Contact Information</h2>
 
               <div class="flex items-start gap-3.5">
-                <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-800 flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">
+                <div class="icon-badge-sm icon-badge-teal" aria-hidden="true">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                   </svg>
@@ -69,7 +70,7 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
               </div>
 
               <div class="flex items-start gap-3.5">
-                <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-800 flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">
+                <div class="icon-badge-sm icon-badge-teal" aria-hidden="true">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                   </svg>
@@ -82,13 +83,13 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
               </div>
 
               <div class="flex items-start gap-3.5">
-                <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">
+                <div class="icon-badge-sm icon-badge-whatsapp" aria-hidden="true">
                   <PhoneIcon class="w-4 h-4" />
                 </div>
                 <div>
                   <h3 class="text-xs font-bold text-slate-900">Telephone / WhatsApp</h3>
                   <p class="text-sm text-slate-600 mt-0.5">
-                    Direct Line: <a href={`tel:${phone}`} class="font-bold text-teal-800 hover:underline">{phone}</a>
+                    Direct Line: <a href={phoneHref} class="font-bold text-teal-800 hover:underline">{CLINIC.phone}</a>
                   </p>
                   <p class="text-xs text-slate-600 mt-0.5">WhatsApp inquiries answered promptly</p>
                 </div>
@@ -96,19 +97,20 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
 
               <div class="pt-3 border-t border-slate-100 flex flex-col sm:flex-row gap-2.5">
                 <a
-                  href={`tel:${phone}`}
-                  class="flex-1 py-2.5 px-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm text-center transition flex items-center justify-center gap-1.5"
+                  href={phoneHref}
+                  class="btn-glass-slate flex-1 py-2.5 px-3.5 rounded-xl font-bold text-sm text-center flex items-center justify-center gap-1.5"
                 >
                   <span class="w-4 h-4 rounded-full bg-slate-700 flex items-center justify-center text-teal-400 shrink-0" aria-hidden="true">
                     <PhoneIcon class="w-2.5 h-2.5" />
                   </span>
-                  <span>Call {phone}</span>
+                  <span>Call {CLINIC.phone}</span>
                 </a>
                 <a
                   href={whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex-1 py-2.5 px-3.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-sm text-center shadow-xs transition flex items-center justify-center gap-1.5"
+                  data-analytics-event="whatsapp_click"
+                  class="btn-glass-whatsapp flex-1 py-2.5 px-3.5 rounded-xl font-bold text-sm text-center shadow-xs flex items-center justify-center gap-1.5"
                 >
                   <span class="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0" aria-hidden="true">
                     <WhatsAppIcon class="w-2.5 h-2.5" />
@@ -136,7 +138,7 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
 
           <!-- Appointment form -->
           <div class="lg:col-span-7" id="book">
-            <div class="bg-white rounded-2xl p-5 sm:p-7 border border-slate-200 shadow-xs reveal">
+            <div class="medical-card-enhanced p-5 sm:p-7 reveal">
               
               <div class="mb-5">
                 <span class="text-[11px] font-bold uppercase tracking-wider text-teal-800 bg-teal-50 px-2.5 py-1 rounded-full border border-teal-100">
@@ -148,7 +150,7 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
 
               <noscript>
                 <div class="mb-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-800">
-                  Online form needs JavaScript. Please call <a href={`tel:${phone}`} class="font-bold underline">{phone}</a> or use the WhatsApp button to book.
+                  Online form needs JavaScript. Please call <a href={phoneHref} class="font-bold underline">{CLINIC.phone}</a> or use the WhatsApp button to book.
                 </div>
               </noscript>
 
@@ -202,12 +204,12 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
                       name="reason"
                       class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:border-teal-600"
                     >
-                      <option value="Stroke & Brain Recovery">Stroke &amp; Brain Recovery</option>
+                      <option value="Stroke & Brain Recovery">Stroke & Brain Recovery</option>
                       <option value="Severe Migraine / Headache">Severe Migraine / Headache</option>
-                      <option value="Epilepsy & Seizures">Epilepsy &amp; Seizures</option>
-                      <option value="Parkinson's & Tremors">Parkinson's &amp; Tremors</option>
-                      <option value="Neuropathy & Nerve Pain">Neuropathy &amp; Nerve Pain</option>
-                      <option value="Memory Loss & Dementia">Memory Loss &amp; Dementia</option>
+                      <option value="Epilepsy & Seizures">Epilepsy & Seizures</option>
+                      <option value="Parkinson's & Tremors">Parkinson's & Tremors</option>
+                      <option value="Neuropathy & Nerve Pain">Neuropathy & Nerve Pain</option>
+                      <option value="Memory Loss & Dementia">Memory Loss & Dementia</option>
                       <option value="EEG / EMG Diagnostics Test">EEG / EMG Diagnostic Study</option>
                       <option value="General Second Opinion">General Second Opinion</option>
                     </select>
@@ -252,12 +254,12 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
 
                 <button
                   type="submit"
-                  class="w-full py-3 px-5 rounded-xl text-white font-bold text-sm bg-teal-700 hover:bg-teal-800 shadow-xs transition cursor-pointer flex items-center justify-center gap-2"
+                  class="btn-glass-whatsapp w-full py-3 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span class="w-5 h-5 rounded-full bg-[#25D366] flex items-center justify-center text-white shrink-0" aria-hidden="true">
+                  <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0" aria-hidden="true">
                     <WhatsAppIcon class="w-3 h-3" />
                   </span>
-                  <span>Confirm &amp; Send Request via WhatsApp</span>
+                  <span>Confirm & Send Request via WhatsApp</span>
                 </button>
 
                 <p class="text-center text-xs text-slate-600">
@@ -279,9 +281,9 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
         
         <div class="max-w-3xl mb-6 reveal">
           <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
-            Directions &amp; Access
+            Directions & Access
           </span>
-          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1.5 font-serif">Clinic Location &amp; Transit Guide</h2>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1.5 font-serif">Clinic Location & Transit Guide</h2>
           <p class="text-slate-600 text-sm mt-0.5">Conveniently reachable by metro, cab, and private vehicles.</p>
         </div>
 
@@ -291,7 +293,7 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
             <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white">
               <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-3 border-b border-slate-200 bg-slate-50">
                 <div class="flex items-center gap-2.5 min-w-0">
-                  <span class="w-8 h-8 rounded-lg bg-teal-700 text-white flex items-center justify-center shrink-0" aria-hidden="true">
+                  <span class="icon-badge-md icon-badge-teal" aria-hidden="true">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                     </svg>
@@ -328,7 +330,7 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
             <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
               <h3 class="font-bold text-slate-900 mb-0.5 flex items-center gap-1.5 font-serif">
                 <span class="w-1.5 h-1.5 rounded-full bg-teal-700" aria-hidden="true"></span>
-                Wheelchair &amp; Elevator Access
+                Wheelchair & Elevator Access
               </h3>
               <p class="text-slate-600">Level entrance ramp at the main reception gate and wide stretcher elevators directly to the 4th floor.</p>
             </div>
@@ -344,7 +346,7 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
             <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
               <h3 class="font-bold text-slate-900 mb-0.5 flex items-center gap-1.5 font-serif">
                 <span class="w-1.5 h-1.5 rounded-full bg-teal-700" aria-hidden="true"></span>
-                Metro &amp; Transit
+                Metro & Transit
               </h3>
               <p class="text-slate-600">Situated 400 meters from Central Medical Metro Station, with taxi ranks and auto stands right outside.</p>
             </div>
@@ -353,7 +355,7 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
               href="https://maps.google.com"
               target="_blank"
               rel="noopener noreferrer"
-              class="block w-full text-center py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition"
+              class="btn-glass-slate block w-full text-center py-2.5 rounded-xl font-bold text-sm"
             >
               Get Turn-by-Turn Directions ?
             </a>
@@ -393,10 +395,8 @@ I want to schedule an appointment:
 - Specialty: ${specialty}
 - Preferred Date & Time: ${date} (${time})
 - Symptoms/Notes: ${notes}`;
-      const url = `https://wa.me/919876543210?text=${encodeURIComponent(msg)}`;
+      const url = `https://wa.me/919000000000?text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank');
     });
   }
 </script>
-
-

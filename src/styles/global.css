@@ -15,6 +15,31 @@
 
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Source Serif 4', Georgia, Cambria, 'Times New Roman', serif;
+
+  /* Icon sizes */
+  --icon-xs: 1rem;     /* 16px */
+  --icon-sm: 1.25rem;  /* 20px */
+  --icon-md: 1.5rem;   /* 24px */
+  --icon-lg: 1.75rem;  /* 28px */
+  --icon-xl: 2rem;     /* 32px */
+
+  /* Spacing scale */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+
+  /* Container padding */
+  --container-padding-mobile: 1rem;
+  --container-padding-tablet: 1.5rem;
+  --container-padding-desktop: 2rem;
 }
 
 @layer utilities {
@@ -32,6 +57,22 @@
     box-shadow: 0 10px 25px -4px rgba(15, 118, 110, 0.1), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
   }
 
+  /* Enhanced medical card with better shadows */
+  .medical-card-enhanced {
+    @apply bg-white rounded-2xl border border-slate-200;
+    box-shadow: 
+      0 1px 3px 0 rgba(0, 0, 0, 0.05),
+      0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .medical-card-enhanced:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    border-color: rgba(15, 118, 110, 0.2);
+  }
+
   /* Scroll-reveal entrance (JS adds .is-revealed) */
   .reveal {
     opacity: 0;
@@ -42,45 +83,255 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* Glassmorphic button styles - defined as full utilities */
+  .btn-glass-teal {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(15, 118, 110, 0.85), rgba(15, 118, 110, 0.65));
+    border: 1px solid rgba(15, 118, 110, 0.3);
+    color: white;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-glass-teal:hover {
+    background: linear-gradient(135deg, rgba(15, 118, 110, 0.95), rgba(15, 118, 110, 0.75));
+    border-color: rgba(15, 118, 110, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 40px 0 rgba(15, 118, 110, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  .btn-glass-teal:active {
+    transform: translateY(0);
+  }
+
+  .btn-glass-whatsapp {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(37, 211, 102, 0.85), rgba(37, 211, 102, 0.65));
+    border: 1px solid rgba(37, 211, 102, 0.3);
+    color: white;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-glass-whatsapp:hover {
+    background: linear-gradient(135deg, rgba(37, 211, 102, 0.95), rgba(37, 211, 102, 0.75));
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 40px 0 rgba(37, 211, 102, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  .btn-glass-whatsapp:active {
+    transform: translateY(0);
+  }
+
+  .btn-glass-outline {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #0f766e;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-glass-outline:hover {
+    background: rgba(15, 118, 110, 0.1);
+    border-color: rgba(15, 118, 110, 0.3);
+    color: #0f766e;
+  }
+
+  .btn-glass-slate {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.65));
+    border: 1px solid rgba(15, 23, 42, 0.3);
+    color: white;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-glass-slate:hover {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.75));
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 40px 0 rgba(15, 23, 42, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  /* Icon badge styles - defined inline */
+  .icon-badge-sm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem; /* rounded-xl */
+    width: 2rem;  /* 32px - w-8 */
+    height: 2rem;
+    transition: all 0.2s ease;
+  }
+  .icon-badge-md {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    width: 2.5rem;  /* 40px - w-10 */
+    height: 2.5rem;
+    transition: all 0.2s ease;
+  }
+  .icon-badge-lg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    width: 3rem;  /* 48px - w-12 */
+    height: 3rem;
+    transition: all 0.2s ease;
+  }
+  .icon-badge-teal {
+    background-color: #0f766e;
+    color: white;
+  }
+  .icon-badge-teal:hover {
+    background-color: #115e59;
+  }
+  .icon-badge-whatsapp {
+    background-color: #25D366;
+    color: white;
+  }
+  .icon-badge-whatsapp:hover {
+    background-color: #1ebe5d;
+  }
+  .icon-badge-slate {
+    background-color: #0f172a;
+    color: white;
+  }
+  .icon-badge-slate:hover {
+    background-color: #1e293b;
+  }
+  .icon-badge-white {
+    background-color: white;
+    color: #0f766e;
+    border: 1px solid #e2e8f0;
+  }
+  .icon-badge-white:hover {
+    background-color: #f0fdfa;
+    border-color: #99f6e4;
+  }
+
+  /* Section spacing */
+  .section-spacing {
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+  .section-header {
+    @apply mb-10 sm:mb-12 lg:mb-16;
+  }
 }
 
-/* Skip link — first tab stop, visible only on focus */
-.skip-link {
-  position: absolute;
-  left: 1rem;
-  top: -100%;
-  z-index: 100;
-  background: #0f766e;
-  color: #ffffff;
-  font-size: 0.875rem;
-  font-weight: 700;
-  padding: 0.6rem 1.1rem;
-  border-radius: 0 0 0.75rem 0.75rem;
-  transition: top 0.2s ease;
-}
-.skip-link:focus {
-  top: 0;
+@layer base {
+  /* Skip link — first tab stop, visible only on focus */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100%;
+    z-index: 100;
+    background: #0f766e;
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.6rem 1.1rem;
+    border-radius: 0 0 0.75rem 0.75rem;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* Consistent visible keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid #0f766e;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Hide Safari's native details marker */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary {
+    list-style: none;
+  }
+
+  /* Mobile-first: ensure text doesn't touch edges */
+  @media (max-width: 639px) {
+    body {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .max-w-7xl,
+    .max-w-5xl,
+    .max-w-3xl,
+    .mx-auto {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    /* Ensure content doesn't touch edges */
+    p, h1, h2, h3, h4, span, a, button, label, input, textarea, select {
+      max-width: 100%;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* Better base typography on mobile */
+    body {
+      font-size: 1rem; /* 16px */
+      line-height: 1.65;
+    }
+    
+    h1 { font-size: 2.25rem; line-height: 1.2; }
+    h2 { font-size: 1.875rem; line-height: 1.3; }
+    h3 { font-size: 1.5rem; line-height: 1.4; }
+    
+    /* CTA Buttons on mobile */
+    .btn-glass-teal, .btn-glass-whatsapp, .btn-glass-outline, .btn-glass-slate {
+      @apply text-base py-3 px-6;
+    }
+    
+    /* Mobile action bar */
+    .fixed.bottom-0 a {
+      @apply text-base py-3 px-4;
+    }
+
+    /* Form inputs on mobile */
+    input, textarea, select {
+      @apply text-base py-3 px-4;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .btn-glass-teal, .btn-glass-whatsapp, .btn-glass-outline, .btn-glass-slate {
+      @apply text-sm py-2.5 px-5;
+    }
+  }
 }
 
-/* Consistent visible keyboard focus everywhere */
-:focus-visible {
-  outline: 2px solid #0f766e;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Hide Safari's native details marker */
-summary::-webkit-details-marker {
-  display: none;
-}
-summary {
-  list-style: none;
-}
-
-/* Infinite Marquee for reviews.
-   Track content is duplicated 2x. One loop cycle = 50% of track width PLUS the
-   single 1rem gap (gap-4) between the two halves, so -50% - 0.5rem lands exactly
-   on the loop point — no visible jump. Hover/focus pauses; reduced-motion kills it. */
+/* Infinite Marquee for reviews */
 @keyframes scrollReviews {
   0% {
     transform: translateX(0);

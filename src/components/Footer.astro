@@ -2,11 +2,12 @@
   Footer component with clinic info and contact details
 -->
 ---
+import { CLINIC } from '../constants';
 import PhoneIcon from "./icons/PhoneIcon.astro";
 import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
 
-const phone = "+91 98765 43210";
-const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello Dr. Rajib Das Clinic, I would like to book an appointment.");
+const phoneHref = CLINIC.phoneHref;
+const whatsapp = CLINIC.whatsappUrl;
 ---
 
 <footer class="bg-slate-900 text-slate-300 border-t border-slate-800 pt-14 pb-10 text-sm">
@@ -19,8 +20,8 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
             RD
           </div>
           <div>
-            <h3 class="text-white font-bold text-lg">Dr. Rajib Das</h3>
-            <p class="text-xs text-teal-400 font-semibold">MBBS, MD (Neurology)</p>
+            <h3 class="text-white font-bold text-lg">{CLINIC.doctor.name}</h3>
+            <p class="text-xs text-teal-400 font-semibold">{CLINIC.doctor.qualifications}</p>
           </div>
         </div>
         <p class="text-xs text-slate-400 leading-relaxed">
@@ -64,11 +65,11 @@ const whatsapp = "https://wa.me/919876543210?text=" + encodeURIComponent("Hello 
             <svg class="w-4 h-4 text-teal-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
             </svg>
-            <span>Suite 402, Apex Neurosciences Center, Park View Medical Enclave, Main Arterial Road</span>
+            <span>{CLINIC.address.full}</span>
           </li>
           <li class="flex items-center gap-2">
             <PhoneIcon class="w-4 h-4 text-teal-400 shrink-0" />
-            <a href={`tel:${phone}`} class="hover:text-white transition-colors font-semibold text-slate-200">{phone}</a>
+            <a href={phoneHref} class="hover:text-white transition-colors font-semibold text-slate-200">{CLINIC.phone}</a>
           </li>
           <li class="flex items-center gap-2">
             <span class="w-4 h-4 rounded-full bg-[#25D366] flex items-center justify-center text-white shrink-0" aria-hidden="true">

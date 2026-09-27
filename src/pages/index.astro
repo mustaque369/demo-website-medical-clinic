@@ -549,8 +549,8 @@ const stats = [
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced || !('IntersectionObserver' in window)) return;
 
-    const counters = document.querySelectorAll<HTMLElement>('.counter-number');
-    const speed = 55;
+const counters = document.querySelectorAll<HTMLElement>('.counter-number');
+    const speed = 120;
 
     const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach((entry) => {

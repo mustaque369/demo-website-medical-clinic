@@ -1,52 +1,50 @@
 export const CLINIC = {
-  name: "City Medical Clinic",
+  name: "Dr. Rajib Das Neurological Clinic & Brain Center",
   doctor: {
-    name: "Dr. Sarah Johnson",
-    qualifications: "MD, FACP",
-    title: "Senior Consultant Physician",
-    shortTitle: "Consultant Physician"
+    name: "Dr. Rajib Das",
+    qualifications: "MBBS, MD (Neurology)",
+    title: "Consultant Neurologist & Clinical Neurophysiologist",
+    shortTitle: "Neurologist & Neurophysiologist"
   },
-  phone: "+1 (555) 123-4567",
-  phoneHref: "tel:+15551234567",
-  whatsappUrl: "https://wa.me/15551234567",
-  whatsappDefaultText: "Hi, I'd like to book an appointment at City Medical Clinic.",
-  email: "info@citymedicalclinic.com",
+  phone: "+91 90000 00000",
+  phoneHref: "tel:+919000000000",
+  whatsappUrl: "https://wa.me/919000000000",
+  whatsappDefaultText: "Hello Dr. Rajib Das Clinic, I would like to schedule a neurology consultation.",
+  email: "info@drrajibdasclinic.com",
   address: {
-    line1: "123 Healthcare Avenue",
-    line2: "Medical District",
-    city: "Springfield",
-    state: "IL",
-    postalCode: "62701",
-    country: "USA",
-    landmark: "Near Central Hospital",
-    full: "123 Healthcare Avenue, Medical District, Springfield, IL 62701, USA"
+    line1: "Suite 402, Apex Neurosciences Center",
+    line2: "Park View Medical Enclave, Main Arterial Road",
+    city: "Metro City",
+    state: "State",
+    postalCode: "700001",
+    country: "IN",
+    landmark: "Opposite City Health Park, 4th Floor",
+    full: "Suite 402, Apex Neurosciences Center, Park View Medical Enclave, Main Arterial Road, Metro City, 700001"
   },
   coordinates: {
-    latitude: 39.7817,
-    longitude: -89.6501
+    latitude: "22.5726",
+    longitude: "88.3639"
   },
   hours: {
-    weekdays: "Mon-Fri: 8:00 AM - 6:00 PM",
-    sunday: "Closed",
-    emergency: "24/7 Emergency Line: +1 (555) 123-4567"
+    weekdays: "Monday – Saturday: 9:00 AM – 7:00 PM",
+    sunday: "Sunday: Closed for Routine OPD (Emergency On-Call)",
+    emergency: "Emergency on-call available 24/7"
   },
-  googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.123456789!2d-89.6501!3d39.7817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDQ2JzU0LjEiTiA4OcKwMzknMDAuNCJX!5e0!3m2!1sen!2sus!4v1234567890",
-  googleMapsUrl: "https://goo.gl/maps/example",
+  googleMapsEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117925.21689648937!2d88.26495046206148!3d22.535564937497746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f882db4908f667%3A0x43e330e68f6c2cbc!2sKolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+  googleMapsUrl: "https://maps.google.com",
   reviewStats: {
-    rating: 4.8,
-    count: 247,
+    rating: "4.9",
+    count: "248+",
     source: "Google Reviews"
   },
   stats: {
-    yearsExperience: 15,
-    patientsTreated: 12500,
-    diagnosticsPerformed: 8900,
-    satisfactionRate: 98
+    yearsExperience: "15+",
+    patientsTreated: "12,500+",
+    diagnosticsPerformed: "3,800+",
+    satisfactionRate: "99%"
   },
   social: {
-    facebook: "https://facebook.com/citymedicalclinic",
-    instagram: "https://instagram.com/citymedicalclinic",
-    twitter: "https://twitter.com/citymedclinic",
-    linkedin: "https://linkedin.com/company/citymedicalclinic"
+    // Add when available
   }
 } as const;
