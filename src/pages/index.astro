@@ -169,80 +169,57 @@ const stats = [
     </section>
 
     <!-- 3. Services -->
-    <section class="section id="services" bg-cream">
+    <section id="services" class="section bg-ivory border-b border-beige" aria-label="Neurological services">
       <div class="container-main">
-        
-        <div class="text-center max-w-3xl mx-auto mb-14 md:mb-20 reveal">
-          <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
-            Clinical Disciplines
-          </span>
-          <h2 class="text-h2 text-slate-900 mt-2">Specialized Neurological Services</h2>
-          <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-            Targeted clinical investigations and medical interventions for acute and chronic conditions of the nervous system.
-          </p>
+
+        <!-- Section header -->
+        <div class="svc-header reveal">
+          <p class="svc-overline">Clinical Disciplines</p>
+          <h2 class="svc-title">Specialized Neurological Services</h2>
+          <p class="svc-subtitle">Targeted clinical investigations and medical interventions for acute and chronic conditions of the nervous system.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((item, i) => (
-            <div class="surface overflow-hidden medical-card-hover flex flex-col justify-between group reveal" style={`transition-delay: ${i * 60}ms`}>
-              <div>
-                <div class="img-frame h-40 w-full">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    width="600"
-                    height="450"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div class="img-scrim absolute inset-0" aria-hidden="true"></div>
-                  <div class="absolute bottom-2.5 left-2.5 bg-white px-2.5 py-1 rounded-sm text-label flex items-center gap-1">
-                    <svg class="w-3.5 h-3.5 text-teal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon}/>
-                    </svg>
-                    <span>Specialized Care</span>
+        <!-- Editorial service list -->
+        <ol class="svc-list" aria-label="Services list">
+          {services.map((item, i) => {
+            const num = String(i + 1).padStart(2, '0');
+            return (
+              <li class="svc-row group reveal" style={`transition-delay: ${i * 50}ms`}>
+                <a href={item.href} class="svc-row-link">
+                  <span class="svc-num" aria-hidden="true">{num}</span>
+                  <div class="svc-row-body">
+                    <h3 class="svc-row-title">{item.title}</h3>
+                    <p class="svc-row-desc">{item.desc}</p>
                   </div>
-                </div>
-
-                <div class="p-5">
-                  <h3 class="text-h4 text-slate-900 group-hover:text-teal-800 transition-colors mb-1.5">
-                    {item.title}
-                  </h3>
-                  <p class="text-body-sm text-slate-600 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-
-              <div class="p-5 pt-0 border-t border-slate-100 flex items-center justify-between">
-                <a href={item.href} class="text-caption font-semibold text-teal-700 hover:text-teal-900 flex items-center gap-1">
-                  <span>Clinical Process</span>
-                  <span aria-hidden="true">→</span>
+                  <span class="svc-arrow" aria-hidden="true">→</span>
+                  <div class="svc-row-img-wrap" aria-hidden="true">
+                    <img
+                      src={item.image}
+                      alt=""
+                      role="presentation"
+                      width="600"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                      class="svc-row-img"
+                    />
+                  </div>
                 </a>
-                <button
-                  data-open-modal="booking"
-                  class="btn btn-quiet btn-sm"
-                >
-                  Consult
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+              </li>
+            );
+          })}
+        </ol>
 
-        <div class="mt-10 text-center">
-          <a
-            href="/services"
-            class="btn btn-charcoal inline-flex items-center gap-2"
-          >
-            <span>Explore All Diagnostic Procedures & Prep (EEG, EMG/NCV)</span>
-            <span aria-hidden="true">→</span>
+        <!-- Footer CTA -->
+        <div class="svc-footer reveal">
+          <a href="/services" class="svc-footer-link">
+            <span>Explore All Diagnostic Procedures & Prep</span>
+            <span class="svc-footer-arrow" aria-hidden="true">→</span>
           </a>
         </div>
 
       </div>
     </section>
-
     <!-- 3b. Patient Journey -->
     <section id="journey" class="journey-section section bg-ivory border-t border-beige" aria-label="Patient journey">
       <div class="container-main">
@@ -366,6 +343,27 @@ const stats = [
           </button>
         </div>
 
+      </div>
+    </section>
+
+    <!-- 3c. Cinematic Statement -->
+    <section class="cine-statement" aria-label="Precision and understanding">
+      <div class="cine-statement-media" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80"
+          alt=""
+          role="presentation"
+          width="1600"
+          height="900"
+          class="cine-statement-img"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="cine-statement-scrim"></div>
+      </div>
+      <div class="cine-statement-content reveal">
+        <p class="cine-statement-line-1">Precision matters.</p>
+        <p class="cine-statement-line-2">But so does understanding.</p>
       </div>
     </section>
     <!-- 4. Clinical philosophy -->
@@ -636,6 +634,8 @@ const counters = document.querySelectorAll<HTMLElement>('.counter-number');
 
   initCounters();
 </script>
+
+
 
 
 

@@ -731,6 +731,301 @@
     max-width: 38ch;
   }
 
+
+
+  /* ==========================================================
+     CINEMATIC STATEMENT — full-bleed editorial interlude
+     ========================================================== */
+  .cine-statement {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60svh;
+    isolation: isolate;
+    background-color: var(--color-charcoal);
+  }
+  @media (min-width: 768px) {
+    .cine-statement { min-height: 70svh; }
+  }
+
+  /* Background image — slow parallax-like scale on load */
+  .cine-statement-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .cine-statement-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: saturate(0.5) contrast(1.1);
+    /* Gentle slow scale — starts slightly zoomed, eases out */
+    transform: scale(1.06);
+    transition: transform 8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .cine-statement .cine-statement-img {
+    /* The scale transition plays on page load / scroll-in */
+    transform: scale(1.06);
+  }
+  .cine-statement.is-revealed .cine-statement-img,
+  .cine-statement:hover .cine-statement-img {
+    transform: scale(1.0);
+  }
+
+  /* Dark cinematic scrim */
+  .cine-statement-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(27, 31, 29, 0.55) 0%,
+      rgba(27, 31, 29, 0.70) 100%
+    );
+  }
+
+  /* Text content — centred, large, quiet */
+  .cine-statement-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+
+  .cine-statement-line-1,
+  .cine-statement-line-2 {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    color: #ffffff;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .cine-statement-line-1 {
+    font-size: clamp(1.75rem, 4vw + 0.5rem, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    opacity: 0.95;
+  }
+
+  .cine-statement-line-2 {
+    font-size: clamp(1.75rem, 4vw + 0.5rem, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-top: 0.375em;
+    /* The second line is slightly more transparent — 
+       draws a visual pause between the two thoughts */
+    opacity: 0.70;
+  }
+  /* ==========================================================
+     EDITORIAL SERVICES LIST — index.astro
+     ========================================================== */
+
+  .svc-header {
+    margin-bottom: 4rem;
+  }
+  @media (min-width: 768px) {
+    .svc-header { margin-bottom: 5.5rem; }
+  }
+
+  .svc-overline {
+    font-family: var(--font-sans);
+    font-size: var(--type-label);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-teal-deep);
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+  .svc-overline::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background: var(--color-teal-deep);
+    flex-shrink: 0;
+  }
+
+  .svc-title {
+    font-family: var(--font-serif);
+    font-size: var(--type-h2);
+    font-weight: 300;
+    line-height: var(--leading-h2);
+    letter-spacing: var(--tracking-h2);
+    color: var(--color-charcoal);
+    text-wrap: balance;
+    margin-bottom: 0.75rem;
+  }
+
+  .svc-subtitle {
+    font-family: var(--font-sans);
+    font-size: var(--type-body);
+    line-height: var(--leading-body);
+    color: var(--color-graphite);
+    max-width: 56ch;
+  }
+
+  /* ── The list ──────────────────────────────────────────────── */
+  .svc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--color-beige);
+  }
+
+  /* ── Each row ──────────────────────────────────────────────── */
+  .svc-row {
+    border-bottom: 1px solid var(--color-beige);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .svc-row-link {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr 1.5rem;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 2rem 0;
+    text-decoration: none;
+    color: inherit;
+    transition: padding-left 280ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  @media (min-width: 768px) {
+    .svc-row-link {
+      grid-template-columns: 4.5rem 1fr 2rem;
+      gap: 2.5rem;
+      padding: 2.5rem 0;
+    }
+  }
+
+  .svc-row:hover .svc-row-link {
+    padding-left: 0.75rem;
+  }
+
+  /* Number */
+  .svc-num {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--color-teal-200);
+    user-select: none;
+    transition: -webkit-text-stroke-color 280ms ease;
+  }
+  .svc-row:hover .svc-num {
+    -webkit-text-stroke-color: var(--color-teal-600);
+  }
+
+  /* Body: title + desc */
+  .svc-row-body {
+    min-width: 0;
+  }
+
+  .svc-row-title {
+    font-family: var(--font-serif);
+    font-size: var(--type-h3);
+    font-weight: 300;
+    line-height: var(--leading-h3);
+    letter-spacing: var(--tracking-h3);
+    color: var(--color-charcoal);
+    transition: color 280ms ease;
+    margin-bottom: 0.375rem;
+  }
+  .svc-row:hover .svc-row-title {
+    color: var(--color-teal-deep);
+  }
+
+  .svc-row-desc {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    line-height: var(--leading-body-sm);
+    color: var(--color-mist);
+    max-width: 60ch;
+    /* Collapse on mobile, show on md+ */
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .svc-row-desc { display: block; }
+  }
+
+  /* Arrow */
+  .svc-arrow {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    color: var(--color-beige);
+    transition: color 280ms ease, transform 280ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    justify-self: end;
+  }
+  .svc-row:hover .svc-arrow {
+    color: var(--color-teal-deep);
+    transform: translateX(4px);
+  }
+
+  /* Image reveal on hover (desktop only) */
+  .svc-row-img-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 22rem;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(1rem);
+    transition: opacity 350ms ease, transform 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 0;
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .svc-row-img-wrap { display: block; }
+    .svc-row:hover .svc-row-img-wrap {
+      opacity: 0.15;
+      transform: translateX(0);
+    }
+  }
+
+  .svc-row-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.4) contrast(1.1);
+  }
+
+  /* ── Footer CTA ────────────────────────────────────────────── */
+  .svc-footer {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+  }
+
+  .svc-footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    font-weight: 600;
+    color: var(--color-charcoal);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .svc-footer-link:hover {
+    color: var(--color-teal-deep);
+  }
+
+  .svc-footer-arrow {
+    display: inline-block;
+    font-size: 1.125rem;
+    transition: transform 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .svc-footer-link:hover .svc-footer-arrow {
+    transform: translateX(4px);
+  }
   /* ==========================================================
      EDITORIAL DOCTOR PROFILE — about.astro
      ========================================================== */
@@ -1336,4 +1631,6 @@ small { font-size: var(--type-caption); line-height: 1.6; }
     transition-duration: 0.01ms !important;
   }
 }
+
+
 

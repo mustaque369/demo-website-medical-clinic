@@ -1,4 +1,4 @@
-﻿<!--
+<!--
   Main layout with SEO, meta tags, and analytics
 -->
 ---
@@ -124,7 +124,7 @@ const ogImageURL = "https://images.unsplash.com/photo-1622253692010-333f2da6031d
       // Scroll-reveal: adds .is-revealed to .reveal elements as they enter view.
       // Skips animation entirely for reduced-motion users (CSS also neutralizes it).
       const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const revealEls = document.querySelectorAll<HTMLElement>(".reveal");
+      const revealEls = document.querySelectorAll<HTMLElement>(".reveal, .cine-statement");
       if (prefersReduced || !("IntersectionObserver" in window)) {
         revealEls.forEach((el) => el.classList.add("is-revealed"));
       } else {
