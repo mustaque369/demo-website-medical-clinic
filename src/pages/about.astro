@@ -1,4 +1,4 @@
----
+﻿---
 import { ANALYTICS } from '../constants/analytics';
 import { CLINIC } from '../constants';
 import Layout from '../layouts/Layout.astro';
@@ -60,127 +60,173 @@ const milestones = [
   <Navbar currentPage="/about" />
 
   <main id="main-content">
-    <!-- Doctor Profile Header -->
-    <section class="hero-wash section border-b border-slate-200">
+
+    <!-- ═══════════════════════════════════════════════════════════
+         EDITORIAL DOCTOR PROFILE — full-width cinematic header
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="doc-profile-hero section border-b border-beige" aria-label="Doctor profile">
       <div class="container-main">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 items-center">
-          
-          <div class="lg:col-span-5">
-            <div class="relative max-w-sm mx-auto">
-              <div class="text-center">
-                <div class="img-frame w-64 h-64 mx-auto mb-8 rounded-full overflow-hidden shadow-sm">
-                  <img
-                    src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=500&q=80"
-                    alt="Portrait of Dr. Rajib Das, consultant neurologist"
-                    width="500"
-                    height="500"
-                    class="w-full h-full object-cover object-top"
-                    loading="eager"
-                    fetchpriority="high"
-                  />
-                </div>
+        <div class="doc-profile-grid">
 
-                <h1 class="text-h2 text-slate-900">Dr. Rajib Das</h1>
-                <p class="text-caption text-teal-800 font-semibold mt-1">MBBS, MD (Neurology)</p>
-                <p class="text-caption text-slate-500">Consultant Neurologist & Neurophysiologist</p>
-
-                <div class="mt-4 pt-4 border-t border-slate-100 space-y-1.5 text-left text-xs">
-                  <div class="flex justify-between py-0.5 border-b border-slate-100">
-                    <span class="text-slate-500">Board Status:</span>
-                    <span class="font-semibold text-emerald-700">Board Certified</span>
-                  </div>
-                  <div class="flex justify-between py-0.5 border-b border-slate-100">
-                    <span class="text-slate-500">Clinical Exp:</span>
-                    <span class="font-semibold text-slate-800">15+ Years Active Practice</span>
-                  </div>
-                  <div class="flex justify-between py-0.5 border-b border-slate-100">
-                    <span class="text-slate-500">Specialty:</span>
-                    <span class="font-semibold text-teal-800">Brain, Spine & Nerves</span>
-                  </div>
-                  <div class="flex justify-between py-0.5">
-                    <span class="text-slate-500">OPD Timings:</span>
-                    <span class="font-semibold text-teal-800">Mon - Sat (9 AM - 7 PM)</span>
-                  </div>
-                </div>
-
-                <div class="mt-4 flex flex-col gap-2">
-                  <button
-                    data-open-modal="booking"
-                    class="btn btn-teal w-full"
-                  >
-                    <CalendarIcon class="w-4 h-4" />
-                    <span>Schedule Consultation</span>
-                  </button>
-                  <a
-                    href={whatsapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn btn-whatsapp w-full py-2 rounded-xl text-btn font-semibold text-center flex items-center justify-center gap-1.5"
-                  >
-                    <span class="text-white shrink-0" aria-hidden="true">
-                      <WhatsAppIcon class="w-2.5 h-2.5" />
-                    </span>
-                    <span>Quick WhatsApp Connect</span>
-                  </a>
-                </div>
-
-              </div>
+          <!-- Portrait column -->
+          <div class="doc-portrait-col reveal">
+            <div class="doc-portrait-frame">
+              <img
+                src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=85"
+                alt="Dr. Rajib Das, Consultant Neurologist and Clinical Neurophysiologist"
+                width="800"
+                height="960"
+                class="doc-portrait-img"
+                loading="eager"
+                fetchpriority="high"
+              />
+              <!-- Cinematic grade overlay -->
+              <div class="doc-portrait-overlay" aria-hidden="true"></div>
             </div>
           </div>
 
-          <div class="lg:col-span-7 space-y-5 reveal">
-            <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
-              Physician Biography
-            </span>
-            <h2 class="text-h2 text-slate-900">
-              A Lifetime Dedication to Precision Neuro-Diagnostics and Human Compassion
-            </h2>
+          <!-- Identity + bio column -->
+          <div class="doc-identity-col reveal">
 
-            <p class="text-body text-slate-600">
-              <strong>Dr. Rajib Das, MBBS, MD (Neurology)</strong> is an accomplished Senior Neurologist known for his analytical diagnostic approach and patient-centered communication with individuals facing complex neurological conditions.
-            </p>
+            <!-- Eyebrow -->
+            <p class="doc-eyebrow">Physician Profile</p>
 
-            <p class="text-body text-slate-600">
-              With more than 15 years in active clinical neurology practice, Dr. Das has successfully treated thousands of patients dealing with acute stroke recovery, refractory migraine syndromes, intractable epilepsy, Parkinson's disease, and excruciating peripheral nerve disorders.
-            </p>
+            <!-- Name -->
+            <h1 class="doc-name">Dr. Rajib Das</h1>
 
-            <div class="p-5 rounded-2xl bg-teal-50/70 border border-teal-100 space-y-1.5">
-              <h3 class="text-caption font-semibold text-slate-900 flex items-center gap-2">
-                <svg class="w-3.5 h-3.5 text-teal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                <span>Clinical Approach</span>
-              </h3>
-              <p class="text-body text-slate-700 italic">
-                "In neurology, an illness rarely affects an isolated organ � it impacts an individual's independence, speech, mobility, and identity. Every patient deserves time, rigorous diagnostic inquiry, and complete reassurance on their treatment path."
+            <!-- Credentials line -->
+            <p class="doc-credentials">MBBS (Distinction &amp; Gold Medal) &middot; MD in Neurology</p>
+            <p class="doc-role">Consultant Neurologist &amp; Certified Clinical Neurophysiologist</p>
+
+            <!-- Thin rule -->
+            <hr class="doc-rule" />
+
+            <!-- Biography paragraphs — verbatim factual content -->
+            <div class="doc-bio">
+              <p>
+                Dr. Rajib Das is an accomplished Senior Neurologist known for his analytical diagnostic approach and patient-centered communication with individuals facing complex neurological conditions.
+              </p>
+              <p>
+                With more than 15 years in active clinical neurology practice, Dr. Das has treated patients dealing with acute stroke recovery, refractory migraine, intractable epilepsy, Parkinson's disease, and peripheral nerve disorders.
               </p>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-3 border-t border-slate-200">
-              {milestones.map((m) => (
-                <div class="bg-white p-3 rounded-2xl border border-slate-200 text-center shadow-xs medical-card-enhanced">
-                  <div class="text-h4 text-teal-800">{m.count}</div>
-                  <div class="text-caption font-medium text-slate-600 mt-0.5">{m.label}</div>
+            <!-- Philosophy pull-quote — verbatim from existing content -->
+            <blockquote class="doc-philosophy">
+              <p>"In neurology, an illness rarely affects an isolated organ — it impacts an individual's independence, speech, mobility, and identity. Every patient deserves time, rigorous diagnostic inquiry, and complete reassurance on their treatment path."</p>
+            </blockquote>
+
+            <!-- Practice statistics — pure typography, no cards -->
+            <div class="doc-stats">
+              {milestones.map((m, i) => (
+                <div class="doc-stat">
+                  <span class="doc-stat-num">{m.count}</span>
+                  <span class="doc-stat-label">{m.label}</span>
                 </div>
               ))}
             </div>
 
-          </div>
+            <!-- CTA row -->
+            <div class="doc-cta-row">
+              <button data-open-modal="booking" class="btn btn-teal px-8 py-3.5">
+                Book a Consultation
+              </button>
+              <a href={phoneHref} class="doc-phone-link">
+                <span class="doc-phone-icon" aria-hidden="true">
+                  <PhoneIcon class="w-4 h-4" />
+                </span>
+                {CLINIC.phone}
+              </a>
+            </div>
 
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         CREDENTIALS — editorial list, no cards
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="section bg-ivory border-b border-beige" aria-label="Qualifications and credentials">
+      <div class="container-main">
+
+        <div class="doc-section-header reveal">
+          <p class="doc-section-overline">Academic Pedigree</p>
+          <h2 class="doc-section-title">Education, Fellowships &amp; Accreditations</h2>
+        </div>
+
+        <ol class="doc-credential-list" aria-label="Qualifications list">
+          {credentials.map((item, idx) => (
+            <li class="doc-credential-item reveal" style={`transition-delay: ${idx * 80}ms`}>
+              <div class="doc-credential-index" aria-hidden="true">0{idx + 1}</div>
+              <div class="doc-credential-body">
+                <div class="doc-credential-meta">
+                  <h3 class="doc-credential-degree">{item.degree}</h3>
+                  <span class="doc-credential-badge">{item.year}</span>
+                </div>
+                <p class="doc-credential-institution">{item.institution}</p>
+                <p class="doc-credential-desc">{item.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
 
       </div>
     </section>
 
-    <!-- Clinic Facilities Gallery -->
-    <section class="section bg-white border-b border-slate-200">
+    <!-- ═══════════════════════════════════════════════════════════
+         MEMBERSHIPS — horizontal typography list, no icon cards
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="section bg-white border-b border-beige" aria-label="Professional memberships">
       <div class="container-main">
-        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-          <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
-            Clinic Environment
-          </span>
-          <h2 class="text-h3 text-slate-900 mt-1.5">Patient-First Modern Facilities</h2>
+
+        <div class="doc-section-header reveal">
+          <p class="doc-section-overline">Affiliations</p>
+          <h2 class="doc-section-title">Professional Memberships</h2>
+        </div>
+
+        <ul class="doc-membership-list reveal" aria-label="Memberships">
+          <li class="doc-membership-item">
+            <span class="doc-membership-abbr">NSI</span>
+            <div>
+              <p class="doc-membership-name">Neurological Society of India</p>
+              <p class="doc-membership-role">Life Member &amp; Contributor</p>
+            </div>
+          </li>
+          <li class="doc-membership-item">
+            <span class="doc-membership-abbr">AAN</span>
+            <div>
+              <p class="doc-membership-name">American Academy of Neurology</p>
+              <p class="doc-membership-role">International Member</p>
+            </div>
+          </li>
+          <li class="doc-membership-item">
+            <span class="doc-membership-abbr">IES</span>
+            <div>
+              <p class="doc-membership-name">Indian Epilepsy Society</p>
+              <p class="doc-membership-role">Clinical Researcher</p>
+            </div>
+          </li>
+          <li class="doc-membership-item">
+            <span class="doc-membership-abbr">WSO</span>
+            <div>
+              <p class="doc-membership-name">World Stroke Organization</p>
+              <p class="doc-membership-role">Certified Stroke Protocol Member</p>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         CLINIC ENVIRONMENT — photography grid
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="section bg-ivory" aria-label="Clinic environment">
+      <div class="container-main">
+        <div class="doc-section-header reveal">
+          <p class="doc-section-overline">The Environment</p>
+          <h2 class="doc-section-title">Patient-First Modern Facilities</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -208,7 +254,7 @@ const milestones = [
               loading="lazy"
             />
             <div class="img-scrim absolute inset-0 flex items-end p-4" aria-hidden="true">
-              <span class="text-h5 text-white">Digital EEG & EMG Electrophysiology Suite</span>
+              <span class="text-h5 text-white">Digital EEG &amp; EMG Suite</span>
             </div>
           </div>
 
@@ -222,74 +268,8 @@ const milestones = [
               loading="lazy"
             />
             <div class="img-scrim absolute inset-0 flex items-end p-4" aria-hidden="true">
-              <span class="text-h5 text-white">Neuro-Rehabilitation & Recovery Bay</span>
+              <span class="text-h5 text-white">Neuro-Rehabilitation Bay</span>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Education & Credentials -->
-    <section class="section bg-cream">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-2xl mx-auto mb-14 md:mb-20 reveal">
-          <span class="text-label px-3 py-1 rounded-sm border border-teal-200">Academic Pedigree</span>
-          <h2 class="text-h2 text-slate-900 mt-2">Education, Fellowships & Accreditations</h2>
-          <p class="text-body-sm text-slate-600 mt-1">Formal medical qualifications and specialized clinical training.</p>
-        </div>
-
-        <ol class="space-y-4 list-none">
-          {credentials.map((item, idx) => (
-            <li class="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs flex flex-col sm:flex-row sm:items-start justify-between gap-3 hover:border-teal-300 transition medical-card-enhanced reveal" style={`transition-delay: ${idx * 60}ms`}>
-              <div class="flex items-start gap-3.5">
-                <div class="w-8 h-8 rounded-lg bg-teal-50 text-teal-800 flex items-center justify-center shrink-0 font-semibold text-xs" aria-hidden="true">
-                  0{idx + 1}
-                </div>
-                <div>
-                  <h3 class="text-h4 text-slate-900">{item.degree}</h3>
-                  <p class="text-caption font-semibold text-teal-800">{item.institution}</p>
-                  <p class="text-body-sm text-slate-600 mt-1">{item.desc}</p>
-                </div>
-              </div>
-              <span class="shrink-0 self-start text-caption font-semibold px-2.5 py-0.5 rounded-sm bg-slate-100 text-slate-700">
-                {item.year}
-              </span>
-            </li>
-          ))}
-        </ol>
-
-      </div>
-    </section>
-
-    <!-- Professional Memberships -->
-    <section class="section bg-white border-t border-slate-200">
-      <div class="container-main">
-        <div class="max-w-3xl mx-auto text-center mb-14 reveal">
-          <h2 class="text-h3 text-slate-900">Professional Memberships</h2>
-          <p class="text-body-sm text-slate-600 mt-1">Active participant in medical councils and international clinical bodies.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-center reveal medical-card-enhanced">
-            <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-800 flex items-center justify-center mx-auto mb-2.5 font-semibold text-xs" aria-hidden="true">NSI</div>
-            <h3 class="text-h5 text-slate-900">Neurological Society</h3>
-            <p class="text-caption text-slate-600 mt-0.5">Life Member & Contributor</p>
-          </div>
-          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-center reveal medical-card-enhanced" style="transition-delay: 60ms">
-            <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-800 flex items-center justify-center mx-auto mb-2.5 font-semibold text-xs" aria-hidden="true">AAN</div>
-            <h3 class="text-h5 text-slate-900">American Academy of Neurology</h3>
-            <p class="text-caption text-slate-600 mt-0.5">International Member</p>
-          </div>
-          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-center reveal medical-card-enhanced" style="transition-delay: 120ms">
-            <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-800 flex items-center justify-center mx-auto mb-2.5 font-semibold text-xs" aria-hidden="true">IES</div>
-            <h3 class="text-h5 text-slate-900">Epilepsy Society</h3>
-            <p class="text-caption text-slate-600 mt-0.5">Clinical Researcher</p>
-          </div>
-          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-center reveal medical-card-enhanced" style="transition-delay: 180ms">
-            <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-800 flex items-center justify-center mx-auto mb-2.5 font-semibold text-xs" aria-hidden="true">WSO</div>
-            <h3 class="text-h5 text-slate-900">World Stroke Organization</h3>
-            <p class="text-caption text-slate-600 mt-0.5">Certified Stroke Protocol Member</p>
           </div>
         </div>
       </div>
@@ -300,27 +280,24 @@ const milestones = [
       subheadline="Patients share their recovery journeys with Dr. Rajib Das across complex neurological conditions."
     />
 
-    <!-- Consultation Action -->
-    <section class="section bg-slate-900 text-white text-center">
+    <!-- Consultation CTA -->
+    <section class="section bg-teal-900 text-white text-center">
       <div class="container-narrow reveal">
-        <h2 class="text-h3">Schedule an In-Depth Neurological Evaluation</h2>
-        <p class="text-body text-slate-300 mt-1.5">Take the first step toward accurate diagnosis and targeted relief.</p>
-        
-        <div class="mt-5 flex flex-wrap justify-center gap-3">
+        <h2 class="text-h2">Schedule an In-Depth Neurological Evaluation</h2>
+        <p class="text-lead text-teal-100 mt-4 max-w-xl mx-auto">Take the first step toward accurate diagnosis and targeted relief.</p>
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
           <button
             data-open-modal="booking"
-            class="btn btn-teal px-6 py-2.5 rounded-xl text-btn font-semibold cursor-pointer"
+            class="btn bg-white text-teal-900 hover:bg-slate-50 px-8 py-3.5 text-base"
           >
-            Request Appointment Now
+            Request Appointment
           </button>
           <a
             href={phoneHref}
-            class="btn btn-charcoal px-5 py-2.5 rounded-xl text-btn font-semibold flex items-center gap-1.5"
+            class="btn btn-outline border-teal-500 text-white hover:bg-teal-800 px-8 py-3.5 text-base"
           >
-            <span class="text-teal-400" aria-hidden="true">
-              <PhoneIcon class="w-2.5 h-2.5" />
-            </span>
-            <span>Call {CLINIC.phone}</span>
+            <PhoneIcon class="w-4 h-4" />
+            {CLINIC.phone}
           </a>
         </div>
       </div>
@@ -332,5 +309,6 @@ const milestones = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
+
 
 

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @theme {
   /* Neutral Warm Medical Clinic Palette (Sage / Slate / Deep Hospital Teal) */
@@ -173,6 +173,16 @@
     background-image: radial-gradient(120% 85% at 12% 0%, rgba(36, 80, 70, 0.07) 0%, rgba(250, 247, 241, 0) 62%);
   }
   .hero-medical-glow { background-color: var(--color-ivory); }
+
+  /* Cinematic full-bleed hero */
+  .hero-cinematic {
+    position: relative;
+    background-color: var(--color-charcoal);
+    isolation: isolate;
+  }
+  .hero-cinematic img {
+    filter: saturate(0.82) contrast(1.05);
+  }
 
   .surface,
   .medical-card-enhanced {
@@ -506,6 +516,646 @@
   .section-header {
     @apply mb-10 sm:mb-12 lg:mb-16;
   }
+
+  /* ==========================================================
+     PATIENT JOURNEY SECTION — editorial large-number layout
+     ========================================================== */
+
+  /* Section background — warm ivory, distinct from white panels */
+  .journey-section {
+    background-color: var(--color-ivory);
+  }
+
+  /* ── Header ────────────────────────────────────────────────── */
+  .journey-header {
+    max-width: 48rem;
+    margin-bottom: 5rem;
+  }
+  @media (min-width: 768px) {
+    .journey-header { margin-bottom: 7rem; }
+  }
+
+  .journey-overline {
+    font-family: var(--font-sans);
+    font-size: var(--type-label);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-teal-deep);
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+  .journey-overline::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background-color: var(--color-teal-deep);
+    flex-shrink: 0;
+  }
+
+  .journey-title {
+    font-family: var(--font-serif);
+    font-size: var(--type-h1);
+    font-weight: 300;
+    line-height: var(--leading-h1);
+    letter-spacing: var(--tracking-h1);
+    color: var(--color-charcoal);
+    text-wrap: balance;
+  }
+
+  /* ── Stage list ─────────────────────────────────────────────── */
+  .journey-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Each stage row */
+  .journey-stage {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    grid-template-rows: auto;
+    gap: 0 2.5rem;
+    padding-bottom: 4.5rem;
+    position: relative;
+  }
+  @media (min-width: 1024px) {
+    .journey-stage {
+      grid-template-columns: 7rem 1fr 22rem;
+      gap: 0 3.5rem;
+      padding-bottom: 6rem;
+      align-items: start;
+    }
+  }
+
+  .journey-stage--last {
+    padding-bottom: 0;
+  }
+
+  /* Left column: number + vertical connector */
+  .journey-stage-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.25rem;
+  }
+
+  /* Large editorial number */
+  .journey-num {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--color-beige);
+    display: block;
+    /* Outline treatment for dramatic depth */
+    -webkit-text-stroke: 1px var(--color-teal-200);
+    color: transparent;
+    user-select: none;
+    transition: color 0.3s ease, -webkit-text-stroke-color 0.3s ease;
+  }
+  .journey-stage.is-revealed .journey-num {
+    color: transparent;
+    -webkit-text-stroke-color: var(--color-teal-600);
+  }
+
+  /* Vertical connector line */
+  .journey-connector {
+    width: 1px;
+    flex: 1;
+    min-height: 3rem;
+    margin-top: 1rem;
+    background: linear-gradient(
+      to bottom,
+      var(--color-teal-200) 0%,
+      var(--color-beige) 100%
+    );
+  }
+
+  /* Body: label + heading + copy */
+  .journey-stage-body {
+    padding-top: 0.375rem;
+  }
+
+  .journey-stage-label {
+    font-family: var(--font-sans);
+    font-size: var(--type-label);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-teal-deep);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .journey-stage-heading {
+    font-family: var(--font-serif);
+    font-size: var(--type-h3);
+    font-weight: 300;
+    line-height: var(--leading-h3);
+    letter-spacing: var(--tracking-h3);
+    color: var(--color-charcoal);
+    text-wrap: balance;
+    margin-bottom: 1rem;
+  }
+
+  .journey-stage-copy {
+    font-family: var(--font-sans);
+    font-size: var(--type-body);
+    line-height: var(--leading-body);
+    color: var(--color-graphite);
+    max-width: 52ch;
+  }
+
+  /* Image column (desktop only — hidden on mobile) */
+  .journey-stage-image {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .journey-stage-image {
+      display: block;
+      /* Stagger images to create visual rhythm */
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+    .journey-stage:nth-child(even) .journey-stage-image {
+      margin-top: 2.5rem;
+    }
+  }
+
+  .journey-img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    filter: saturate(0.78) contrast(1.04);
+    border: 1px solid var(--color-beige);
+    display: block;
+    transition: filter 0.4s ease;
+  }
+  .journey-stage:hover .journey-img {
+    filter: saturate(0.92) contrast(1.02);
+  }
+
+  /* ── Closing CTA / pull-quote ───────────────────────────────── */
+  .journey-cta {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--color-beige);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  @media (min-width: 640px) {
+    .journey-cta {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .journey-quote {
+    font-family: var(--font-serif);
+    font-size: var(--type-lead);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    color: var(--color-charcoal);
+    max-width: 38ch;
+  }
+
+  /* ==========================================================
+     EDITORIAL DOCTOR PROFILE — about.astro
+     ========================================================== */
+
+  /* ── Hero grid ───────────────────────────────────────────────── */
+  .doc-profile-hero {
+    background-color: var(--color-ivory);
+  }
+
+  .doc-profile-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  @media (min-width: 1024px) {
+    .doc-profile-grid {
+      grid-template-columns: 20rem 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+  }
+  @media (min-width: 1280px) {
+    .doc-profile-grid {
+      grid-template-columns: 24rem 1fr;
+      gap: 6rem;
+    }
+  }
+
+  /* ── Portrait ────────────────────────────────────────────────── */
+  .doc-portrait-col {
+    /* On mobile: constrain width and centre */
+    max-width: 18rem;
+    margin-inline: auto;
+    width: 100%;
+  }
+  @media (min-width: 1024px) {
+    .doc-portrait-col {
+      max-width: none;
+      margin-inline: 0;
+      /* Stick portrait to top of grid, body text can be longer */
+      position: sticky;
+      top: 6rem;
+    }
+  }
+
+  .doc-portrait-frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--color-beige);
+    /* Slight portrait ratio — more human than square */
+    aspect-ratio: 4 / 5;
+  }
+
+  .doc-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    filter: saturate(0.85) contrast(1.04);
+    transition: filter 0.5s ease;
+  }
+  .doc-portrait-frame:hover .doc-portrait-img {
+    filter: saturate(0.95) contrast(1.02);
+  }
+
+  .doc-portrait-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(27, 31, 29, 0.20) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+  }
+
+  /* ── Identity & bio column ───────────────────────────────────── */
+  .doc-identity-col {
+    padding-top: 0.5rem;
+  }
+
+  .doc-eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--type-label);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-teal-deep);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .doc-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--color-teal-deep);
+    flex-shrink: 0;
+  }
+
+  .doc-name {
+    font-family: var(--font-serif);
+    font-size: var(--type-display);
+    font-weight: 300;
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--color-charcoal);
+    text-wrap: balance;
+    margin-bottom: 0.625rem;
+  }
+
+  .doc-credentials {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    font-weight: 500;
+    color: var(--color-teal-core);
+    letter-spacing: 0.01em;
+    margin-bottom: 0.25rem;
+  }
+
+  .doc-role {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    color: var(--color-graphite);
+    margin-bottom: 0;
+  }
+
+  .doc-rule {
+    border: none;
+    border-top: 1px solid var(--color-beige);
+    margin-block: 2.25rem;
+  }
+
+  .doc-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+    margin-bottom: 2.25rem;
+  }
+  .doc-bio p {
+    font-family: var(--font-sans);
+    font-size: var(--type-body);
+    line-height: var(--leading-body);
+    color: var(--color-graphite);
+    max-width: 65ch;
+  }
+
+  /* Pull-quote */
+  .doc-philosophy {
+    border-left: 2px solid var(--color-teal-deep);
+    padding-left: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .doc-philosophy p {
+    font-family: var(--font-serif);
+    font-size: var(--type-lead);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.65;
+    letter-spacing: -0.008em;
+    color: var(--color-charcoal);
+    max-width: 58ch;
+  }
+
+  /* Statistics — pure typographic, separated by hairlines */
+  .doc-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--color-beige);
+    border-left: 1px solid var(--color-beige);
+    margin-bottom: 2.5rem;
+  }
+  @media (min-width: 640px) {
+    .doc-stats {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .doc-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding: 1.5rem 1.25rem;
+    border-right: 1px solid var(--color-beige);
+    border-bottom: 1px solid var(--color-beige);
+  }
+
+  .doc-stat-num {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--color-teal-deep);
+  }
+
+  .doc-stat-label {
+    font-family: var(--font-sans);
+    font-size: var(--type-caption);
+    font-weight: 500;
+    color: var(--color-graphite);
+    line-height: 1.4;
+  }
+
+  /* CTA row */
+  .doc-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .doc-phone-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    font-weight: 500;
+    color: var(--color-charcoal);
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+  .doc-phone-link:hover { color: var(--color-teal-deep); }
+
+  .doc-phone-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 1px solid var(--color-beige);
+    color: var(--color-teal-deep);
+  }
+
+  /* ── Section headers (credentials, memberships) ──────────────── */
+  .doc-section-header {
+    margin-bottom: 3.5rem;
+  }
+  @media (min-width: 768px) {
+    .doc-section-header { margin-bottom: 5rem; }
+  }
+
+  .doc-section-overline {
+    font-family: var(--font-sans);
+    font-size: var(--type-label);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-teal-deep);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .doc-section-overline::before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--color-teal-deep);
+    flex-shrink: 0;
+  }
+
+  .doc-section-title {
+    font-family: var(--font-serif);
+    font-size: var(--type-h2);
+    font-weight: 300;
+    line-height: var(--leading-h2);
+    letter-spacing: var(--tracking-h2);
+    color: var(--color-charcoal);
+    text-wrap: balance;
+  }
+
+  /* ── Credential list — editorial, no boxes ───────────────────── */
+  .doc-credential-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .doc-credential-item {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 0 2rem;
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--color-beige);
+    align-items: start;
+  }
+  .doc-credential-item:last-child {
+    border-bottom: 1px solid var(--color-beige);
+  }
+  @media (min-width: 768px) {
+    .doc-credential-item {
+      grid-template-columns: 4rem 1fr;
+      gap: 0 3rem;
+    }
+  }
+
+  .doc-credential-index {
+    font-family: var(--font-serif);
+    font-size: var(--type-h4);
+    font-weight: 300;
+    color: var(--color-teal-200);
+    line-height: 1.2;
+    padding-top: 0.25rem;
+    -webkit-text-stroke: 1px var(--color-teal-300);
+    color: transparent;
+    user-select: none;
+  }
+
+  .doc-credential-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .doc-credential-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .doc-credential-degree {
+    font-family: var(--font-serif);
+    font-size: var(--type-h4);
+    font-weight: 400;
+    line-height: var(--leading-h4);
+    letter-spacing: var(--tracking-h4);
+    color: var(--color-charcoal);
+  }
+
+  .doc-credential-badge {
+    font-family: var(--font-sans);
+    font-size: var(--type-caption);
+    font-weight: 600;
+    color: var(--color-teal-deep);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .doc-credential-institution {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    font-weight: 500;
+    color: var(--color-graphite);
+  }
+
+  .doc-credential-desc {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    line-height: var(--leading-body-sm);
+    color: var(--color-mist);
+    max-width: 60ch;
+  }
+
+  /* ── Membership list — clean horizontal rows ─────────────────── */
+  .doc-membership-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .doc-membership-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--color-beige);
+  }
+  .doc-membership-item:last-child {
+    border-bottom: 1px solid var(--color-beige);
+  }
+  @media (min-width: 768px) {
+    .doc-membership-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .doc-membership-item:nth-child(odd) {
+      border-right: 1px solid var(--color-beige);
+      padding-right: 3rem;
+    }
+    .doc-membership-item:nth-child(even) {
+      padding-left: 3rem;
+    }
+    .doc-membership-item:last-child,
+    .doc-membership-item:nth-last-child(2) {
+      border-bottom: 1px solid var(--color-beige);
+    }
+  }
+
+  .doc-membership-abbr {
+    font-family: var(--font-serif);
+    font-size: var(--type-h3);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--color-teal-300);
+    flex-shrink: 0;
+    width: 4rem;
+    line-height: 1;
+  }
+
+  .doc-membership-name {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    font-weight: 600;
+    color: var(--color-charcoal);
+    margin-bottom: 0.2rem;
+  }
+
+  .doc-membership-role {
+    font-family: var(--font-sans);
+    font-size: var(--type-caption);
+    color: var(--color-graphite);
+  }
+
 }
 
 @layer base {
@@ -686,3 +1336,4 @@ small { font-size: var(--type-caption); line-height: 1.6; }
     transition-duration: 0.01ms !important;
   }
 }
+

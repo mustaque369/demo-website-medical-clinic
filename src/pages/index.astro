@@ -1,4 +1,4 @@
----
+﻿---
 import { ANALYTICS } from '../constants/analytics';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
@@ -80,140 +80,71 @@ const stats = [
 
   <main id="main-content">
     <!-- 1. Hero -->
-    <section class="hero-wash relative section overflow-hidden border-b border-slate-200">
-      <div class="absolute inset-0 hero-medical-glow pointer-events-none" aria-hidden="true"></div>
+    <section class="hero-cinematic relative overflow-hidden" aria-label="Hero">
 
-      <div class="container-main relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 items-center">
-          
-          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm text-label border border-teal-200">
-              <span class="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
-              Consultant Neurologist & Clinical Neurophysiologist
-            </div>
+      <!-- Full-bleed background image with cinematic overlay -->
+      <div class="absolute inset-0" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85"
+          alt=""
+          role="presentation"
+          width="1800"
+          height="1200"
+          class="w-full h-full object-cover object-center"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <!-- Cinematic scrim: dark vignette bottom-up, warm ivory fade top -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#faf7f1]/60 via-[#faf7f1]/20 to-[#1b1f1d]/75"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#faf7f1]/55 via-transparent to-transparent"></div>
+      </div>
 
-            <h1 class="text-display text-slate-900">
-              Precision Neurological Care & <span class="text-teal-700">Brain Health</span>
-            </h1>
+      <!-- Content: left-aligned, vertically centred -->
+      <div class="relative z-10 container-main flex items-center min-h-[92svh] sm:min-h-[88svh] lg:min-h-[90svh] py-24 lg:py-32">
+        <div class="max-w-2xl space-y-8">
 
-            <p class="text-lead text-slate-600 max-w-[62ch] mx-auto lg:mx-0">
-              Personalized diagnosis and compassionate clinical management of complex conditions affecting the brain, spine, and nerves by <strong>Dr. Rajib Das, MBBS, MD (Neurology)</strong>.
-            </p>
-
-            <!-- CTAs: single solid primary, outlined WhatsApp, ghost call (clear hierarchy) -->
-            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1">
-              <button
-                data-open-modal="booking"
-                class="btn btn-teal w-full sm:w-auto"
-              >
-                <CalendarIcon class="w-4 h-4" />
-                <span>Book Appointment</span>
-              </button>
-
-              <a
-                href={whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-outline w-full sm:w-auto"
-              >
-                <span class="w-5 h-5 rounded-full bg-[#1da851] flex items-center justify-center text-white shrink-0" aria-hidden="true">
-                  <WhatsAppIcon class="w-3 h-3" />
-                </span>
-                <span>Chat on WhatsApp</span>
-              </a>
-
-              <a
-                href={`tel:${phone}`}
-                class="btn btn-quiet w-full sm:w-auto"
-              >
-                <PhoneIcon class="w-4 h-4 text-teal-700" />
-                <span>Call Clinic</span>
-              </a>
-            </div>
-
-            <!-- Trust badges -->
-            <div class="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-caption font-semibold text-slate-600">
-              <span class="flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-teal-700" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                Board Certified Neurologist
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-teal-700" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                On-Site Digital EEG / EMG
-              </span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-teal-700" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                Zero Long Waiting Times
-              </span>
-            </div>
-
+          <!-- Eyebrow label -->
+          <div class="inline-flex items-center gap-2.5">
+            <span class="w-5 h-px bg-teal-700" aria-hidden="true"></span>
+            <span class="text-label text-teal-800 tracking-widest">Neurology Care</span>
           </div>
 
-          <!-- Doctor profile card -->
-          <div class="lg:col-span-5">
-            <div class="relative max-w-sm mx-auto">
-              <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm">
-                
-                <div class="img-frame mb-4 aspect-4/3">
-                  <img
-                    src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=700&q=80"
-                    alt="Dr. Rajib Das, neurologist, in clinic attire"
-                    width="700"
-                    height="525"
-                    class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
-                    loading="eager"
-                    fetchpriority="high"
-                  />
-                  <div class="absolute bottom-2.5 left-2.5 bg-white px-2.5 py-1 rounded-lg border border-slate-200 text-body-sm font-semibold text-slate-800 shadow-xs flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
-                    Available at Clinic Today
-                  </div>
-                </div>
+          <!-- Editorial headline -->
+          <h1 class="text-display text-slate-900 max-w-xl">
+            Understanding the mind.<br>
+            <span class="text-teal-800">Caring for the person.</span>
+          </h1>
 
-                <div class="text-center space-y-0.5 mb-4">
-                  <h2 class="text-h4 text-slate-900">Dr. Rajib Das</h2>
-                  <p class="text-caption text-teal-800 font-semibold">MBBS, MD (Neurology)</p>
-                  <p class="text-caption text-slate-500">Senior Neurologist & Stroke Consultant</p>
-                </div>
+          <!-- Single supporting sentence -->
+          <p class="text-lead text-slate-700/90 max-w-[52ch]">
+            Dr. Rajib Das offers unhurried, expert neurological consultations — with on-site EEG and EMG diagnostics — for conditions affecting the brain, spine, and nerves.
+          </p>
 
-                <div class="space-y-1.5 bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs">
-                  <div class="flex items-center justify-between text-slate-600">
-                    <span class="font-medium text-slate-500">Board Status:</span>
-                    <span class="font-semibold text-slate-800">MD in Neurology</span>
-                  </div>
-                  <div class="flex items-center justify-between text-slate-600">
-                    <span class="font-medium text-slate-500">OPD Timings:</span>
-                    <span class="font-semibold text-teal-800">09:00 AM – 07:00 PM</span>
-                  </div>
-                  <div class="flex items-center justify-between text-slate-600">
-                    <span class="font-medium text-slate-500">Center:</span>
-                    <span class="font-semibold text-slate-800">Apex Neurosciences Center</span>
-                  </div>
-                </div>
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
+            <button
+              data-open-modal="booking"
+              class="btn btn-teal px-7 py-3.5 text-base tracking-wide"
+            >
+              Book a Consultation <span aria-hidden="true">→</span>
+            </button>
 
-                <div class="mt-3.5">
-                  <a
-                    href="/about"
-                    class="btn btn-outline btn-sm block w-full text-center"
-                  >
-                    View Full Medical Bio & Fellowships →
-                  </a>
-                </div>
-
-              </div>
-            </div>
+            <a
+              href="#services"
+              class="group inline-flex items-center gap-2 text-body-sm font-medium text-slate-700 hover:text-teal-800 transition-colors"
+            >
+              <span>Explore the Journey</span>
+              <span class="inline-block transition-transform group-hover:translate-y-0.5 duration-200" aria-hidden="true">↓</span>
+            </a>
           </div>
 
         </div>
       </div>
-    </section>
 
+      <!-- Scroll cue bar at very bottom -->
+      <div class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-700/20 to-transparent" aria-hidden="true"></div>
+    </section>
     <!-- 2. Full-horizon stats band (icons + counters that render final values without JS) -->
     <section class="bg-teal-800 text-white py-12" aria-label="Practice statistics">
       <div class="container-main">
@@ -238,7 +169,7 @@ const stats = [
     </section>
 
     <!-- 3. Services -->
-    <section class="section bg-cream">
+    <section class="section id="services" bg-cream">
       <div class="container-main">
         
         <div class="text-center max-w-3xl mx-auto mb-14 md:mb-20 reveal">
@@ -312,6 +243,131 @@ const stats = [
       </div>
     </section>
 
+    <!-- 3b. Patient Journey -->
+    <section id="journey" class="journey-section section bg-ivory border-t border-beige" aria-label="Patient journey">
+      <div class="container-main">
+
+        <!-- Section header -->
+        <div class="journey-header reveal">
+          <p class="journey-overline">The Journey</p>
+          <h2 class="journey-title">From your first concern<br>to a clearer tomorrow.</h2>
+        </div>
+
+        <!-- Stage list -->
+        <ol class="journey-list" aria-label="Stages of care">
+
+          <!-- 01 Listen -->
+          <li class="journey-stage reveal">
+            <div class="journey-stage-left">
+              <span class="journey-num" aria-hidden="true">01</span>
+              <div class="journey-connector" aria-hidden="true"></div>
+            </div>
+            <div class="journey-stage-body">
+              <span class="journey-stage-label">Listen</span>
+              <h3 class="journey-stage-heading">Every symptom deserves unhurried attention.</h3>
+              <p class="journey-stage-copy">Your first consultation with Dr. Das lasts 30 to 45 minutes — long enough to hear the full story behind your headaches, your tremors, your fear. Nothing is dismissed.</p>
+            </div>
+            <div class="journey-stage-image" aria-hidden="true">
+              <img
+                src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=600&q=75"
+                alt=""
+                role="presentation"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="journey-img"
+              />
+            </div>
+          </li>
+
+          <!-- 02 Understand -->
+          <li class="journey-stage reveal">
+            <div class="journey-stage-left">
+              <span class="journey-num" aria-hidden="true">02</span>
+              <div class="journey-connector" aria-hidden="true"></div>
+            </div>
+            <div class="journey-stage-body">
+              <span class="journey-stage-label">Understand</span>
+              <h3 class="journey-stage-heading">Science meets clarity.</h3>
+              <p class="journey-stage-copy">On-site EEG, EMG, and NCV testing, plus precision review of your MRI and CT scans, transforms uncertainty into an evidence-based picture you can finally see and understand.</p>
+            </div>
+            <div class="journey-stage-image" aria-hidden="true">
+              <img
+                src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=600&q=75"
+                alt=""
+                role="presentation"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="journey-img"
+              />
+            </div>
+          </li>
+
+          <!-- 03 Treat -->
+          <li class="journey-stage reveal">
+            <div class="journey-stage-left">
+              <span class="journey-num" aria-hidden="true">03</span>
+              <div class="journey-connector" aria-hidden="true"></div>
+            </div>
+            <div class="journey-stage-body">
+              <span class="journey-stage-label">Treat</span>
+              <h3 class="journey-stage-heading">A plan built around you — not a protocol.</h3>
+              <p class="journey-stage-copy">Whether stroke, Parkinson's, epilepsy, or nerve pain, every treatment plan is designed for your specific physiology, life, and goals. Modern therapeutics. Transparent reasoning.</p>
+            </div>
+            <div class="journey-stage-image" aria-hidden="true">
+              <img
+                src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=75"
+                alt=""
+                role="presentation"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="journey-img"
+              />
+            </div>
+          </li>
+
+          <!-- 04 Follow Through -->
+          <li class="journey-stage journey-stage--last reveal">
+            <div class="journey-stage-left">
+              <span class="journey-num" aria-hidden="true">04</span>
+              <!-- no connector on last -->
+            </div>
+            <div class="journey-stage-body">
+              <span class="journey-stage-label">Follow Through</span>
+              <h3 class="journey-stage-heading">The relationship continues after the clinic.</h3>
+              <p class="journey-stage-copy">Emergency on-call access, structured review appointments, and ongoing management mean the care doesn't end when you walk out the door.</p>
+            </div>
+            <div class="journey-stage-image" aria-hidden="true">
+              <img
+                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=75"
+                alt=""
+                role="presentation"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="journey-img"
+              />
+            </div>
+          </li>
+
+        </ol>
+
+        <!-- Closing pull-quote -->
+        <div class="journey-cta reveal">
+          <p class="journey-quote">"Precision is a science. Compassion is a choice."</p>
+          <button data-open-modal="booking" class="btn btn-teal px-8 py-3.5 text-base">
+            Begin Your Journey
+          </button>
+        </div>
+
+      </div>
+    </section>
     <!-- 4. Clinical philosophy -->
     <section class="section bg-white border-t border-slate-200">
       <div class="container-main">
@@ -427,7 +483,7 @@ const stats = [
                 </svg>
                 <div class="text-body-sm">
                   <p class="text-label text-slate-900 mb-1">Consultation Hours</p>
-                  <p class="text-slate-700">Monday � Saturday: 9:00 AM � 7:00 PM</p>
+                  <p class="text-slate-700">Monday � Saturday: 9:00 AM � 7:00 PM</p>
                   <p class="text-slate-500 mt-0.5">(Emergency on-call available 24/7)</p>
                 </div>
               </div>
@@ -580,6 +636,9 @@ const counters = document.querySelectorAll<HTMLElement>('.counter-number');
 
   initCounters();
 </script>
+
+
+
 
 
 
