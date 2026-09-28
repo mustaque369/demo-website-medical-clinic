@@ -175,12 +175,12 @@
   .hero-medical-glow { background-color: var(--color-ivory); }
 
   /* Cinematic full-bleed hero */
-  .hero-cinematic {
+  .hero-premium {
     position: relative;
     background-color: var(--color-charcoal);
     isolation: isolate;
   }
-  .hero-cinematic img {
+  .hero-premium img {
     filter: saturate(0.82) contrast(1.05);
   }
 
@@ -733,6 +733,395 @@
 
 
 
+
+
+  /* ==========================================================
+     PATIENT STORIES — editorial review slider
+     ========================================================== */
+  .stories-section {
+    background-color: var(--color-ivory);
+    overflow: hidden;
+  }
+
+  .stories-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+  @media (min-width: 768px) {
+    .stories-header { margin-bottom: 5rem; }
+  }
+
+  .stories-overline {
+    font-family: var(--font-sans);
+    font-size: var(--type-label);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-teal-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+  .stories-overline::before,
+  .stories-overline::after {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background: var(--color-teal-deep);
+  }
+
+  .stories-title {
+    font-family: var(--font-serif);
+    font-size: var(--type-h2);
+    font-weight: 300;
+    line-height: var(--leading-h2);
+    letter-spacing: var(--tracking-h2);
+    color: var(--color-charcoal);
+  }
+
+  /* Carousel */
+  .stories-carousel {
+    max-width: 60rem;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .stories-track {
+    position: relative;
+    min-height: 20rem; /* Give enough height for longest quote */
+    display: grid;     /* Stack slides on top of each other */
+  }
+
+  .story-slide {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(1rem);
+    transition: opacity 600ms ease, transform 600ms ease, visibility 600ms;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .story-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    z-index: 2;
+  }
+
+  /* Typography */
+  .story-quote {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--color-charcoal);
+    margin: 0;
+    margin-bottom: 2.5rem;
+    max-width: 48ch;
+    /* Soft quotation mark treatment */
+    position: relative;
+  }
+  
+  .story-attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .story-author {
+    font-family: var(--font-sans);
+    font-size: var(--type-body);
+    font-weight: 600;
+    color: var(--color-teal-deep);
+  }
+
+  .story-meta {
+    font-family: var(--font-sans);
+    font-size: var(--type-caption);
+    color: var(--color-graphite);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Controls */
+  .stories-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+
+  .story-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-mist);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 200ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .story-btn:hover {
+    color: var(--color-teal-deep);
+  }
+
+  .story-indicators {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .story-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-beige);
+    cursor: pointer;
+    transition: background-color 300ms ease, transform 300ms ease;
+  }
+  .story-dot.is-active {
+    background-color: var(--color-teal-deep);
+    transform: scale(1.5);
+  }
+  /* ==========================================================
+     CARE PHILOSOPHY — editorial principles layout
+     ========================================================== */
+  .philosophy-section {
+    background-color: var(--color-white);
+    border-top: 1px solid var(--color-beige);
+  }
+
+  /* ── Header ────────────────────────────────────────────────── */
+  .philosophy-header {
+    max-width: 40rem;
+    margin-bottom: 5rem;
+  }
+  @media (min-width: 768px) {
+    .philosophy-header { margin-bottom: 6.5rem; }
+  }
+
+  .philosophy-overline {
+    font-family: var(--font-sans);
+    font-size: var(--type-label);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-teal-deep);
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+  .philosophy-overline::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background: var(--color-teal-deep);
+    flex-shrink: 0;
+  }
+
+  .philosophy-title {
+    font-family: var(--font-serif);
+    font-size: var(--type-display);
+    font-weight: 300;
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--color-charcoal);
+    text-wrap: balance;
+    margin-bottom: 1.5rem;
+  }
+
+  .philosophy-plus {
+    color: var(--color-teal-deep);
+    font-weight: 300;
+  }
+
+  .philosophy-intro {
+    font-family: var(--font-sans);
+    font-size: var(--type-body);
+    line-height: var(--leading-body);
+    color: var(--color-graphite);
+    max-width: 56ch;
+  }
+
+  /* ── Principles list ────────────────────────────────────────── */
+  .philosophy-principles {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--color-beige);
+  }
+  @media (min-width: 768px) {
+    .philosophy-principles {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .philosophy-principle {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--color-beige);
+  }
+  @media (min-width: 768px) {
+    .philosophy-principle {
+      padding: 3rem 2.5rem;
+      border-bottom: none;
+      border-right: 1px solid var(--color-beige);
+    }
+    .philosophy-principle:first-child { padding-left: 0; }
+    .philosophy-principle:last-child { border-right: none; padding-right: 0; }
+  }
+
+  /* Number + line */
+  .philosophy-principle-num {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .philosophy-num-text {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--color-teal-200);
+    user-select: none;
+  }
+
+  .philosophy-num-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      var(--color-teal-200) 0%,
+      transparent 100%
+    );
+    /* Animate width on reveal */
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .philosophy-principle.is-revealed .philosophy-num-line {
+    transform: scaleX(1);
+  }
+
+  /* Body */
+  .philosophy-principle-body {
+    /* empty — just structure */
+  }
+
+  .philosophy-principle-name {
+    font-family: var(--font-serif);
+    font-size: var(--type-h3);
+    font-weight: 300;
+    line-height: var(--leading-h3);
+    letter-spacing: var(--tracking-h3);
+    color: var(--color-charcoal);
+    margin-bottom: 0.875rem;
+  }
+
+  .philosophy-principle-copy {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    line-height: var(--leading-body-sm);
+    color: var(--color-graphite);
+    max-width: 36ch;
+  }
+
+  /* ── When to consult — editorial aside ──────────────────────── */
+  .philosophy-aside {
+    margin-top: 4.5rem;
+    padding-top: 4.5rem;
+    border-top: 1px solid var(--color-beige);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  @media (min-width: 768px) {
+    .philosophy-aside {
+      grid-template-columns: 1fr auto;
+      gap: 5rem;
+      align-items: start;
+    }
+  }
+
+  .philosophy-aside-inner {
+    /* empty wrapper */
+  }
+
+  .philosophy-aside-title {
+    font-family: var(--font-serif);
+    font-size: var(--type-h4);
+    font-weight: 400;
+    line-height: var(--leading-h4);
+    color: var(--color-charcoal);
+    margin-bottom: 1.5rem;
+  }
+
+  .philosophy-aside-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  @media (min-width: 480px) {
+    .philosophy-aside-list {
+      grid-template-columns: 1fr 1fr;
+      gap: 0 3rem;
+    }
+  }
+
+  .philosophy-aside-list li {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    color: var(--color-graphite);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-beige);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .philosophy-aside-list li::before {
+    content: '';
+    width: 0.375rem;
+    height: 1px;
+    background: var(--color-teal-deep);
+    flex-shrink: 0;
+  }
+
+  .philosophy-aside-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-top: 0.25rem;
+  }
+
+  .philosophy-bio-link {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    font-weight: 500;
+    color: var(--color-charcoal);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .philosophy-bio-link:hover {
+    color: var(--color-teal-deep);
+  }
   /* ==========================================================
      CINEMATIC STATEMENT — full-bleed editorial interlude
      ========================================================== */
@@ -1453,6 +1842,433 @@
 
 }
 
+
+  /* ==========================================================
+     CONVERSION SECTION — bottom CTA
+     ========================================================== */
+  .conversion-section {
+    background-color: var(--color-ivory);
+    border-top: 1px solid var(--color-beige);
+    padding: 6rem 1rem;
+  }
+  @media (min-width: 768px) {
+    .conversion-section { padding: 8rem 1rem; }
+  }
+
+  .conversion-overline {
+    font-family: var(--font-sans);
+    font-size: var(--type-label);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-teal-deep);
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+
+  .conversion-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-charcoal);
+    margin-bottom: 1.25rem;
+  }
+
+  .conversion-desc {
+    font-family: var(--font-sans);
+    font-size: var(--type-body);
+    line-height: var(--leading-body);
+    color: var(--color-graphite);
+    max-width: 48ch;
+    margin: 0 auto 3rem auto;
+  }
+
+  .conversion-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .conversion-secondary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  @media (min-width: 480px) {
+    .conversion-secondary { gap: 1.5rem; }
+  }
+
+  .conversion-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    font-weight: 500;
+    color: var(--color-charcoal);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .conversion-link:hover {
+    color: var(--color-teal-deep);
+  }
+
+  .conversion-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--color-beige);
+    color: var(--color-teal-deep);
+    border-radius: 50%;
+  }
+  .whatsapp-color {
+    color: #1da851;
+  }
+
+  .conversion-divider {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--color-beige);
+  }
+
+  .conversion-meta {
+    font-family: var(--font-sans);
+    font-size: var(--type-caption);
+    color: var(--color-mist);
+    margin-top: 3.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+
+  /* ==========================================================
+     NAVIGATION — editorial minimal header
+     ========================================================== */
+  .nav-header {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.5rem;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .nav-inner { height: 5rem; }
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    text-decoration: none;
+  }
+
+  .nav-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-teal-deep);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0; /* Square, architectural */
+    transition: background-color 200ms ease;
+  }
+  .nav-brand:hover .nav-logo {
+    background-color: var(--color-teal-core);
+  }
+
+  .nav-brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .nav-brand-name {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--color-charcoal);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .nav-brand-badge {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-teal-deep);
+    padding: 0.125rem 0.375rem;
+    border: 1px solid var(--color-beige);
+    text-transform: uppercase;
+  }
+
+  .nav-brand-role {
+    font-family: var(--font-sans);
+    font-size: var(--type-caption);
+    color: var(--color-graphite);
+    margin-top: 0.125rem;
+  }
+
+  /* Desktop Links */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    font-weight: 500;
+    color: var(--color-graphite);
+    text-decoration: none;
+    transition: color 200ms ease;
+    padding: 0.5rem 0;
+    position: relative;
+  }
+  .nav-link:hover {
+    color: var(--color-charcoal);
+  }
+  .nav-link.is-active {
+    color: var(--color-teal-deep);
+  }
+  .nav-link.is-active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--color-teal-deep);
+  }
+
+  /* Actions */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--color-charcoal);
+    border: 1px solid transparent;
+    transition: color 200ms ease, border-color 200ms ease;
+  }
+  .nav-icon-link:hover {
+    color: var(--color-teal-deep);
+    border-color: var(--color-beige);
+  }
+
+  /* Mobile */
+  .nav-mobile-toggle {
+    background: none;
+    border: none;
+    color: var(--color-charcoal);
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-right: -0.5rem;
+  }
+
+  .nav-mobile-menu {
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-beige);
+    padding: 0;
+  }
+
+  .nav-mobile-inner {
+    padding: 1rem 1.5rem 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-mobile-link {
+    font-family: var(--font-sans);
+    font-size: var(--type-body);
+    font-weight: 500;
+    color: var(--color-graphite);
+    text-decoration: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-beige);
+  }
+  .nav-mobile-link.is-active {
+    color: var(--color-teal-deep);
+    font-weight: 600;
+  }
+
+  .nav-mobile-actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+
+  /* ==========================================================
+     FOOTER — editorial quiet bottom
+     ========================================================== */
+  .footer-section {
+    padding: 5rem 0 3rem 0;
+  }
+  @media (min-width: 768px) {
+    .footer-section { padding: 6rem 0 4rem 0; }
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    margin-bottom: 4rem;
+  }
+  @media (min-width: 640px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .footer-grid { grid-template-columns: 2fr 1fr 1.25fr 1.25fr; gap: 4rem; }
+  }
+
+  .footer-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-brand-name {
+    font-family: var(--font-serif);
+    font-size: var(--type-h4);
+    font-weight: 300;
+    color: var(--color-ivory);
+    margin-bottom: 0.25rem;
+  }
+  
+  .footer-brand-role {
+    font-family: var(--font-sans);
+    font-size: var(--type-caption);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-teal-200);
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-brand-desc {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    line-height: var(--leading-body-sm);
+    color: var(--color-mist);
+    max-width: 40ch;
+  }
+
+  .footer-heading {
+    font-family: var(--font-sans);
+    font-size: var(--type-label);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-teal-200);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-list a {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    color: var(--color-mist);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .footer-list a:hover {
+    color: var(--color-white);
+  }
+
+  .footer-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .footer-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-mist);
+  }
+  .footer-icon-wrap.whatsapp-color {
+    color: #1da851;
+  }
+
+  .footer-contact-text {
+    font-family: var(--font-sans);
+    font-size: var(--type-caption);
+    color: var(--color-mist);
+    margin-top: 0.5rem;
+  }
+
+  .footer-address {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-sm);
+    line-height: var(--leading-body-sm);
+    color: var(--color-mist);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-dir-link {
+    font-family: var(--font-sans);
+    font-size: var(--type-caption);
+    font-weight: 600;
+    color: var(--color-teal-200);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 200ms ease;
+  }
+  .footer-dir-link:hover {
+    color: var(--color-white);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    font-family: var(--font-sans);
+    font-size: var(--type-caption);
+    color: rgba(255, 255, 255, 0.4);
+    text-align: left;
+  }
+  @media (min-width: 768px) {
+    .footer-bottom { text-align: center; }
+  }
+
 @layer base {
   /* Skip link — first tab stop, visible only on focus */
   .skip-link {
@@ -1631,6 +2447,12 @@ small { font-size: var(--type-caption); line-height: 1.6; }
     transition-duration: 0.01ms !important;
   }
 }
+
+
+
+
+
+
 
 
 

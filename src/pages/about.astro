@@ -281,34 +281,46 @@ const milestones = [
     />
 
     <!-- Consultation CTA -->
-    <section class="section bg-teal-900 text-white text-center">
-      <div class="container-narrow reveal">
-        <h2 class="text-h2">Schedule an In-Depth Neurological Evaluation</h2>
-        <p class="text-lead text-teal-100 mt-4 max-w-xl mx-auto">Take the first step toward accurate diagnosis and targeted relief.</p>
-        <div class="mt-10 flex flex-wrap justify-center gap-4">
-          <button
-            data-open-modal="booking"
-            class="btn bg-white text-teal-900 hover:bg-slate-50 px-8 py-3.5 text-base"
-          >
+    <section class="conversion-section section bg-ivory" aria-label="Take the next step">
+      <div class="container-narrow reveal text-center">
+        
+        <p class="conversion-overline">Consultation</p>
+        <h2 class="conversion-title">Take the next step.</h2>
+        <p class="conversion-desc">Schedule an in-depth neurological evaluation. Take the first step toward accurate diagnosis and targeted relief.</p>
+
+        <div class="conversion-actions">
+          <button data-open-modal="booking" class="btn btn-teal px-8 py-3.5 text-base">
             Request Appointment
           </button>
-          <a
-            href={phoneHref}
-            class="btn btn-outline border-teal-500 text-white hover:bg-teal-800 px-8 py-3.5 text-base"
-          >
-            <PhoneIcon class="w-4 h-4" />
-            {CLINIC.phone}
-          </a>
+          
+          <div class="conversion-secondary">
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="conversion-link">
+              <span class="conversion-icon whatsapp-color" aria-hidden="true">
+                <WhatsAppIcon class="w-4 h-4" />
+              </span>
+              WhatsApp Message
+            </a>
+            <span class="conversion-divider" aria-hidden="true"></span>
+            <a href={phoneHref} class="conversion-link">
+              <span class="conversion-icon" aria-hidden="true">
+                <PhoneIcon class="w-4 h-4" />
+              </span>
+              {CLINIC.phone}
+            </a>
+          </div>
         </div>
+
+        <p class="conversion-meta">Monday &ndash; Saturday &middot; 9:00 AM &ndash; 7:00 PM</p>
       </div>
     </section>
-
   </main>
 
   <Footer />
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
+
+
 
 
 

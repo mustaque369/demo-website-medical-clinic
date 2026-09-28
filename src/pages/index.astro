@@ -80,70 +80,107 @@ const stats = [
 
   <main id="main-content">
     <!-- 1. Hero -->
-    <section class="hero-cinematic relative overflow-hidden" aria-label="Hero">
-
-      <!-- Full-bleed background image with cinematic overlay -->
+    <section class="hero-premium relative overflow-hidden" aria-label="Welcome">
+      
+      <!-- Video Background -->
       <div class="absolute inset-0" aria-hidden="true">
-        <img
-          src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85"
-          alt=""
-          role="presentation"
-          width="1800"
-          height="1200"
-          class="w-full h-full object-cover object-center"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
-        <!-- Cinematic scrim: dark vignette bottom-up, warm ivory fade top -->
-        <div class="absolute inset-0 bg-gradient-to-b from-[#faf7f1]/60 via-[#faf7f1]/20 to-[#1b1f1d]/75"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#faf7f1]/55 via-transparent to-transparent"></div>
+        <video 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          class="w-full h-full object-cover object-center scale-105"
+          poster="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85"
+        >
+          <source src="https://cdn.pixabay.com/video/2020/05/21/40049-424855793_large.mp4" type="video/mp4" />
+        </video>
+        <!-- Deep premium overlay: dark slate/teal gradient for contrast -->
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/75 to-teal-900/60"></div>
+        <div class="absolute inset-0 bg-slate-900/30"></div>
       </div>
 
-      <!-- Content: left-aligned, vertically centred -->
-      <div class="relative z-10 container-main flex items-center min-h-[92svh] sm:min-h-[88svh] lg:min-h-[90svh] py-24 lg:py-32">
-        <div class="max-w-2xl space-y-8">
-
-          <!-- Eyebrow label -->
+      <div class="relative z-10 container-main flex flex-col lg:flex-row items-center gap-12 lg:gap-8 min-h-[95svh] py-24 lg:py-32">
+        
+        <!-- Left: Typography & Value Prop -->
+        <div class="flex-1 space-y-8 mt-12 lg:mt-0">
           <div class="inline-flex items-center gap-2.5">
-            <span class="w-5 h-px bg-teal-700" aria-hidden="true"></span>
-            <span class="text-label text-teal-800 tracking-widest">Neurology Care</span>
+            <span class="w-8 h-px bg-teal-400" aria-hidden="true"></span>
+            <span class="text-label text-teal-300 tracking-[0.2em]">Senior Consultant Neurologist</span>
           </div>
 
-          <!-- Editorial headline -->
-          <h1 class="text-display text-slate-900 max-w-xl">
-            Understanding the mind.<br>
-            <span class="text-teal-800">Caring for the person.</span>
+          <h1 class="text-display text-white max-w-2xl leading-[1.1]">
+            Advanced precision.<br>
+            <span class="text-teal-200 font-serif italic text-[1.05em]">Human understanding.</span>
           </h1>
 
-          <!-- Single supporting sentence -->
-          <p class="text-lead text-slate-700/90 max-w-[52ch]">
-            Dr. Rajib Das offers unhurried, expert neurological consultations — with on-site EEG and EMG diagnostics — for conditions affecting the brain, spine, and nerves.
+          <p class="text-lead text-slate-300 max-w-[48ch]">
+            Expert clinical diagnosis and unhurried care for complex neurological conditions, equipped with state-of-the-art EEG and EMG diagnostics.
           </p>
 
-          <!-- CTAs -->
-          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 pt-4">
             <button
               data-open-modal="booking"
-              class="btn btn-teal px-7 py-3.5 text-base tracking-wide"
+              class="btn btn-teal px-8 py-4 text-base shadow-[0_0_20px_rgba(36,80,70,0.4)] hover:shadow-[0_0_30px_rgba(36,80,70,0.6)] transition-shadow duration-300"
             >
-              Book a Consultation <span aria-hidden="true">→</span>
+              Book Consultation
             </button>
-
             <a
               href="#services"
-              class="group inline-flex items-center gap-2 text-body-sm font-medium text-slate-700 hover:text-teal-800 transition-colors"
+              class="group inline-flex items-center gap-2 text-body font-medium text-white hover:text-teal-200 transition-colors"
             >
-              <span>Explore the Journey</span>
-              <span class="inline-block transition-transform group-hover:translate-y-0.5 duration-200" aria-hidden="true">↓</span>
+              <span class="w-10 h-10 rounded-full border border-slate-500/50 flex items-center justify-center group-hover:border-teal-400 transition-colors">
+                &darr;
+              </span>
+              <span>Explore Treatments</span>
             </a>
           </div>
-
         </div>
-      </div>
 
-      <!-- Scroll cue bar at very bottom -->
-      <div class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-700/20 to-transparent" aria-hidden="true"></div>
+        <!-- Right: Floating Glass Profile Card -->
+        <div class="w-full max-w-md lg:w-[420px] shrink-0 reveal" style="transition-delay: 200ms;">
+          <div class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-1 shadow-2xl relative overflow-hidden group">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+            <div class="bg-slate-900/80 backdrop-blur-md rounded-[1.375rem] p-8 border border-white/5">
+              
+              <div class="flex items-center gap-5 mb-8">
+                <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-teal-500/30 shrink-0 relative">
+                  <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=150&q=80" alt="Dr Rajib Das" class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 transition-all duration-700" />
+                </div>
+                <div>
+                  <h2 class="text-h4 text-white mb-1">Dr. Rajib Das</h2>
+                  <p class="text-caption text-teal-300 font-semibold tracking-wider uppercase">MBBS, MD (Neurology)</p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-teal-400 shrink-0"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                  <span class="text-slate-300 text-body-sm">15+ Years Clinical Excellence</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-teal-400 shrink-0"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                  <span class="text-slate-300 text-body-sm">Gold Medalist &amp; Board Certified</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-teal-400 shrink-0"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                  <span class="text-slate-300 text-body-sm">In-house EEG &amp; EMG Lab</span>
+                </div>
+              </div>
+
+              <div class="mt-8 pt-6 border-t border-white/10 flex justify-between items-center">
+                <span class="text-caption text-slate-400">Accepting New Patients</span>
+                <div class="flex -space-x-2">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" class="w-8 h-8 rounded-full border-2 border-slate-900" alt="Patient review" />
+                  <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" class="w-8 h-8 rounded-full border-2 border-slate-900" alt="Patient review" />
+                  <div class="w-8 h-8 rounded-full border-2 border-slate-900 bg-teal-800 text-white flex items-center justify-center text-[10px] font-bold">+2k</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
     <!-- 2. Full-horizon stats band (icons + counters that render final values without JS) -->
     <section class="bg-teal-800 text-white py-12" aria-label="Practice statistics">
@@ -212,7 +249,7 @@ const stats = [
 
         <!-- Footer CTA -->
         <div class="svc-footer reveal">
-          <a href="/services" class="svc-footer-link">
+          <a href={`${import.meta.env.BASE_URL}services`} class="svc-footer-link">
             <span>Explore All Diagnostic Procedures & Prep</span>
             <span class="svc-footer-arrow" aria-hidden="true">→</span>
           </a>
@@ -366,87 +403,81 @@ const stats = [
         <p class="cine-statement-line-2">But so does understanding.</p>
       </div>
     </section>
-    <!-- 4. Clinical philosophy -->
-    <section class="section bg-white border-t border-slate-200">
+    <!-- 4. Care Philosophy -->
+    <section class="philosophy-section section" aria-label="Care philosophy">
       <div class="container-main">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 items-center">
-          
-          <div class="lg:col-span-6 space-y-5 reveal">
-            <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
-              Physician Care Philosophy
-            </span>
-            <h2 class="text-h2 text-slate-900">
-              Evidence-Led Science with Patient-Centered Empathy
-            </h2>
-            <p class="text-body text-slate-600">
-              Neurological conditions can be stressful and emotionally overwhelming for patients and family caretakers. Dr. Rajib Das believes in unhurried active listening, meticulous clinical evaluation, and transparent explanations of every scan and treatment plan.
-            </p>
-            
-            <ul class="space-y-4 pt-3 list-none">
-              <li class="flex items-start gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-teal-700 mt-2 shrink-0" aria-hidden="true"></span>
-                <p class="text-body text-slate-700">Unrushed 30-45 minute initial consultations allowing exhaustive evaluation.</p>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-teal-700 mt-2 shrink-0" aria-hidden="true"></span>
-                <p class="text-body text-slate-700">Precision review of brain & spine MRI, CT, and neuro-imaging scans.</p>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-teal-700 mt-2 shrink-0" aria-hidden="true"></span>
-                <p class="text-body text-slate-700">Emergency on-call accessibility for acute neurological flares.</p>
-              </li>
-            </ul>
 
-            <div class="pt-2 flex flex-wrap gap-2.5">
-              <a href="/about" class="btn btn-teal">
-                Read Full Biography & Background
-              </a>
-              <button
-                data-open-modal="booking"
-                class="btn btn-quiet"
-              >
-                Schedule Appointment
-              </button>
-            </div>
-          </div>
-
-          <div class="lg:col-span-6 space-y-5 reveal">
-            <div class="img-frame relative aspect-16/9">
-              <img
-                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80"
-                alt="Modern medical clinic consultation interior"
-                width="800"
-                height="450"
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div class="img-scrim absolute inset-0 flex items-end p-5" aria-hidden="true">
-                <div class="text-white">
-                  <p class="text-caption font-semibold text-teal-300">Apex Neurosciences Center</p>
-                  <p class="text-body font-semibold font-serif">State-of-the-art Clinical Electrophysiology & Consultation Suites</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-teal-50 p-6 sm:p-8 border-l-2 border-teal-700 space-y-4">
-              <h3 class="text-h4 text-slate-900">
-                When Should You Consult a Neurologist?
-              </h3>
-              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-body text-slate-700 list-none">
-                <li class="flex items-start gap-2"><span class="text-teal-700 mt-1.5" aria-hidden="true">--</span> Severe, recurring headaches</li>
-                <li class="flex items-start gap-2"><span class="text-teal-700 mt-1.5" aria-hidden="true">--</span> Numbness or pins &amp; needles</li>
-                <li class="flex items-start gap-2"><span class="text-teal-700 mt-1.5" aria-hidden="true">--</span> Unexplained fainting or fits</li>
-                <li class="flex items-start gap-2"><span class="text-teal-700 mt-1.5" aria-hidden="true">--</span> Involuntary tremors or stiffness</li>
-                <li class="flex items-start gap-2"><span class="text-teal-700 mt-1.5" aria-hidden="true">--</span> Sudden facial or limb weakness</li>
-                <li class="flex items-start gap-2"><span class="text-teal-700 mt-1.5" aria-hidden="true">--</span> Memory loss or disorientation</li>
-              </ul>
-            </div>
-          </div>
-
+        <!-- Header -->
+        <div class="philosophy-header reveal">
+          <p class="philosophy-overline">Our Approach</p>
+          <h2 class="philosophy-title">Evidence <span class="philosophy-plus">+</span> Empathy</h2>
+          <p class="philosophy-intro">
+            Neurological conditions can be stressful and emotionally overwhelming. Dr. Rajib Das believes in unhurried active listening, meticulous clinical evaluation, and transparent explanations of every scan and treatment plan.
+          </p>
         </div>
+
+        <!-- Three principles -->
+        <ol class="philosophy-principles" aria-label="Core principles">
+
+          <li class="philosophy-principle reveal">
+            <div class="philosophy-principle-num" aria-hidden="true">
+              <span class="philosophy-num-text">01</span>
+              <span class="philosophy-num-line"></span>
+            </div>
+            <div class="philosophy-principle-body">
+              <h3 class="philosophy-principle-name">Listen</h3>
+              <p class="philosophy-principle-copy">Careful attention to the patient's story. Unrushed 30–45 minute initial consultations allowing exhaustive evaluation — because every symptom carries meaning.</p>
+            </div>
+          </li>
+
+          <li class="philosophy-principle reveal">
+            <div class="philosophy-principle-num" aria-hidden="true">
+              <span class="philosophy-num-text">02</span>
+              <span class="philosophy-num-line"></span>
+            </div>
+            <div class="philosophy-principle-body">
+              <h3 class="philosophy-principle-name">Understand</h3>
+              <p class="philosophy-principle-copy">Clear explanations and accurate diagnosis. Precision review of brain and spine MRI, CT, and neuro-imaging scans — so uncertainty becomes a picture you can finally see.</p>
+            </div>
+          </li>
+
+          <li class="philosophy-principle reveal">
+            <div class="philosophy-principle-num" aria-hidden="true">
+              <span class="philosophy-num-text">03</span>
+            </div>
+            <div class="philosophy-principle-body">
+              <h3 class="philosophy-principle-name">Plan</h3>
+              <p class="philosophy-principle-copy">Personalized treatment and follow-up. Emergency on-call accessibility for acute neurological flares, structured review appointments, and transparent reasoning at every step.</p>
+            </div>
+          </li>
+
+        </ol>
+
+        <!-- When to consult — preserved as editorial aside -->
+        <aside class="philosophy-aside reveal" aria-label="When to consult a neurologist">
+          <div class="philosophy-aside-inner">
+            <h3 class="philosophy-aside-title">When Should You Consult a Neurologist?</h3>
+            <ul class="philosophy-aside-list">
+              <li>Severe, recurring headaches</li>
+              <li>Numbness or pins &amp; needles</li>
+              <li>Unexplained fainting or fits</li>
+              <li>Involuntary tremors or stiffness</li>
+              <li>Sudden facial or limb weakness</li>
+              <li>Memory loss or disorientation</li>
+            </ul>
+          </div>
+          <div class="philosophy-aside-cta">
+            <button data-open-modal="booking" class="btn btn-teal px-8 py-3.5">
+              Schedule Appointment
+            </button>
+            <a href={`${import.meta.env.BASE_URL}about`} class="philosophy-bio-link">
+              Read Full Biography <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </aside>
+
       </div>
     </section>
-
     <!-- 5. Patient reviews (accessible marquee) -->
     <ReviewsSection />
 
@@ -506,7 +537,7 @@ const stats = [
                 <span aria-hidden="true">↗</span>
               </a>
               <a
-                href="/contact"
+                href={`${import.meta.env.BASE_URL}contact`}
                 class="btn btn-outline btn-sm inline-flex items-center gap-1.5"
               >
                 <span>Full Directions Guide</span>
@@ -556,38 +587,39 @@ const stats = [
       </div>
     </section>
 
-    <!-- 7. Bottom CTA -->
-    <section class="bg-teal-900 text-white section text-center">
-      <div class="container-narrow reveal">
-        <h2 class="text-h2">
-          Prioritize Your Neurological Health Today
-        </h2>
-        <p class="mt-4 text-lead text-teal-50 max-w-2xl mx-auto">
-          Timely consultation makes all the difference in neurological outcomes. Connect directly with Dr. Rajib Das clinic.
-        </p>
+    <!-- 7. Bottom CTA (Conversion) -->
+    <section class="conversion-section section bg-ivory" aria-label="Take the next step">
+      <div class="container-narrow reveal text-center">
+        
+        <p class="conversion-overline">Consultation</p>
+        <h2 class="conversion-title">Take the next step.</h2>
+        <p class="conversion-desc">Timely consultation makes all the difference in neurological outcomes. Connect directly with Dr. Rajib Das' clinic.</p>
 
-        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
-            data-open-modal="booking"
-            class="btn bg-white text-teal-900 hover:bg-slate-50 w-full sm:w-auto px-8 py-3.5"
-          >
-            Book In-Clinic Consultation
+        <div class="conversion-actions">
+          <button data-open-modal="booking" class="btn btn-teal px-8 py-3.5 text-base">
+            Book a Consultation
           </button>
-          <a
-            href={whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-whatsapp w-full sm:w-auto px-8 py-3.5"
-          >
-            <span class="w-5 h-5 flex items-center justify-center shrink-0" aria-hidden="true">
-              <WhatsAppIcon class="w-5 h-5" />
-            </span>
-            <span>Instant WhatsApp Chat</span>
-          </a>
+          
+          <div class="conversion-secondary">
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="conversion-link">
+              <span class="conversion-icon whatsapp-color" aria-hidden="true">
+                <WhatsAppIcon class="w-4 h-4" />
+              </span>
+              WhatsApp Message
+            </a>
+            <span class="conversion-divider" aria-hidden="true"></span>
+            <a href={`tel:${phone}`} class="conversion-link">
+              <span class="conversion-icon" aria-hidden="true">
+                <PhoneIcon class="w-4 h-4" />
+              </span>
+              {phone}
+            </a>
+          </div>
         </div>
+
+        <p class="conversion-meta">Monday &ndash; Saturday &middot; 9:00 AM &ndash; 7:00 PM</p>
       </div>
     </section>
-
   </main>
 
   <Footer />
@@ -634,6 +666,11 @@ const counters = document.querySelectorAll<HTMLElement>('.counter-number');
 
   initCounters();
 </script>
+
+
+
+
+
 
 
 
