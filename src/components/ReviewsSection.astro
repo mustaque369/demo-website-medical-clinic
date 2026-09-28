@@ -57,127 +57,41 @@ const reviews = [
 ];
 ---
 
-<section class="stories-section section bg-ivory border-t border-beige" aria-label="Patient Stories">
-  <div class="container-main">
+<section class="section bg-cream border-t border-beige relative overflow-hidden" aria-label="Patient Reviews">
+  <div class="container-main mb-12 text-center reveal">
+    <h2 class="text-h2 text-charcoal">{headline}</h2>
+    <p class="text-lead text-graphite max-w-2xl mx-auto mt-4">{subheadline}</p>
+  </div>
 
-    <!-- Header -->
-    <div class="stories-header reveal">
-      <p class="stories-overline">Patient Stories</p>
-      <h2 class="stories-title">The Path to Recovery</h2>
-    </div>
-
-    <!-- Editorial Story Carousel -->
-    <div class="stories-carousel reveal" id="stories-carousel">
-      
-      <div class="stories-track" id="stories-track">
-        {reviews.map((rev, index) => (
-          <div 
-            class={`story-slide ${index === 0 ? 'is-active' : ''}`} 
-            data-index={index}
-            aria-hidden={index === 0 ? "false" : "true"}
-          >
-            <!-- Large Quotation -->
-            <blockquote class="story-quote">
-              <p>"{rev.text}"</p>
-            </blockquote>
-
-            <!-- Attribution -->
-            <div class="story-attribution">
-              <span class="story-author">{rev.author}</span>
-              <span class="story-meta">{rev.tag} &middot; {rev.timeAgo}</span>
+  <div class="relative w-full overflow-hidden flex py-4" tabindex="0">
+    <div class="animate-marquee flex gap-4 sm:gap-6 pr-4 sm:pr-6 hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
+      {/* 2 sets of identical cards to seamlessly loop */}
+      {[...reviews, ...reviews].map((rev, index) => (
+        <div 
+          class="w-[320px] sm:w-[400px] bg-white rounded-2xl p-6 border border-beige shadow-sm flex-shrink-0 flex flex-col justify-between"
+          aria-hidden={index >= reviews.length ? "true" : undefined}
+        >
+          <div>
+            <div class="flex items-center text-teal-deep mb-4 space-x-0.5">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+              ))}
+            </div>
+            <p class="text-graphite text-body-sm leading-relaxed mb-6">"{rev.text}"</p>
+          </div>
+          <div class="flex items-center gap-3 mt-auto pt-4 border-t border-slate-100">
+            <img src={rev.avatar} alt="" class="w-10 h-10 rounded-full object-cover border border-beige" loading="lazy" />
+            <div>
+              <p class="text-charcoal font-semibold text-sm">{rev.author}</p>
+              <p class="text-mist text-xs">{rev.tag} &middot; {rev.timeAgo}</p>
             </div>
           </div>
-        ))}
-      </div>
-
-      <!-- Minimal Controls -->
-      <div class="stories-controls">
-        <button class="story-btn story-prev" aria-label="Previous story">
-          <span aria-hidden="true">&larr;</span>
-        </button>
-        <div class="story-indicators" aria-hidden="true">
-          {reviews.map((_, idx) => (
-            <span class={`story-dot ${idx === 0 ? 'is-active' : ''}`} data-index={idx}></span>
-          ))}
         </div>
-        <button class="story-btn story-next" aria-label="Next story">
-          <span aria-hidden="true">&rarr;</span>
-        </button>
-      </div>
-
+      ))}
     </div>
-
+    
+    <!-- Fade overlays matching bg-cream (#f4efe6) -->
+    <div class="absolute top-0 bottom-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#f4efe6] to-transparent pointer-events-none z-10"></div>
+    <div class="absolute top-0 bottom-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#f4efe6] to-transparent pointer-events-none z-10"></div>
   </div>
 </section>
-
-<script>
-  // Simple editorial slider
-  const track = document.getElementById('stories-track');
-  if (track) {
-    const slides = Array.from(track.querySelectorAll('.story-slide'));
-    const dots = Array.from(document.querySelectorAll('.story-dot'));
-    const prevBtn = document.querySelector('.story-prev');
-    const nextBtn = document.querySelector('.story-next');
-    
-    let currentIndex = 0;
-    const total = slides.length;
-    let autoPlayInterval;
-
-    function goToSlide(index) {
-      if (index < 0) index = total - 1;
-      if (index >= total) index = 0;
-      
-      slides.forEach((slide, i) => {
-        if (i === index) {
-          slide.classList.add('is-active');
-          slide.setAttribute('aria-hidden', 'false');
-        } else {
-          slide.classList.remove('is-active');
-          slide.setAttribute('aria-hidden', 'true');
-        }
-      });
-      
-      dots.forEach((dot, i) => {
-        if (i === index) dot.classList.add('is-active');
-        else dot.classList.remove('is-active');
-      });
-      
-      currentIndex = index;
-    }
-
-    if (prevBtn && nextBtn) {
-      prevBtn.addEventListener('click', () => {
-        goToSlide(currentIndex - 1);
-        resetAutoPlay();
-      });
-      
-      nextBtn.addEventListener('click', () => {
-        goToSlide(currentIndex + 1);
-        resetAutoPlay();
-      });
-    }
-
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        goToSlide(i);
-        resetAutoPlay();
-      });
-    });
-
-    function startAutoPlay() {
-      autoPlayInterval = setInterval(() => {
-        goToSlide(currentIndex + 1);
-      }, 7000); // 7s per story
-    }
-
-    function resetAutoPlay() {
-      clearInterval(autoPlayInterval);
-      startAutoPlay();
-    }
-
-    // Start auto-play only if not prefers-reduced-motion
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      startAutoPlay();
-    }
-  }
-</script>

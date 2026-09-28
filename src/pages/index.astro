@@ -18,42 +18,42 @@ const services = [
     title: "Stroke & Cerebrovascular Care",
     desc: "Rapid response stroke protocols, ischemic and hemorrhagic management, prevention, and neuro-rehabilitation.",
     icon: "M13 10V3L4 14h7v7l9-11h-7z",
-    image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=800&q=85",
     href: "/services"
   },
   {
     title: "Chronic Migraine & Headache",
     desc: "Targeted diagnosis of cluster, tension, and persistent migraines with modern prophylactic protocols and relief plans.",
     icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
-    image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1579684453423-f84349ef60b0?auto=format&fit=crop&w=800&q=85",
     href: "/services"
   },
   {
     title: "Epilepsy & Seizure Disorders",
     desc: "Digital Video EEG monitoring, seizure classification, and medication management for pediatric and adult patients.",
     icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1631815587646-b85a1bb027e1?auto=format&fit=crop&w=800&q=85",
     href: "/services"
   },
   {
     title: "Parkinson's & Movement Care",
     desc: "Advanced therapeutic interventions for hand tremors, rigid posture, Parkinson's disease, and balance disorders.",
     icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
-    image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1583324113626-70df0f4deaab?auto=format&fit=crop&w=800&q=85",
     href: "/services"
   },
   {
     title: "Neuropathy & Sciatica Relief",
     desc: "Electromyography (EMG) and Nerve Conduction Velocity (NCV) testing for diabetic nerve pain and spinal radiculopathy.",
     icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-    image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=85",
     href: "/services"
   },
   {
     title: "Memory Loss & Dementia",
     desc: "Detailed cognitive screenings for early Alzheimer's, memory deficits, and supportive care plans for families.",
     icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z",
-    image: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&w=800&q=85",
     href: "/services"
   }
 ];
@@ -90,13 +90,13 @@ const stats = [
           muted 
           playsinline 
           class="w-full h-full object-cover object-center scale-105"
-          poster="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85"
+          poster="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=1800&q=85"
         >
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          <source src={`${import.meta.env.BASE_URL}hero-neurology.mp4`} type="video/mp4" />
         </video>
         <!-- Deep premium overlay: dark slate/teal gradient for contrast -->
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/75 to-teal-900/60"></div>
-        <div class="absolute inset-0 bg-slate-900/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-teal-950/60"></div>
+        <div class="absolute inset-0 bg-slate-900/40"></div>
       </div>
 
       <div class="relative z-10 container-main flex flex-col lg:flex-row items-center gap-12 lg:gap-8 min-h-[95svh] py-24 lg:py-32">
@@ -109,8 +109,8 @@ const stats = [
           </div>
 
           <h1 class="text-display text-white max-w-2xl leading-[1.1]">
-            Advanced precision.<br>
-            <span class="text-teal-200 font-serif italic text-[1.05em]">Human understanding.</span>
+            Advanced Neurological Care,<br>
+            <span class="text-teal-200 font-serif italic text-[1.05em]">Guided by Precision &amp; Understanding.</span>
           </h1>
 
           <p class="text-lead text-slate-300 max-w-[48ch]">
@@ -125,7 +125,7 @@ const stats = [
               Book Consultation
             </button>
             <a
-              href="#services"
+              href={`${import.meta.env.BASE_URL}#services`}
               class="group inline-flex items-center gap-2 text-body font-medium text-white hover:text-teal-200 transition-colors"
             >
               <span class="w-10 h-10 rounded-full border border-slate-500/50 flex items-center justify-center group-hover:border-teal-400 transition-colors">
@@ -138,13 +138,13 @@ const stats = [
 
         <!-- Right: Floating Glass Profile Card -->
         <div class="w-full max-w-md lg:w-[420px] shrink-0 reveal" style="transition-delay: 200ms;">
-          <div class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-1 shadow-2xl relative overflow-hidden group">
-            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-            <div class="bg-slate-900/80 backdrop-blur-md rounded-[1.375rem] p-8 border border-white/5">
+          <div class="backdrop-blur-xl bg-white/10 border border-teal-500/30 rounded-3xl p-1 shadow-[0_0_40px_rgba(20,184,166,0.15)] relative overflow-hidden group hover:shadow-[0_0_60px_rgba(20,184,166,0.25)] transition-shadow duration-700">
+            <div class="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+            <div class="bg-slate-900/85 backdrop-blur-md rounded-[1.375rem] p-8 border border-white/10">
               
               <div class="flex items-center gap-5 mb-8">
-                <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-teal-500/30 shrink-0 relative">
-                  <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=150&q=80" alt="Dr Rajib Das" class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 transition-all duration-700" />
+                <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-teal-400 shrink-0 relative shadow-[0_0_15px_rgba(45,212,191,0.3)]">
+                  <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=150&q=80" alt="Dr Rajib Das" class="w-full h-full object-cover opacity-100 transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div>
                   <h2 class="text-h4 text-white mb-1">Dr. Rajib Das</h2>
@@ -154,25 +154,25 @@ const stats = [
 
               <div class="space-y-4">
                 <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-teal-400 shrink-0"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
-                  <span class="text-slate-300 text-body-sm">15+ Years Clinical Excellence</span>
+                  <div class="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-400 shrink-0 border border-teal-500/20"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                  <span class="text-slate-200 text-body-sm font-medium">15+ Years Clinical Excellence</span>
                 </div>
                 <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-teal-400 shrink-0"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
-                  <span class="text-slate-300 text-body-sm">Gold Medalist &amp; Board Certified</span>
+                  <div class="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-400 shrink-0 border border-teal-500/20"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                  <span class="text-slate-200 text-body-sm font-medium">Gold Medalist &amp; Board Certified</span>
                 </div>
                 <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-teal-400 shrink-0"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
-                  <span class="text-slate-300 text-body-sm">In-house EEG &amp; EMG Lab</span>
+                  <div class="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-400 shrink-0 border border-teal-500/20"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                  <span class="text-slate-200 text-body-sm font-medium">In-house EEG &amp; EMG Lab</span>
                 </div>
               </div>
 
               <div class="mt-8 pt-6 border-t border-white/10 flex justify-between items-center">
-                <span class="text-caption text-slate-400">Accepting New Patients</span>
+                <span class="text-caption text-teal-200 font-medium">Accepting New Patients</span>
                 <div class="flex -space-x-2">
                   <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" class="w-8 h-8 rounded-full border-2 border-slate-900" alt="Patient review" />
                   <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" class="w-8 h-8 rounded-full border-2 border-slate-900" alt="Patient review" />
-                  <div class="w-8 h-8 rounded-full border-2 border-slate-900 bg-teal-800 text-white flex items-center justify-center text-[10px] font-bold">+2k</div>
+                  <div class="w-8 h-8 rounded-full border-2 border-slate-900 bg-teal-700 text-white flex items-center justify-center text-[10px] font-bold">+2k</div>
                 </div>
               </div>
 
@@ -263,7 +263,7 @@ const stats = [
 
         <!-- Section header -->
         <div class="journey-header reveal">
-          <p class="journey-overline">The Journey</p>
+          <p class="journey-overline">Our Approach</p>
           <h2 class="journey-title">From your first concern<br>to a clearer tomorrow.</h2>
         </div>
 
@@ -373,12 +373,7 @@ const stats = [
         </ol>
 
         <!-- Closing pull-quote -->
-        <div class="journey-cta reveal">
-          <p class="journey-quote">"Precision is a science. Compassion is a choice."</p>
-          <button data-open-modal="booking" class="btn btn-teal px-8 py-3.5 text-base">
-            Begin Your Journey
-          </button>
-        </div>
+        
 
       </div>
     </section>
@@ -387,7 +382,7 @@ const stats = [
     <section class="cine-statement" aria-label="Precision and understanding">
       <div class="cine-statement-media" aria-hidden="true">
         <img
-          src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80"
+          src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=1600&q=80"
           alt=""
           role="presentation"
           width="1600"
@@ -403,81 +398,6 @@ const stats = [
         <p class="cine-statement-line-2">But so does understanding.</p>
       </div>
     </section>
-    <!-- 4. Care Philosophy -->
-    <section class="philosophy-section section" aria-label="Care philosophy">
-      <div class="container-main">
-
-        <!-- Header -->
-        <div class="philosophy-header reveal">
-          <p class="philosophy-overline">Our Approach</p>
-          <h2 class="philosophy-title">Evidence <span class="philosophy-plus">+</span> Empathy</h2>
-          <p class="philosophy-intro">
-            Neurological conditions can be stressful and emotionally overwhelming. Dr. Rajib Das believes in unhurried active listening, meticulous clinical evaluation, and transparent explanations of every scan and treatment plan.
-          </p>
-        </div>
-
-        <!-- Three principles -->
-        <ol class="philosophy-principles" aria-label="Core principles">
-
-          <li class="philosophy-principle reveal">
-            <div class="philosophy-principle-num" aria-hidden="true">
-              <span class="philosophy-num-text">01</span>
-              <span class="philosophy-num-line"></span>
-            </div>
-            <div class="philosophy-principle-body">
-              <h3 class="philosophy-principle-name">Listen</h3>
-              <p class="philosophy-principle-copy">Careful attention to the patient's story. Unrushed 30–45 minute initial consultations allowing exhaustive evaluation — because every symptom carries meaning.</p>
-            </div>
-          </li>
-
-          <li class="philosophy-principle reveal">
-            <div class="philosophy-principle-num" aria-hidden="true">
-              <span class="philosophy-num-text">02</span>
-              <span class="philosophy-num-line"></span>
-            </div>
-            <div class="philosophy-principle-body">
-              <h3 class="philosophy-principle-name">Understand</h3>
-              <p class="philosophy-principle-copy">Clear explanations and accurate diagnosis. Precision review of brain and spine MRI, CT, and neuro-imaging scans — so uncertainty becomes a picture you can finally see.</p>
-            </div>
-          </li>
-
-          <li class="philosophy-principle reveal">
-            <div class="philosophy-principle-num" aria-hidden="true">
-              <span class="philosophy-num-text">03</span>
-            </div>
-            <div class="philosophy-principle-body">
-              <h3 class="philosophy-principle-name">Plan</h3>
-              <p class="philosophy-principle-copy">Personalized treatment and follow-up. Emergency on-call accessibility for acute neurological flares, structured review appointments, and transparent reasoning at every step.</p>
-            </div>
-          </li>
-
-        </ol>
-
-        <!-- When to consult — preserved as editorial aside -->
-        <aside class="philosophy-aside reveal" aria-label="When to consult a neurologist">
-          <div class="philosophy-aside-inner">
-            <h3 class="philosophy-aside-title">When Should You Consult a Neurologist?</h3>
-            <ul class="philosophy-aside-list">
-              <li>Severe, recurring headaches</li>
-              <li>Numbness or pins &amp; needles</li>
-              <li>Unexplained fainting or fits</li>
-              <li>Involuntary tremors or stiffness</li>
-              <li>Sudden facial or limb weakness</li>
-              <li>Memory loss or disorientation</li>
-            </ul>
-          </div>
-          <div class="philosophy-aside-cta">
-            <button data-open-modal="booking" class="btn btn-teal px-8 py-3.5">
-              Schedule Appointment
-            </button>
-            <a href={`${import.meta.env.BASE_URL}about`} class="philosophy-bio-link">
-              Read Full Biography <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </aside>
-
-      </div>
-    </section>
     <!-- 5. Patient reviews (accessible marquee) -->
     <ReviewsSection />
 
@@ -490,7 +410,7 @@ const stats = [
             <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
               Clinic Location
             </span>
-            <h2 class="text-h2 text-slate-900">Visit Dr. Rajib Das Clinic</h2>
+            <h2 class="text-display text-teal-800 tracking-tight drop-shadow-sm font-semibold relative inline-block">Visit Dr. Rajib Das Clinic<div class="absolute -bottom-2 left-0 w-1/3 h-1 bg-teal-500 rounded-full"></div></h2>
             <p class="text-body text-slate-600">
               Centrally situated in the city medical corridor with modern elevator access, wheelchair accessibility, and reserved patient parking.
             </p>
@@ -666,6 +586,15 @@ const counters = document.querySelectorAll<HTMLElement>('.counter-number');
 
   initCounters();
 </script>
+
+
+
+
+
+
+
+
+
 
 
 
