@@ -11,15 +11,15 @@ const whatsapp = CLINIC.whatsappUrl;
 ---
 
 <!-- Persistent Floating Mobile Action Bar: call & WhatsApp icons identically sized -->
-<div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-lg border-t border-slate-200 p-2 shadow-[0_-4px_20px_rgba(0,0,0,0.06)]" role="region" aria-label="Quick contact actions">
+<div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-slate-200 p-2 shadow-md" role="region" aria-label="Quick contact actions">
   <div class="grid grid-cols-2 gap-2 max-w-md mx-auto">
     
     <a
       href={phoneHref}
-      class="btn-glass-slate flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-sm active:scale-95 transition shadow-xs"
+      class="btn btn-charcoal flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-btn font-semibold active:scale-95 transition shadow-xs"
       aria-label="Call the clinic directly"
     >
-      <span class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-teal-400 shrink-0" aria-hidden="true">
+      <span class="text-teal-400 shrink-0" aria-hidden="true">
         <PhoneIcon class="w-4 h-4" />
       </span>
       <span>Call Doctor</span>
@@ -30,10 +30,10 @@ const whatsapp = CLINIC.whatsappUrl;
       target="_blank"
       rel="noopener noreferrer"
       data-analytics-event="whatsapp_click"
-      class="btn-glass-whatsapp flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-sm active:scale-95 transition shadow-xs"
+      class="btn btn-whatsapp flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-btn font-semibold active:scale-95 transition shadow-xs"
       aria-label="Chat with the clinic on WhatsApp"
     >
-      <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0" aria-hidden="true">
+      <span class="text-white shrink-0" aria-hidden="true">
         <WhatsAppIcon class="w-4 h-4" />
       </span>
       <span>WhatsApp</span>

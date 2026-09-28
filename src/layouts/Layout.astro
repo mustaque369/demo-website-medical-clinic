@@ -41,10 +41,10 @@ const ogImageURL = "https://images.unsplash.com/photo-1622253692010-333f2da6031d
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Google Fonts: Plus Jakarta Sans (UI) + Source Serif 4 (doctor headings, full 400-900 range so font-black renders true) -->
+    <!-- Google Fonts: Plus Jakarta Sans (sans UI) + Spectral (editorial serif headings, weights 300-600) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..900;1,8..60,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
     <!-- No-JS fallback: scroll-reveal starts at opacity 0, so without JavaScript
          every .reveal section would stay invisible. Force them visible instead. -->
@@ -117,7 +117,7 @@ const ogImageURL = "https://images.unsplash.com/photo-1622253692010-333f2da6031d
       enableConsentBanner={enableConsentBanner}
     />
   </head>
-  <body class="bg-[#fbfcfc] text-slate-700 antialiased flex flex-col min-h-screen text-[14.5px] leading-relaxed pb-16 md:pb-0 font-sans selection:bg-teal-600 selection:text-white">
+  <body class="bg-[#fbfcfc] text-slate-700 antialiased flex flex-col min-h-screen pb-16 md:pb-0 font-sans selection:bg-teal-600 selection:text-white">
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <slot />
     <script>

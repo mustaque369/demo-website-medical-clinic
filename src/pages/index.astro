@@ -80,23 +80,23 @@ const stats = [
 
   <main id="main-content">
     <!-- 1. Hero -->
-    <section class="relative bg-gradient-to-b from-teal-50/50 via-white to-slate-50 py-14 sm:py-18 overflow-hidden border-b border-slate-200">
+    <section class="hero-wash relative section overflow-hidden border-b border-slate-200">
       <div class="absolute inset-0 hero-medical-glow pointer-events-none" aria-hidden="true"></div>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="container-main relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 items-center">
           
-          <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-teal-50 text-teal-800 border border-teal-200">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true"></span>
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm text-label border border-teal-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
               Consultant Neurologist & Clinical Neurophysiologist
             </div>
 
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight font-serif">
+            <h1 class="text-display text-slate-900">
               Precision Neurological Care & <span class="text-teal-700">Brain Health</span>
             </h1>
 
-            <p class="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed mx-auto lg:mx-0">
+            <p class="text-lead text-slate-600 max-w-[62ch] mx-auto lg:mx-0">
               Personalized diagnosis and compassionate clinical management of complex conditions affecting the brain, spine, and nerves by <strong>Dr. Rajib Das, MBBS, MD (Neurology)</strong>.
             </p>
 
@@ -104,7 +104,7 @@ const stats = [
             <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1">
               <button
                 data-open-modal="booking"
-                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-white bg-teal-700 hover:bg-teal-800 shadow-md shadow-teal-700/20 transition-all hover:-translate-y-0.5 cursor-pointer text-sm"
+                class="btn btn-teal w-full sm:w-auto"
               >
                 <CalendarIcon class="w-4 h-4" />
                 <span>Book Appointment</span>
@@ -114,9 +114,9 @@ const stats = [
                 href={whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-bold text-teal-800 bg-white border-2 border-teal-700 hover:bg-teal-50 transition-all text-sm"
+                class="btn btn-outline w-full sm:w-auto"
               >
-                <span class="w-5 h-5 rounded-full bg-[#25D366] flex items-center justify-center text-white shrink-0" aria-hidden="true">
+                <span class="w-5 h-5 rounded-full bg-[#1da851] flex items-center justify-center text-white shrink-0" aria-hidden="true">
                   <WhatsAppIcon class="w-3 h-3" />
                 </span>
                 <span>Chat on WhatsApp</span>
@@ -124,7 +124,7 @@ const stats = [
 
               <a
                 href={`tel:${phone}`}
-                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold text-slate-600 hover:text-teal-800 hover:bg-white border border-slate-300 hover:border-teal-300 transition text-sm"
+                class="btn btn-quiet w-full sm:w-auto"
               >
                 <PhoneIcon class="w-4 h-4 text-teal-700" />
                 <span>Call Clinic</span>
@@ -132,7 +132,7 @@ const stats = [
             </div>
 
             <!-- Trust badges -->
-            <div class="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-slate-600">
+            <div class="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-caption font-semibold text-slate-600">
               <span class="flex items-center gap-1.5">
                 <svg class="w-4 h-4 text-teal-700" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -158,9 +158,9 @@ const stats = [
           <!-- Doctor profile card -->
           <div class="lg:col-span-5">
             <div class="relative max-w-sm mx-auto">
-              <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-lg">
+              <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm">
                 
-                <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100 aspect-4/3">
+                <div class="img-frame mb-4 aspect-4/3">
                   <img
                     src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=700&q=80"
                     alt="Dr. Rajib Das, neurologist, in clinic attire"
@@ -170,37 +170,37 @@ const stats = [
                     loading="eager"
                     fetchpriority="high"
                   />
-                  <div class="absolute bottom-2.5 left-2.5 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-bold text-slate-800 shadow-xs flex items-center gap-1.5">
+                  <div class="absolute bottom-2.5 left-2.5 bg-white px-2.5 py-1 rounded-lg border border-slate-200 text-body-sm font-semibold text-slate-800 shadow-xs flex items-center gap-1.5">
                     <span class="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
                     Available at Clinic Today
                   </div>
                 </div>
 
                 <div class="text-center space-y-0.5 mb-4">
-                  <h2 class="text-lg font-black text-slate-900 font-serif">Dr. Rajib Das</h2>
-                  <p class="text-xs text-teal-800 font-bold">MBBS, MD (Neurology)</p>
-                  <p class="text-xs text-slate-500">Senior Neurologist & Stroke Consultant</p>
+                  <h2 class="text-h4 text-slate-900">Dr. Rajib Das</h2>
+                  <p class="text-caption text-teal-800 font-semibold">MBBS, MD (Neurology)</p>
+                  <p class="text-caption text-slate-500">Senior Neurologist & Stroke Consultant</p>
                 </div>
 
                 <div class="space-y-1.5 bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs">
                   <div class="flex items-center justify-between text-slate-600">
                     <span class="font-medium text-slate-500">Board Status:</span>
-                    <span class="font-bold text-slate-800">MD in Neurology</span>
+                    <span class="font-semibold text-slate-800">MD in Neurology</span>
                   </div>
                   <div class="flex items-center justify-between text-slate-600">
                     <span class="font-medium text-slate-500">OPD Timings:</span>
-                    <span class="font-bold text-teal-800">09:00 AM – 07:00 PM</span>
+                    <span class="font-semibold text-teal-800">09:00 AM – 07:00 PM</span>
                   </div>
                   <div class="flex items-center justify-between text-slate-600">
                     <span class="font-medium text-slate-500">Center:</span>
-                    <span class="font-bold text-slate-800">Apex Neurosciences Center</span>
+                    <span class="font-semibold text-slate-800">Apex Neurosciences Center</span>
                   </div>
                 </div>
 
                 <div class="mt-3.5">
                   <a
                     href="/about"
-                    class="block w-full py-2 px-3 rounded-xl text-center text-xs font-bold text-teal-800 hover:text-white bg-teal-50 hover:bg-teal-700 transition-colors border border-teal-200"
+                    class="btn btn-outline btn-sm block w-full text-center"
                   >
                     View Full Medical Bio & Fellowships →
                   </a>
@@ -215,19 +215,19 @@ const stats = [
     </section>
 
     <!-- 2. Full-horizon stats band (icons + counters that render final values without JS) -->
-    <section class="bg-teal-800 text-white py-8 shadow-xs" aria-label="Practice statistics">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="bg-teal-800 text-white py-12" aria-label="Practice statistics">
+      <div class="container-main">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           {stats.map((stat) => (
             <div class="p-2">
               <svg class="w-6 h-6 mx-auto text-teal-300 mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d={stat.icon}/>
               </svg>
-              <div class="text-2xl sm:text-4xl font-black tracking-tight text-white flex items-center justify-center font-serif">
+              <div class="text-stat text-white flex items-center justify-center">
                 <span class="counter-number" data-target={stat.target}>{stat.display}</span>
                 <span aria-hidden="true">{stat.suffix}</span>
               </div>
-              <div class="text-xs font-semibold text-teal-100 uppercase tracking-wider mt-1">
+              <div class="text-label-light text-teal-100 mt-1">
                 {stat.label}
               </div>
               <p class="text-xs text-teal-200/80 hidden sm:block mt-0.5">{stat.sub}</p>
@@ -238,24 +238,24 @@ const stats = [
     </section>
 
     <!-- 3. Services -->
-    <section class="py-16 bg-slate-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="section bg-cream">
+      <div class="container-main">
         
-        <div class="text-center max-w-3xl mx-auto mb-12 reveal">
-          <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
+        <div class="text-center max-w-3xl mx-auto mb-14 md:mb-20 reveal">
+          <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
             Clinical Disciplines
           </span>
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2 font-serif">Specialized Neurological Services</h2>
+          <h2 class="text-h2 text-slate-900 mt-2">Specialized Neurological Services</h2>
           <p class="mt-2 text-slate-600 text-sm leading-relaxed">
             Targeted clinical investigations and medical interventions for acute and chronic conditions of the nervous system.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((item, i) => (
-            <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-xs medical-card-hover flex flex-col justify-between group reveal" style={`transition-delay: ${i * 60}ms`}>
+            <div class="surface overflow-hidden medical-card-hover flex flex-col justify-between group reveal" style={`transition-delay: ${i * 60}ms`}>
               <div>
-                <div class="h-40 w-full overflow-hidden relative bg-slate-100">
+                <div class="img-frame h-40 w-full">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -264,8 +264,8 @@ const stats = [
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" aria-hidden="true"></div>
-                  <div class="absolute bottom-2.5 left-2.5 bg-white/95 backdrop-blur-xs px-2 py-0.5 rounded-lg text-xs font-bold text-teal-800 flex items-center gap-1 shadow-xs">
+                  <div class="img-scrim absolute inset-0" aria-hidden="true"></div>
+                  <div class="absolute bottom-2.5 left-2.5 bg-white px-2.5 py-1 rounded-sm text-label flex items-center gap-1">
                     <svg class="w-3.5 h-3.5 text-teal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon}/>
                     </svg>
@@ -274,23 +274,23 @@ const stats = [
                 </div>
 
                 <div class="p-5">
-                  <h3 class="text-base font-bold text-slate-900 group-hover:text-teal-800 transition-colors mb-1.5 font-serif">
+                  <h3 class="text-h4 text-slate-900 group-hover:text-teal-800 transition-colors mb-1.5">
                     {item.title}
                   </h3>
-                  <p class="text-xs text-slate-600 leading-relaxed">
+                  <p class="text-body-sm text-slate-600 leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
               </div>
 
               <div class="p-5 pt-0 border-t border-slate-100 flex items-center justify-between">
-                <a href={item.href} class="text-xs font-bold text-teal-700 hover:text-teal-900 flex items-center gap-1">
+                <a href={item.href} class="text-caption font-semibold text-teal-700 hover:text-teal-900 flex items-center gap-1">
                   <span>Clinical Process</span>
                   <span aria-hidden="true">→</span>
                 </a>
                 <button
                   data-open-modal="booking"
-                  class="px-3 py-1.5 rounded-lg bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-bold transition cursor-pointer"
+                  class="btn btn-quiet btn-sm"
                 >
                   Consult
                 </button>
@@ -302,7 +302,7 @@ const stats = [
         <div class="mt-10 text-center">
           <a
             href="/services"
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800 shadow-xs transition"
+            class="btn btn-charcoal inline-flex items-center gap-2"
           >
             <span>Explore All Diagnostic Procedures & Prep (EEG, EMG/NCV)</span>
             <span aria-hidden="true">→</span>
@@ -313,43 +313,43 @@ const stats = [
     </section>
 
     <!-- 4. Clinical philosophy -->
-    <section class="py-16 bg-white border-t border-slate-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+    <section class="section bg-white border-t border-slate-200">
+      <div class="container-main">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 items-center">
           
           <div class="lg:col-span-6 space-y-5 reveal">
-            <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
+            <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
               Physician Care Philosophy
             </span>
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 leading-snug font-serif">
+            <h2 class="text-h2 text-slate-900">
               Evidence-Led Science with Patient-Centered Empathy
             </h2>
-            <p class="text-slate-600 leading-relaxed text-sm">
+            <p class="text-body text-slate-600">
               Neurological conditions can be stressful and emotionally overwhelming for patients and family caretakers. Dr. Rajib Das believes in unhurried active listening, meticulous clinical evaluation, and transparent explanations of every scan and treatment plan.
             </p>
             
             <div class="space-y-2.5 pt-1">
               <div class="flex items-start gap-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <div class="w-5 h-5 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs" aria-hidden="true">✓</div>
-                <p class="text-xs text-slate-700 font-semibold">Unrushed 30-45 minute initial consultations allowing exhaustive evaluation.</p>
+                <div class="w-4 h-4 text-teal-700 flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">✓</div>
+                <p class="text-body-sm text-slate-700 font-medium">Unrushed 30-45 minute initial consultations allowing exhaustive evaluation.</p>
               </div>
               <div class="flex items-start gap-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <div class="w-5 h-5 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs" aria-hidden="true">✓</div>
-                <p class="text-xs text-slate-700 font-semibold">Precision review of brain & spine MRI, CT, and neuro-imaging scans.</p>
+                <div class="w-4 h-4 text-teal-700 flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">✓</div>
+                <p class="text-body-sm text-slate-700 font-medium">Precision review of brain & spine MRI, CT, and neuro-imaging scans.</p>
               </div>
               <div class="flex items-start gap-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <div class="w-5 h-5 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs" aria-hidden="true">✓</div>
-                <p class="text-xs text-slate-700 font-semibold">Emergency on-call accessibility for acute neurological flares.</p>
+                <div class="w-4 h-4 text-teal-700 flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">✓</div>
+                <p class="text-body-sm text-slate-700 font-medium">Emergency on-call accessibility for acute neurological flares.</p>
               </div>
             </div>
 
             <div class="pt-2 flex flex-wrap gap-2.5">
-              <a href="/about" class="px-5 py-2.5 rounded-xl bg-teal-700 text-white font-bold text-sm hover:bg-teal-800 shadow-xs transition">
+              <a href="/about" class="btn btn-teal">
                 Read Full Biography & Background
               </a>
               <button
                 data-open-modal="booking"
-                class="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-800 font-bold text-sm hover:bg-slate-200 transition cursor-pointer"
+                class="btn btn-quiet"
               >
                 Schedule Appointment
               </button>
@@ -357,7 +357,7 @@ const stats = [
           </div>
 
           <div class="lg:col-span-6 space-y-5 reveal">
-            <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm relative aspect-16/9">
+            <div class="img-frame relative aspect-16/9">
               <img
                 src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80"
                 alt="Modern medical clinic consultation interior"
@@ -366,20 +366,20 @@ const stats = [
                 class="w-full h-full object-cover"
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent flex items-end p-5" aria-hidden="true">
+              <div class="img-scrim absolute inset-0 flex items-end p-5" aria-hidden="true">
                 <div class="text-white">
-                  <p class="text-xs font-semibold text-teal-300">Apex Neurosciences Center</p>
-                  <p class="text-sm font-bold font-serif">State-of-the-art Clinical Electrophysiology & Consultation Suites</p>
+                  <p class="text-caption font-semibold text-teal-300">Apex Neurosciences Center</p>
+                  <p class="text-body font-semibold font-serif">State-of-the-art Clinical Electrophysiology & Consultation Suites</p>
                 </div>
               </div>
             </div>
 
             <div class="bg-teal-50/70 rounded-2xl p-5 border border-teal-100 space-y-2">
-              <h3 class="text-xs font-black text-slate-900 flex items-center gap-2">
+              <h3 class="text-h5 text-slate-900 flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-teal-700" aria-hidden="true"></span>
                 When Should You Consult a Neurologist?
               </h3>
-              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-slate-700 list-none">
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-body-sm text-slate-700 list-none">
                 <li class="flex items-center gap-1.5">• Severe, recurring headaches</li>
                 <li class="flex items-center gap-1.5">• Numbness or pins &amp; needles</li>
                 <li class="flex items-center gap-1.5">• Unexplained fainting / fits</li>
@@ -398,16 +398,16 @@ const stats = [
     <ReviewsSection />
 
     <!-- 6. Location & Google Map (card header with directions action) -->
-    <section class="py-16 bg-white border-t border-slate-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="section bg-white border-t border-slate-200">
+      <div class="container-main">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           <div class="lg:col-span-5 space-y-5 reveal">
-            <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
+            <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
               Clinic Location
             </span>
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 font-serif">Visit Dr. Rajib Das Clinic</h2>
-            <p class="text-sm text-slate-600 leading-relaxed">
+            <h2 class="text-h2 text-slate-900">Visit Dr. Rajib Das Clinic</h2>
+            <p class="text-body text-slate-600">
               Centrally situated in the city medical corridor with modern elevator access, wheelchair accessibility, and reserved patient parking.
             </p>
 
@@ -417,7 +417,7 @@ const stats = [
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                 </svg>
                 <div>
-                  <p class="font-bold text-slate-900">Clinic Address:</p>
+                  <p class="font-semibold text-slate-900">Clinic Address:</p>
                   <p class="text-slate-600">Suite 402, Apex Neurosciences Center, Park View Medical Enclave, Main Arterial Road, Metro City, 700001</p>
                 </div>
               </div>
@@ -427,17 +427,17 @@ const stats = [
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
                 <div>
-                  <p class="font-bold text-slate-900">Consultation Hours:</p>
+                  <p class="font-semibold text-slate-900">Consultation Hours:</p>
                   <p class="text-slate-600">Monday – Saturday: 9:00 AM – 7:00 PM</p>
-                  <p class="text-xs text-slate-600 mt-0.5">(Emergency on-call available 24/7)</p>
+                  <p class="text-caption text-slate-600 mt-0.5">(Emergency on-call available 24/7)</p>
                 </div>
               </div>
 
               <div class="flex items-start gap-2.5">
                 <PhoneIcon class="w-4 h-4 text-teal-700 shrink-0 mt-0.5" />
                 <div>
-                  <p class="font-bold text-slate-900">Direct Telephone:</p>
-                  <a href={`tel:${phone}`} class="text-teal-700 font-bold hover:underline">{phone}</a>
+                  <p class="font-semibold text-slate-900">Direct Telephone:</p>
+                  <a href={`tel:${phone}`} class="text-teal-700 font-semibold hover:underline">{phone}</a>
                 </div>
               </div>
             </div>
@@ -447,14 +447,14 @@ const stats = [
                 href="https://maps.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800 transition"
+                class="btn btn-charcoal btn-sm inline-flex items-center gap-1.5"
               >
                 <span>Open in Google Maps</span>
                 <span aria-hidden="true">↗</span>
               </a>
               <a
                 href="/contact"
-                class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 text-slate-800 font-bold text-sm hover:bg-slate-200 transition"
+                class="btn btn-outline btn-sm inline-flex items-center gap-1.5"
               >
                 <span>Full Directions Guide</span>
               </a>
@@ -463,7 +463,7 @@ const stats = [
 
           <!-- Map wrapped in a branded card: address header + directions action above the iframe -->
           <div class="lg:col-span-7 reveal">
-            <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white">
+            <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-xs bg-white">
               <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-3 border-b border-slate-200 bg-slate-50">
                 <div class="flex items-center gap-2.5 min-w-0">
                   <span class="w-8 h-8 rounded-lg bg-teal-700 text-white flex items-center justify-center shrink-0" aria-hidden="true">
@@ -472,15 +472,15 @@ const stats = [
                     </svg>
                   </span>
                   <div class="min-w-0">
-                    <p class="text-xs font-bold text-slate-900 truncate">Apex Neurosciences Center</p>
-                    <p class="text-xs text-slate-600 truncate">Park View Medical Enclave, Metro City 700001</p>
+                    <p class="text-caption font-semibold text-slate-900 truncate">Apex Neurosciences Center</p>
+                    <p class="text-caption text-slate-500 truncate">Park View Medical Enclave, Metro City 700001</p>
                   </div>
                 </div>
                 <a
                   href="https://maps.google.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-xs font-bold text-teal-700 hover:text-teal-900 flex items-center gap-1 shrink-0"
+                  class="text-caption font-semibold text-teal-700 hover:text-teal-900 flex items-center gap-1 shrink-0"
                 >
                   Get Directions <span aria-hidden="true">↗</span>
                 </a>
@@ -504,9 +504,9 @@ const stats = [
     </section>
 
     <!-- 7. Bottom CTA -->
-    <section class="bg-slate-900 text-white py-14 text-center">
-      <div class="max-w-3xl mx-auto px-4 reveal">
-        <h2 class="text-2xl sm:text-3xl font-black tracking-tight font-serif">
+    <section class="bg-slate-900 text-white section text-center">
+      <div class="container-narrow reveal">
+        <h2 class="text-h2">
           Prioritize Your Neurological Health Today
         </h2>
         <p class="mt-3 text-sm text-slate-300 max-w-xl mx-auto">
@@ -516,7 +516,7 @@ const stats = [
         <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
           <button
             data-open-modal="booking"
-            class="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-white bg-teal-600 hover:bg-teal-500 shadow-md shadow-teal-600/20 cursor-pointer text-sm"
+            class="btn btn-teal w-full sm:w-auto"
           >
             Book In-Clinic Consultation
           </button>
@@ -524,9 +524,9 @@ const stats = [
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-white border-2 border-[#25D366] hover:bg-[#25D366]/15 text-sm flex items-center justify-center gap-2 transition"
+            class="w-full sm:w-auto px-6 py-3  rounded-xl text-btn font-semibold text-white border-2 border-[#1da851] hover:bg-[#1da851]/15 text-sm flex items-center justify-center gap-2 transition"
           >
-            <span class="w-5 h-5 rounded-full bg-[#25D366] flex items-center justify-center text-white shrink-0" aria-hidden="true">
+            <span class="w-5 h-5 rounded-full bg-[#1da851] flex items-center justify-center text-white shrink-0" aria-hidden="true">
               <WhatsAppIcon class="w-3 h-3" />
             </span>
             <span>Instant WhatsApp Chat</span>

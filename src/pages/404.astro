@@ -16,27 +16,27 @@ import MobileActionBar from '../components/MobileActionBar.astro';
 >
   <Navbar currentPage="/404" />
 
-  <main id="main-content" class="min-h-[60vh] flex items-center justify-center py-20 bg-slate-50">
+  <main id="main-content" class="min-h-[60vh] flex items-center justify-center section bg-slate-50">
     <div class="max-w-md mx-auto px-4 text-center">
-      <span class="inline-block text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-50 px-3 py-1 rounded-full border border-teal-200 mb-3">
+      <span class="inline-block text-label px-3 py-1 rounded-sm border border-teal-200 mb-3">
         Error 404
       </span>
-      <h1 class="text-3xl sm:text-4xl font-black text-slate-900 font-serif mb-3">
+      <h1 class="text-h1 text-slate-900 mb-3">
         Page Not Found
       </h1>
-      <p class="text-sm text-slate-600 leading-relaxed mb-6">
+      <p class="text-body text-slate-600 mb-6">
         The page you are looking for might have been moved, renamed, or is temporarily unavailable.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5">
         <a
           href="/"
-          class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-sm shadow-xs transition"
+          class="btn btn-teal w-full sm:w-auto"
         >
           Return to Home
         </a>
         <a
           href="/contact"
-          class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-sm border border-slate-300 transition"
+          class="btn btn-outline w-full sm:w-auto"
         >
           Contact Clinic
         </a>

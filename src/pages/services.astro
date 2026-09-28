@@ -115,22 +115,22 @@ const faqs = [
 
   <main id="main-content">
     <!-- Header Hero: single max-width (fixed former max-w-7xl + max-w-3xl conflict) -->
-    <section class="bg-gradient-to-b from-teal-50/50 via-white to-slate-50 py-14 sm:py-18 border-b border-slate-200">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-        <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
+    <section class="hero-wash section border-b border-slate-200">
+      <div class="container-narrow text-center">
+        <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
           Clinical Neurological Care
         </span>
-        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 tracking-tight font-serif">
+        <h1 class="text-h1 text-slate-900 mt-3">
           Specialized Services & Neuro-Diagnostics
         </h1>
-        <p class="text-sm text-slate-600 mt-2.5 leading-relaxed">
+        <p class="text-body text-slate-600 mt-2.5">
           From advanced in-house electrophysiology (EEG, EMG) to specialized clinical care for stroke, migraine, and tremors by Dr. Rajib Das, MBBS, MD (Neurology).
         </p>
 
         <div class="mt-6 flex flex-wrap justify-center gap-2.5">
           <button
             data-open-modal="booking"
-            class="btn-glass-teal px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-1.5 cursor-pointer"
+            class="btn btn-teal px-5 py-2.5 rounded-xl text-btn font-semibold flex items-center gap-1.5 cursor-pointer"
           >
             <CalendarIcon class="w-3.5 h-3.5" />
             <span>Schedule Consultation</span>
@@ -139,9 +139,9 @@ const faqs = [
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-glass-whatsapp px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-1.5"
+            class="btn btn-whatsapp px-5 py-2.5 rounded-xl text-btn font-semibold flex items-center gap-1.5"
           >
-            <span class="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0" aria-hidden="true">
+            <span class="text-white shrink-0" aria-hidden="true">
               <WhatsAppIcon class="w-2.5 h-2.5" />
             </span>
             <span>Inquire via WhatsApp</span>
@@ -151,22 +151,22 @@ const faqs = [
     </section>
 
     <!-- Advanced Diagnostics -->
-    <section class="py-16 bg-slate-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="section bg-cream">
+      <div class="container-main">
         
-        <div class="max-w-3xl mb-12 reveal">
-          <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
+        <div class="max-w-3xl mb-14 md:mb-20 reveal">
+          <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
             Diagnostic Accuracy
           </span>
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2 font-serif">Electrophysiology & Diagnostics</h2>
-          <p class="text-slate-600 text-sm mt-1">Accurate diagnostic mapping is the cornerstone of effective neurological therapy.</p>
+          <h2 class="text-h2 text-slate-900 mt-2">Electrophysiology & Diagnostics</h2>
+          <p class="text-body-sm text-slate-600 mt-1">Accurate diagnostic mapping is the cornerstone of effective neurological therapy.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {diagnosticTests.map((test, i) => (
-            <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-xs medical-card-hover flex flex-col justify-between reveal" style={`transition-delay: ${i * 60}ms`}>
+            <div class="surface overflow-hidden medical-card-hover flex flex-col justify-between reveal" style={`transition-delay: ${i * 60}ms`}>
               <div>
-                <div class="h-40 w-full overflow-hidden relative bg-slate-100">
+                <div class="img-frame h-40 w-full">
                   <img
                     src={test.image}
                     alt={test.name}
@@ -175,27 +175,27 @@ const faqs = [
                     class="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" aria-hidden="true"></div>
-                  <div class="absolute bottom-2.5 left-2.5 bg-white/95 px-2.5 py-0.5 rounded-lg text-xs font-bold text-teal-800 shadow-xs">
+                  <div class="img-scrim absolute inset-0" aria-hidden="true"></div>
+                  <div class="absolute bottom-2.5 left-2.5 bg-white/95 px-2.5 py-0.5 rounded-lg text-label shadow-xs">
                     Duration: {test.duration}
                   </div>
                 </div>
 
                 <div class="p-5">
                   <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-xs text-emerald-700 font-bold flex items-center gap-1">
+                    <span class="text-caption text-emerald-700 font-semibold flex items-center gap-1">
                       <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span> Available In-Clinic
                     </span>
                   </div>
 
-                  <h3 class="text-base font-bold text-slate-900 mb-1.5 font-serif">{test.name}</h3>
-                  <p class="text-xs text-slate-600 leading-relaxed mb-3">{test.desc}</p>
+                  <h3 class="text-h4 text-slate-900 mb-1.5">{test.name}</h3>
+                  <p class="text-body-sm text-slate-600 mb-3">{test.desc}</p>
                 </div>
               </div>
 
               <div class="p-5 pt-0">
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                  <p class="text-xs text-slate-600">
+                  <p class="text-body-sm text-slate-600">
                     <strong class="text-slate-900">Patient Prep:</strong> {test.prep}
                   </p>
                 </div>
@@ -208,22 +208,22 @@ const faqs = [
     </section>
 
     <!-- Conditions We Treat -->
-    <section class="py-16 bg-white border-t border-slate-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="section bg-white border-t border-slate-200">
+      <div class="container-main">
         
-        <div class="text-center max-w-3xl mx-auto mb-12 reveal">
-          <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
+        <div class="text-center max-w-3xl mx-auto mb-14 md:mb-20 reveal">
+          <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
             Clinical Management
           </span>
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2 font-serif">Conditions We Treat</h2>
-          <p class="text-slate-600 text-sm mt-1">Comprehensive protocols customized to individual patient profiles.</p>
+          <h2 class="text-h2 text-slate-900 mt-2">Conditions We Treat</h2>
+          <p class="text-body-sm text-slate-600 mt-1">Comprehensive protocols customized to individual patient profiles.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {clinicalConditions.map((cond, i) => (
-            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-xs hover:border-teal-300 transition flex flex-col justify-between medical-card-enhanced reveal" style={`transition-delay: ${i * 50}ms`}>
+            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 hover:border-teal-300 transition flex flex-col justify-between medical-card-enhanced reveal" style={`transition-delay: ${i * 50}ms`}>
               <div>
-                <div class="h-32 w-full overflow-hidden relative bg-slate-100">
+                <div class="img-frame h-32 w-full">
                   <img
                     src={cond.image}
                     alt={cond.category}
@@ -232,20 +232,20 @@ const faqs = [
                     class="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent" aria-hidden="true"></div>
-                  <h3 class="absolute bottom-2.5 left-3 right-3 text-sm font-bold text-white leading-tight font-serif">
+                  <div class="img-scrim absolute inset-0" aria-hidden="true"></div>
+                  <h3 class="absolute bottom-2.5 left-3 right-3 text-h5 text-white leading-snug">
                     {cond.category}
                   </h3>
                 </div>
 
-                <div class="p-4 space-y-2.5 text-xs leading-relaxed">
+                <div class="p-4 space-y-2.5 text-body-sm">
                   <div>
-                    <span class="font-bold text-slate-800 block mb-0.5">Key Symptoms:</span>
+                    <span class="font-semibold text-slate-800 block mb-0.5">Key Symptoms:</span>
                     <span class="text-slate-600">{cond.symptoms}</span>
                   </div>
 
                   <div>
-                    <span class="font-bold text-slate-800 block mb-0.5">Clinical Care:</span>
+                    <span class="font-semibold text-slate-800 block mb-0.5">Clinical Care:</span>
                     <span class="text-slate-600">{cond.treatments}</span>
                   </div>
                 </div>
@@ -254,7 +254,7 @@ const faqs = [
               <div class="p-4 pt-0">
                 <button
                   data-open-modal="booking"
-                  class="btn-glass-teal w-full py-2 rounded-xl text-xs font-bold text-center cursor-pointer"
+                  class="btn btn-teal w-full py-2 rounded-xl text-caption font-semibold text-center cursor-pointer"
                 >
                   Book Consultation for this condition ?
                 </button>
@@ -267,21 +267,21 @@ const faqs = [
     </section>
 
     <!-- FAQ Accordion -->
-    <section id="faq" class="py-16 bg-slate-900 text-white relative">
+    <section id="faq" class="section bg-slate-900 text-white relative">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="text-center mb-10 reveal">
-          <span class="text-xs font-bold uppercase tracking-wider text-teal-400 bg-teal-950 px-3 py-1 rounded-full border border-teal-800">
+        <div class="text-center mb-14 reveal">
+          <span class="text-label-light text-teal-300 px-3 py-1 rounded-sm border border-teal-700">
             Answers for Patients
           </span>
-          <h2 class="text-2xl sm:text-3xl font-black text-white mt-2 font-serif">Frequently Asked Questions</h2>
+          <h2 class="text-h2 text-white mt-2">Frequently Asked Questions</h2>
           <p class="text-slate-400 text-sm mt-1">Everything you need to know about your consultation with Dr. Rajib Das.</p>
         </div>
 
         <div class="space-y-3">
           {faqs.map((faq) => (
             <details class="group bg-slate-800 rounded-2xl border border-slate-700 p-4 transition open:bg-slate-800/90">
-              <summary class="flex justify-between items-center font-bold text-white text-sm cursor-pointer font-serif gap-3">
+              <summary class="flex justify-between items-center text-body font-semibold text-white cursor-pointer gap-3">
                 <span>{faq.q}</span>
                 <span class="text-teal-400 group-open:rotate-180 transition-transform shrink-0" aria-hidden="true">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -289,7 +289,7 @@ const faqs = [
                   </svg>
                 </span>
               </summary>
-              <p class="text-xs text-slate-300 leading-relaxed mt-3 pt-3 border-t border-slate-700">
+              <p class="text-body-sm text-slate-300 mt-3 pt-3 border-t border-slate-700">
                 {faq.a}
               </p>
             </details>
@@ -300,23 +300,23 @@ const faqs = [
     </section>
 
     <!-- Consultation Strip -->
-    <section class="py-12 bg-teal-800 text-white text-center">
-      <div class="max-w-3xl mx-auto px-4">
-        <h2 class="text-xl sm:text-2xl font-black font-serif">Need Clear Neurological Guidance?</h2>
-        <p class="text-sm text-teal-100 mt-1.5">Our clinic care coordinator is ready to assist you and reserve your consultation slot.</p>
+    <section class="section-sm bg-teal-800 text-white text-center">
+      <div class="container-narrow">
+        <h2 class="text-h3">Need Clear Neurological Guidance?</h2>
+        <p class="text-body text-teal-100 mt-1.5">Our clinic care coordinator is ready to assist you and reserve your consultation slot.</p>
         
         <div class="mt-5 flex flex-wrap justify-center gap-2.5">
           <button
             data-open-modal="booking"
-            class="btn-glass-slate px-6 py-2.5 rounded-xl font-bold text-sm cursor-pointer"
+            class="btn btn-charcoal px-6 py-2.5 rounded-xl text-btn font-semibold cursor-pointer"
           >
             Book Appointment Slot
           </button>
           <a
             href={phoneHref}
-            class="btn-glass-outline px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-1.5"
+            class="btn btn-outline px-5 py-2.5 rounded-xl text-btn font-semibold flex items-center gap-1.5"
           >
-            <span class="w-3.5 h-3.5 rounded-full bg-white/20 flex items-center justify-center text-white" aria-hidden="true">
+            <span class="text-white" aria-hidden="true">
               <PhoneIcon class="w-2.5 h-2.5" />
             </span>
             <span>Call {CLINIC.phone}</span>
