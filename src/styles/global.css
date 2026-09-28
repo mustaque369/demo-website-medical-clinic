@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 @theme {
   /* Neutral Warm Medical Clinic Palette (Sage / Slate / Deep Hospital Teal) */
@@ -112,36 +112,36 @@
   --shadow-lg: 0 14px 40px -14px rgba(27, 31, 29, 0.14);
   --shadow-xl: 0 24px 60px -24px rgba(27, 31, 29, 0.18);
   /* Premium editorial type scale - measured, never oversized */
-  --type-display: clamp(2.5rem, 1.6vw + 1.95rem, 3.875rem);
-  --type-h1: clamp(2.125rem, 1.2vw + 1.7rem, 3.125rem);
-  --type-h2: clamp(1.75rem, 0.85vw + 1.42rem, 2.375rem);
-  --type-h3: clamp(1.375rem, 0.45vw + 1.22rem, 1.6875rem);
-  --type-h4: clamp(1.125rem, 0.25vw + 1.05rem, 1.25rem);
+  --type-display: clamp(2.25rem, 4vw + 1rem, 3.25rem);
+  --type-h1: clamp(1.875rem, 3vw + 1rem, 2.75rem);
+  --type-h2: clamp(1.625rem, 2vw + 1rem, 2.25rem);
+  --type-h3: clamp(1.375rem, 1.5vw + 0.875rem, 1.75rem);
+  --type-h4: clamp(1.125rem, 1vw + 0.875rem, 1.375rem);
   --type-h5: 1.0625rem;
-  --type-lead: clamp(1.0625rem, 0.3vw + 0.99rem, 1.1875rem);
-  --type-body: clamp(1rem, 0.12vw + 0.97rem, 1.0625rem);
+  --type-lead: clamp(1.125rem, 0.5vw + 0.9375rem, 1.25rem);
+  --type-body: clamp(1rem, 0.3vw + 0.9375rem, 1.0625rem);
   --type-body-sm: 0.9375rem;
   --type-caption: 0.8125rem;
   --type-label: 0.75rem;
-  --type-brand: 1.0625rem;
+  --type-brand: 1.125rem;
 
   /* Editorial line heights */
-  --leading-display: 1.08;
-  --leading-h1: 1.14;
-  --leading-h2: 1.22;
-  --leading-h3: 1.32;
+  --leading-display: 1.05;
+  --leading-h1: 1.1;
+  --leading-h2: 1.2;
+  --leading-h3: 1.3;
   --leading-h4: 1.4;
-  --leading-body: 1.75;
-  --leading-body-sm: 1.68;
+  --leading-body: 1.8;
+  --leading-body-sm: 1.7;
 
   /* Editorial letter spacing */
-  --tracking-display: -0.022em;
-  --tracking-h1: -0.02em;
-  --tracking-h2: -0.016em;
-  --tracking-h3: -0.012em;
-  --tracking-h4: -0.008em;
-  --tracking-label: 0.16em;
-  --tracking-nav: 0.005em;
+  --tracking-display: -0.03em;
+  --tracking-h1: -0.025em;
+  --tracking-h2: -0.015em;
+  --tracking-h3: -0.01em;
+  --tracking-h4: 0em;
+  --tracking-label: 0.12em;
+  --tracking-nav: 0.02em;
 
   /* Calmer, more readable small-text utilities (overrides Tailwind defaults) */
   --text-xs: 0.8125rem;
@@ -360,7 +360,7 @@
   .text-h1,
   .text-h2 {
     font-family: var(--font-serif);
-    font-weight: 400;
+    font-weight: 300;
     text-wrap: balance;
   }
   .text-display {
@@ -383,14 +383,14 @@
   .text-h3 {
     font-family: var(--font-serif);
     font-size: var(--type-h3);
-    font-weight: 500;
+    font-weight: 400;
     line-height: var(--leading-h3);
     letter-spacing: var(--tracking-h3);
   }
   .text-h4 {
     font-family: var(--font-serif);
     font-size: var(--type-h4);
-    font-weight: 500;
+    font-weight: 400;
     line-height: var(--leading-h4);
     letter-spacing: var(--tracking-h4);
   }
@@ -570,9 +570,9 @@
       line-height: var(--leading-body);
     }
     
-    h1 { font-size: 1.9375rem; line-height: 1.18; }
-    h2 { font-size: 1.5625rem; line-height: 1.26; }
-    h3 { font-size: 1.25rem; line-height: 1.34; }
+    
+    
+    
     
     /* CTA Buttons on mobile */
     .btn-glass-teal, .btn-glass-whatsapp, .btn-glass-outline, .btn-glass-slate {
@@ -645,15 +645,15 @@ body {
 /* Editorial hierarchy defaults — serif headings, calm weights */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 300;
   line-height: var(--leading-h2);
   letter-spacing: var(--tracking-h2);
   text-wrap: balance;
 }
 h1 { font-size: var(--type-h1); line-height: var(--leading-h1); letter-spacing: var(--tracking-h1); }
 h2 { font-size: var(--type-h2); }
-h3 { font-size: var(--type-h3); font-weight: 500; line-height: var(--leading-h3); letter-spacing: var(--tracking-h3); }
-h4 { font-size: var(--type-h4); font-weight: 500; line-height: var(--leading-h4); letter-spacing: var(--tracking-h4); }
+h3 { font-size: var(--type-h3); font-weight: 400; line-height: var(--leading-h3); letter-spacing: var(--tracking-h3); }
+h4 { font-size: var(--type-h4); font-weight: 400; line-height: var(--leading-h4); letter-spacing: var(--tracking-h4); }
 h5, h6 { font-size: var(--type-h5); font-weight: 500; line-height: 1.45; letter-spacing: 0; }
 
 p {
