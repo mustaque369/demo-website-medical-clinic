@@ -68,9 +68,8 @@ const milestones = [
           
           <div class="lg:col-span-5">
             <div class="relative max-w-sm mx-auto">
-              <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm text-center">
-                
-                <div class="img-frame w-44 h-44 mx-auto mb-4">
+              <div class="text-center">
+                <div class="img-frame w-64 h-64 mx-auto mb-8 rounded-full overflow-hidden shadow-sm">
                   <img
                     src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=500&q=80"
                     alt="Portrait of Dr. Rajib Das, consultant neurologist"
@@ -80,9 +79,6 @@ const milestones = [
                     loading="eager"
                     fetchpriority="high"
                   />
-                  <div class="absolute bottom-2 inset-x-2 bg-white py-0.5 rounded-lg text-label border border-slate-200">
-                    Consultant Neurologist
-                  </div>
                 </div>
 
                 <h1 class="text-h2 text-slate-900">Dr. Rajib Das</h1>
@@ -111,7 +107,7 @@ const milestones = [
                 <div class="mt-4 flex flex-col gap-2">
                   <button
                     data-open-modal="booking"
-                    class="btn btn-teal w-full py-2.5 rounded-xl text-btn font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
+                    class="btn btn-teal w-full"
                   >
                     <CalendarIcon class="w-4 h-4" />
                     <span>Schedule Consultation</span>
@@ -336,3 +332,5 @@ const milestones = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
+
+
