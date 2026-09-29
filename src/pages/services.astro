@@ -2,6 +2,7 @@
 import { ANALYTICS } from '../constants/analytics';
 import { CLINIC } from '../constants';
 import Layout from '../layouts/Layout.astro';
+import ScrollArrow from '../components/ScrollArrow.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
@@ -120,7 +121,7 @@ const faqs = [
         <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
           Clinical Neurological Care
         </span>
-        <h1 class="text-h1 text-slate-900 mt-3">
+        <h1 class="text-h1 font-sans text-slate-900 mt-3">
           Specialized Services & Neuro-Diagnostics
         </h1>
         <p class="text-body text-slate-600 mt-2.5">
@@ -156,28 +157,31 @@ const faqs = [
         
         <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16 reveal">
           <span class="text-xs font-bold tracking-widest text-[#0c4a8a] uppercase block mb-3">ACCURATE DIAGNOSIS. BETTER TREATMENT.</span>
-          <h2 class="text-h2 text-charcoal font-medium mb-4">Diagnostic Procedures</h2>
+          <h2 class="text-h2 font-sans text-charcoal font-medium mb-4">Diagnostic Procedures</h2>
           <p class="text-body text-graphite">We use modern, non-invasive diagnostic tools to accurately assess your condition and plan the right treatment. Each test is explained clearly, so you know what to expect.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8">
           {diagnosticTests.map((test, i) => (
-            <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col hover:shadow-[0_8px_30px_-4px_rgba(12,74,138,0.12)] hover:border-teal-200 transition-all duration-300 reveal" style={`transition-delay: ${i * 60}ms`}>
-              <div class="w-12 h-12 rounded-full bg-blue-50 text-[#0c4a8a] flex items-center justify-center mb-4 shrink-0">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col sm:flex-row hover:shadow-[0_8px_30px_-4px_rgba(12,74,138,0.12)] hover:border-teal-200 transition-all duration-300 reveal group" style={`transition-delay: ${i * 60}ms`}>
+              <div class="sm:w-2/5 h-48 sm:h-auto shrink-0 relative overflow-hidden">
+                <img src={test.image.replace('.svg', '.jpg')} alt={test.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=400&q=80'" />
+                <div class="absolute top-4 left-4 w-10 h-10 rounded-full bg-white text-[#0c4a8a] flex items-center justify-center shadow-md">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                </div>
               </div>
-              <h3 class="text-[1.05rem] font-bold text-slate-900 mb-2 leading-tight">{test.name}</h3>
-              <p class="text-sm text-slate-600 mb-6 flex-1 leading-relaxed">{test.desc}</p>
-              
-              <div class="mt-auto">
-                <span class="inline-flex items-center text-[0.8rem] font-semibold text-[#0c4a8a] bg-blue-50 px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors cursor-help" title={`Prep: ${test.prep} | Duration: ${test.duration}`}>
-                  What to Expect &rarr;
-                </span>
+              <div class="p-6 flex flex-col flex-1">
+                <h3 class="text-xl font-bold text-slate-900 mb-2 leading-tight">{test.name}</h3>
+                <p class="text-[0.9375rem] text-slate-600 mb-6 flex-1 leading-relaxed">{test.desc}</p>
+                <div class="mt-auto">
+                  <span class="inline-flex items-center text-[0.85rem] font-bold text-[#0c4a8a] bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-100 transition-colors cursor-help" title={`Prep: ${test.prep} | Duration: ${test.duration}`}>
+                    What to Expect &rarr;
+                  </span>
+                </div>
               </div>
             </div>
           ))}
         </div>
-
         <div class="mt-12 text-center reveal">
           <button data-open-modal="booking" class="btn bg-[#0c4a8a] text-white hover:bg-blue-900 px-8 py-3.5 rounded-full text-[15px] font-semibold transition-all inline-flex items-center justify-center shadow-md">
             Explore All Diagnostic Procedures & Prep &rarr;
@@ -195,7 +199,7 @@ const faqs = [
           <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
             Clinical Management
           </span>
-          <h2 class="text-h2 text-slate-900 mt-2">Conditions We Treat</h2>
+          <h2 class="text-h2 font-sans text-slate-900 mt-2">Conditions We Treat</h2>
           <p class="text-body-sm text-slate-600 mt-1">Comprehensive protocols customized to individual patient profiles.</p>
         </div>
 
@@ -254,7 +258,7 @@ const faqs = [
           <span class="text-label-light text-teal-300 px-3 py-1 rounded-sm border border-teal-700">
             Answers for Patients
           </span>
-          <h2 class="text-h2 text-white mt-2">Frequently Asked Questions</h2>
+          <h2 class="text-h2 font-sans text-white mt-2">Frequently Asked Questions</h2>
           <p class="text-slate-400 text-sm mt-1">Everything you need to know about your consultation with Dr. Rajib Das.</p>
         </div>
 
@@ -296,9 +300,7 @@ const faqs = [
             href={phoneHref}
             class="btn btn-outline px-5 py-2.5 rounded-xl text-btn font-semibold flex items-center gap-1.5"
           >
-            <span class="text-white" aria-hidden="true">
-              <PhoneIcon class="w-2.5 h-2.5" />
-            </span>
+            <span class="group-hover:text-[#0c4a8a] text-white transition-colors" aria-hidden="true"><PhoneIcon class="w-4 h-4" /></span>
             <span>Call {CLINIC.phone}</span>
           </a>
         </div>
@@ -311,4 +313,5 @@ const faqs = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
+
 

@@ -46,7 +46,7 @@ const services = [
     title: "Neuropathy & Sciatica Relief",
     desc: "Electromyography (EMG) and Nerve Conduction Velocity (NCV) testing for diabetic nerve pain and spinal radiculopathy.",
     icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=85",
+    image: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=800&q=85",
     href: "/services"
   },
   {
@@ -432,7 +432,7 @@ const stats = [
           
           <!-- Left: Clinic Image -->
           <div class="relative w-full h-[500px] lg:h-[600px] rounded-3xl overflow-hidden reveal shadow-[0_20px_60px_-15px_rgba(12,74,138,0.15)] group">
-            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="Dr. Rajib Das Clinic Reception" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy" />
+            <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=800&q=80" alt="Dr. Rajib Das Clinic Reception" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
             <div class="absolute bottom-8 left-8 right-8">
               <h3 class="text-white text-xl font-bold mb-1">Compassionate Care. Advanced Neurology.</h3>
@@ -508,33 +508,26 @@ const stats = [
               </div>
             </div>
 
-            <!-- Features -->
-            <div class="flex flex-wrap gap-6 pt-4 border-t border-slate-200">
+                        <!-- Features & Actions Aligned -->
+            <div class="flex flex-col sm:flex-row flex-wrap items-center gap-6 pt-4 border-t border-slate-200">
               <div class="flex items-center gap-3">
                 <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                 <div>
                   <div class="text-sm font-bold text-slate-900">Easy Accessibility</div>
-                  <div class="text-xs text-slate-500">Near metro & bus stop</div>
                 </div>
               </div>
               <div class="flex items-center gap-3">
                 <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
                 <div>
                   <div class="text-sm font-bold text-slate-900">Parking Available</div>
-                  <div class="text-xs text-slate-500">On-site parking facility</div>
                 </div>
               </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 pt-2">
-              <button data-open-modal="booking" class="btn bg-[#0c4a8a] text-white hover:bg-blue-900 px-8 py-3.5 rounded-full text-[15px] font-semibold transition-all inline-flex items-center justify-center shadow-md w-full sm:w-auto">
-                Book Consultation &rarr;
-              </button>
-              <a href="https://maps.google.com/?q=Kolkata" target="_blank" rel="noopener noreferrer" class="btn bg-white text-slate-800 border border-slate-300 hover:border-[#0c4a8a] hover:text-[#0c4a8a] px-8 py-3.5 rounded-full text-[15px] font-semibold transition-all inline-flex items-center justify-center shadow-sm w-full sm:w-auto">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                Get Directions
-              </a>
+              
+              <div class="ml-auto flex gap-3 w-full sm:w-auto">
+                <a href="https://maps.google.com/?q=Kolkata" target="_blank" rel="noopener noreferrer" class="btn bg-[#0c4a8a] text-white hover:bg-blue-900 px-6 py-3 rounded-full text-sm font-semibold transition-all inline-flex items-center justify-center shadow-md w-full sm:w-auto">
+                  Get Directions &rarr;
+                </a>
+              </div>
             </div>
 
           </div>
@@ -603,16 +596,15 @@ const stats = [
                   </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <button data-open-modal="booking" class="btn bg-[#0c4a8a] text-white hover:bg-blue-900 py-4 rounded-xl font-semibold shadow-md flex justify-center items-center gap-2">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <button data-open-modal="booking" class="bg-[#0c4a8a] text-white hover:bg-[#0a3a6a] transition-colors py-4 rounded-xl font-bold shadow-md flex justify-center items-center gap-2 text-center">
                     Book Consultation &rarr;
                   </button>
-                  <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="btn bg-white text-[#1da851] border border-[#1da851] hover:bg-[#1da851] hover:text-white py-4 rounded-xl font-semibold shadow-sm flex justify-center items-center gap-2 transition-colors">
+                  <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="bg-[#1da851] text-white hover:bg-[#15823e] transition-colors py-4 rounded-xl font-bold shadow-md flex justify-center items-center gap-2 text-center">
                     <WhatsAppIcon class="w-5 h-5" />
                     WhatsApp
                   </a>
                 </div>
-                
                 <p class="text-center text-xs text-slate-400 pt-2 flex items-center justify-center gap-1.5">
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                   Your information is safe and confidential.
@@ -670,6 +662,7 @@ const counters = document.querySelectorAll<HTMLElement>('.counter-number');
 
   initCounters();
 </script>
+
 
 
 

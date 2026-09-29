@@ -1,7 +1,8 @@
-﻿---
+---
 import { ANALYTICS } from '../constants/analytics';
 import { CLINIC } from '../constants';
 import Layout from '../layouts/Layout.astro';
+import ScrollArrow from '../components/ScrollArrow.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
@@ -61,9 +62,9 @@ const milestones = [
 
   <main id="main-content">
 
-    <!-- ═══════════════════════════════════════════════════════════
-         EDITORIAL DOCTOR PROFILE — full-width cinematic header
-         ═══════════════════════════════════════════════════════════ -->
+    <!-- -----------------------------------------------------------
+         EDITORIAL DOCTOR PROFILE � full-width cinematic header
+         ----------------------------------------------------------- -->
     <section class="doc-profile-hero section border-b border-beige" aria-label="Doctor profile">
       <div class="container-main">
         <div class="doc-profile-grid">
@@ -94,14 +95,16 @@ const milestones = [
             <!-- Name -->
             <h1 class="doc-name">Dr. Rajib Das</h1>
 
-            <!-- Credentials line -->
+                <ScrollArrow />
+    <!-- 
+         CREDENTIALS line -->
             <p class="doc-credentials">MBBS (Distinction &amp; Gold Medal) &middot; MD in Neurology</p>
             <p class="doc-role">Consultant Neurologist &amp; Certified Clinical Neurophysiologist</p>
 
             <!-- Thin rule -->
             <hr class="doc-rule" />
 
-            <!-- Biography paragraphs — verbatim factual content -->
+            <!-- Biography paragraphs � verbatim factual content -->
             <div class="doc-bio">
               <p>
                 Dr. Rajib Das is an accomplished Senior Neurologist known for his analytical diagnostic approach and patient-centered communication with individuals facing complex neurological conditions.
@@ -111,12 +114,12 @@ const milestones = [
               </p>
             </div>
 
-            <!-- Philosophy pull-quote — verbatim from existing content -->
+            <!-- Philosophy pull-quote � verbatim from existing content -->
             <blockquote class="doc-philosophy">
-              <p>"In neurology, an illness rarely affects an isolated organ — it impacts an individual's independence, speech, mobility, and identity. Every patient deserves time, rigorous diagnostic inquiry, and complete reassurance on their treatment path."</p>
+              <p>"In neurology, an illness rarely affects an isolated organ � it impacts an individual's independence, speech, mobility, and identity. Every patient deserves time, rigorous diagnostic inquiry, and complete reassurance on their treatment path."</p>
             </blockquote>
 
-            <!-- Practice statistics — pure typography, no cards -->
+            <!-- Practice statistics � pure typography, no cards -->
             <div class="doc-stats">
               {milestones.map((m, i) => (
                 <div class="doc-stat">
@@ -144,9 +147,9 @@ const milestones = [
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         CREDENTIALS — editorial list, no cards
-         ═══════════════════════════════════════════════════════════ -->
+    <!-- -----------------------------------------------------------
+         CREDENTIALS � editorial list, no cards
+         ----------------------------------------------------------- -->
     <section class="section bg-ivory border-b border-beige" aria-label="Qualifications and credentials">
       <div class="container-main">
 
@@ -155,28 +158,36 @@ const milestones = [
           <h2 class="doc-section-title">Education, Fellowships &amp; Accreditations</h2>
         </div>
 
-        <ol class="doc-credential-list" aria-label="Qualifications list">
-          {credentials.map((item, idx) => (
-            <li class="doc-credential-item reveal" style={`transition-delay: ${idx * 80}ms`}>
-              <div class="doc-credential-index" aria-hidden="true">0{idx + 1}</div>
-              <div class="doc-credential-body">
-                <div class="doc-credential-meta">
-                  <h3 class="doc-credential-degree">{item.degree}</h3>
-                  <span class="doc-credential-badge">{item.year}</span>
-                </div>
-                <p class="doc-credential-institution">{item.institution}</p>
-                <p class="doc-credential-desc">{item.desc}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
+                  <ol class="doc-credential-list flex flex-col gap-8" aria-label="Qualifications list">
+            {credentials.map((item, idx) => {
+              const images = [
+                "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=200&q=80",
+                "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=200&q=80",
+                "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&w=200&q=80",
+                "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=200&q=80"
+              ];
+              return (
+                <li class="doc-credential-item reveal flex gap-6 items-start bg-white p-6 rounded-2xl shadow-[0_4px_20px_-4px_rgba(15,23,42,0.05)] border border-slate-100" style={`transition-delay: ${idx * 80}ms`}>
+                  <img src={images[idx]} alt="Academic Image" class="w-20 h-20 md:w-28 md:h-28 rounded-xl object-cover shadow-sm shrink-0" />
+                  <div class="doc-credential-body flex-1">
+                    <div class="doc-credential-meta flex flex-wrap gap-2 items-center mb-2">
+                      <h3 class="doc-credential-degree text-lg md:text-xl font-bold text-slate-900">{item.degree}</h3>
+                      <span class="doc-credential-badge text-xs font-semibold bg-blue-50 text-[#0c4a8a] px-3 py-1 rounded-full">{item.year}</span>
+                    </div>
+                    <p class="doc-credential-institution text-slate-700 font-semibold mb-2">{item.institution}</p>
+                    <p class="doc-credential-desc text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
 
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         MEMBERSHIPS — horizontal typography list, no icon cards
-         ═══════════════════════════════════════════════════════════ -->
+    <!-- -----------------------------------------------------------
+         MEMBERSHIPS � horizontal typography list, no icon cards
+         ----------------------------------------------------------- -->
     <section class="section bg-white border-b border-beige" aria-label="Professional memberships">
       <div class="container-main">
 
@@ -185,43 +196,43 @@ const milestones = [
           <h2 class="doc-section-title">Professional Memberships</h2>
         </div>
 
-        <ul class="doc-membership-list reveal" aria-label="Memberships">
-          <li class="doc-membership-item">
-            <span class="doc-membership-abbr">NSI</span>
-            <div>
-              <p class="doc-membership-name">Neurological Society of India</p>
-              <p class="doc-membership-role">Life Member &amp; Contributor</p>
-            </div>
-          </li>
-          <li class="doc-membership-item">
-            <span class="doc-membership-abbr">AAN</span>
-            <div>
-              <p class="doc-membership-name">American Academy of Neurology</p>
-              <p class="doc-membership-role">International Member</p>
-            </div>
-          </li>
-          <li class="doc-membership-item">
-            <span class="doc-membership-abbr">IES</span>
-            <div>
-              <p class="doc-membership-name">Indian Epilepsy Society</p>
-              <p class="doc-membership-role">Clinical Researcher</p>
-            </div>
-          </li>
-          <li class="doc-membership-item">
-            <span class="doc-membership-abbr">WSO</span>
-            <div>
-              <p class="doc-membership-name">World Stroke Organization</p>
-              <p class="doc-membership-role">Certified Stroke Protocol Member</p>
-            </div>
-          </li>
-        </ul>
+                  <ul class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal" aria-label="Memberships">
+            <li class="doc-membership-item flex items-center gap-4 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+              <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=150&q=80" alt="NSI" class="w-16 h-16 rounded-full object-cover shadow-sm shrink-0" />
+              <div>
+                <p class="font-bold text-slate-900">Neurological Society of India</p>
+                <p class="text-sm text-slate-600">Life Member &amp; Contributor</p>
+              </div>
+            </li>
+            <li class="doc-membership-item flex items-center gap-4 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=150&q=80" alt="AAN" class="w-16 h-16 rounded-full object-cover shadow-sm shrink-0" />
+              <div>
+                <p class="font-bold text-slate-900">American Academy of Neurology</p>
+                <p class="text-sm text-slate-600">International Member</p>
+              </div>
+            </li>
+            <li class="doc-membership-item flex items-center gap-4 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+              <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=150&q=80" alt="IES" class="w-16 h-16 rounded-full object-cover shadow-sm shrink-0" />
+              <div>
+                <p class="font-bold text-slate-900">Indian Epilepsy Society</p>
+                <p class="text-sm text-slate-600">Clinical Researcher</p>
+              </div>
+            </li>
+            <li class="doc-membership-item flex items-center gap-4 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+              <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=150&q=80" alt="WSO" class="w-16 h-16 rounded-full object-cover shadow-sm shrink-0" />
+              <div>
+                <p class="font-bold text-slate-900">World Stroke Organization</p>
+                <p class="text-sm text-slate-600">Certified Stroke Protocol Member</p>
+              </div>
+            </li>
+          </ul>
 
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         CLINIC ENVIRONMENT — photography grid
-         ═══════════════════════════════════════════════════════════ -->
+    <!-- -----------------------------------------------------------
+         CLINIC ENVIRONMENT � photography grid
+         ----------------------------------------------------------- -->
     <section class="section bg-ivory" aria-label="Clinic environment">
       <div class="container-main">
         <div class="doc-section-header reveal">
@@ -319,6 +330,7 @@ const milestones = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
+
 
 
 
