@@ -1,4 +1,4 @@
----
+﻿---
 import { ANALYTICS } from '../constants/analytics';
 import Layout from '../layouts/Layout.astro';
 import { CLINIC } from '../constants/clinic';
@@ -91,7 +91,7 @@ const stats = [
         </svg>
       </div>
 
-      <div class="relative z-10 container-main flex flex-col lg:flex-row items-center gap-10 lg:gap-12 py-16 md:py-20 lg:py-24">
+      <div class="relative z-10 container-main flex flex-col lg:flex-row items-center gap-10 lg:gap-12 pt-12 pb-16 md:py-20 lg:py-24">
         
         <!-- Left: Text Content -->
         <div class="flex-1 space-y-6 text-center lg:text-left">
@@ -101,7 +101,7 @@ const stats = [
             <span class="text-label text-teal-700 tracking-[0.18em]">Senior Consultant Neurologist</span>
           </div>
 
-          <h1 class="text-display text-charcoal max-w-2xl leading-[1.08] font-medium">
+          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-charcoal max-w-2xl leading-[1.1] font-medium tracking-tight">
             Advanced Neurological Care,<br>
             <span class="font-serif italic font-light text-[1.02em]">Guided by Precision &amp; Understanding</span>
           </h1>
@@ -111,10 +111,10 @@ const stats = [
           </p>
 
           <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row items-center lg:items-start gap-3 sm:gap-4 pt-2">
+          <div class="flex flex-col w-full sm:w-auto sm:flex-row items-center lg:items-start gap-3 sm:gap-4 pt-2">
             <button
               data-open-modal="booking"
-              class="nav-cta-btn px-8 py-3.5 text-base w-full sm:w-auto justify-center"
+              class="nav-cta-btn px-8 py-4 text-base w-full sm:w-auto justify-center shadow-lg shadow-teal-900/20"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -124,7 +124,7 @@ const stats = [
             </button>
             <a
               href={`${import.meta.env.BASE_URL}#services`}
-              class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full border border-slate-300 text-charcoal font-semibold text-[0.9375rem] hover:border-teal-600 hover:text-teal-700 transition-colors w-full sm:w-auto justify-center"
+              class="inline-flex items-center gap-2.5 px-6 py-4 rounded-full border-2 border-slate-200 text-charcoal font-semibold text-[0.9375rem] hover:border-teal-600 hover:text-teal-700 transition-colors w-full sm:w-auto justify-center bg-white"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -167,7 +167,7 @@ const stats = [
         </div>
 
         <!-- Right: Doctor Photo + Profile Card -->
-        <div class="w-full max-w-sm mx-auto lg:mx-0 lg:max-w-lg shrink-0 relative reveal" style="transition-delay: 150ms;">
+        <div class="w-full max-w-sm mx-auto lg:mx-0 lg:max-w-lg shrink-0 relative reveal mb-8 sm:mb-0" style="transition-delay: 150ms;">
           <!-- Doctor Photo -->
           <div class="relative">
             <img 
@@ -185,7 +185,7 @@ const stats = [
           </div>
 
           <!-- Floating Profile Card -->
-          <div class="absolute bottom-4 right-4 left-4 sm:left-auto sm:right-4 sm:bottom-6 bg-white rounded-xl shadow-xl border border-slate-200 p-4 sm:p-5 sm:w-72">
+          <div class="absolute -bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:-bottom-6 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-white/50 p-5 sm:w-72">
             <div class="flex items-start justify-between">
               <div>
                 <h2 class="text-charcoal font-bold text-base">Dr. Rajib Das</h2>
@@ -208,7 +208,7 @@ const stats = [
     <!-- 2. Full-horizon stats band (icons + counters that render final values without JS) -->
     <section class="bg-teal-50 border-y border-teal-100 py-10 md:py-12" aria-label="Practice statistics">
       <div class="container-main">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div class="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4 text-center">
           {stats.map((stat) => (
             <div class="p-2">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -432,7 +432,7 @@ const stats = [
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           <!-- Left: Clinic Image -->
-          <div class="relative w-full h-[500px] lg:h-[600px] rounded-3xl overflow-hidden reveal shadow-[0_20px_60px_-15px_rgba(12,74,138,0.15)] group">
+          <div class="relative w-full h-[350px] sm:h-[400px] lg:h-[600px] rounded-3xl overflow-hidden reveal shadow-[0_20px_60px_-15px_rgba(12,74,138,0.15)] group">
             <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=800&q=80" alt="Dr. Rajib Das Clinic Reception" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
             <div class="absolute bottom-8 left-8 right-8">
@@ -538,7 +538,7 @@ const stats = [
     <!-- 7. Bottom CTA (Book Consultation) - Match Mockup 2 -->
     <section class="section bg-white border-t border-slate-200" aria-label="Book Consultation">
       <div class="container-main">
-        <div class="bg-[#f5f9ff] rounded-[32px] p-8 md:p-12 lg:p-16 relative overflow-hidden border border-blue-100/50 reveal shadow-[0_20px_60px_-15px_rgba(12,74,138,0.08)]">
+        <div class="bg-[#f5f9ff] rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 relative overflow-hidden border border-blue-100/50 reveal shadow-[0_20px_60px_-15px_rgba(12,74,138,0.08)]">
           <!-- Background decoration -->
           <div class="absolute top-0 right-0 w-1/2 h-full bg-white/40 blur-3xl rounded-full transform translate-x-1/3 -translate-y-1/4 pointer-events-none"></div>
           
@@ -580,7 +580,7 @@ const stats = [
             </div>
 
             <!-- Right: Action Area (Simulated Form / Direct Actions matching mockup) -->
-            <div class="lg:col-span-7 bg-white rounded-[24px] p-8 border border-slate-200 shadow-sm flex flex-col justify-center">
+            <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-center">
               <h3 class="text-xl font-bold text-slate-900 mb-6">Schedule Your Appointment</h3>
               
               <div class="space-y-6">
@@ -662,6 +662,8 @@ const counters = document.querySelectorAll<HTMLElement>('.counter-number');
 
   initCounters();
 </script>
+
+
 
 
 
