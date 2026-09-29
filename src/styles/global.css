@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @theme {
   /* Neutral Warm Medical Clinic Palette (Sage / Slate / Deep Hospital Teal) */
@@ -2319,170 +2319,34 @@
     list-style: none;
   }
 
-  /* Mobile-first: ensure text doesn't touch edges */
-  @media (max-width: 639px) {
-    body {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-    
-    .max-w-7xl,
-    .max-w-5xl,
-    .max-w-3xl,
-    .mx-auto {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-    
-    /* Ensure content doesn't touch edges */
-    p, h1, h2, h3, h4, span, a, button, label, input, textarea, select {
-      max-width: 100%;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
-
-    /* Better base typography on mobile */
-    body {
-      font-size: var(--type-body);
-      line-height: var(--leading-body);
-    }
-    
-    
-    
-    
-    
-    /* CTA Buttons on mobile */
-    .btn-glass-teal, .btn-glass-whatsapp, .btn-glass-outline, .btn-glass-slate {
-      @apply text-base py-3 px-6;
-    }
-    
-    /* Mobile action bar */
-    .fixed.bottom-0 a {
-      @apply text-base py-3 px-4;
-    }
-
-    /* Form inputs on mobile */
-    input, textarea, select {
-      @apply text-base py-3 px-4;
-    }
   }
 
-  @media (min-width: 640px) {
-    .btn-glass-teal, .btn-glass-whatsapp, .btn-glass-outline, .btn-glass-slate {
-      @apply text-sm py-2.5 px-5;
-    }
+/* --- Small tablet --- */
+@media (min-width: 640px) and (max-width: 767px) {
+  .hero-clinical h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem) !important;
+  }
+  .h-\[500px\] {
+    height: 380px !important;
   }
 }
 
-/* Infinite Marquee for reviews */
-@keyframes scrollReviews {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-50% - 0.5rem));
+/* --- Tablet --- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-clinical h1 {
+    font-size: clamp(2.25rem, 4.5vw, 3rem) !important;
   }
 }
 
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: scrollReviews 38s linear infinite;
-}
-
-.animate-marquee:hover,
-.animate-marquee:focus-within {
-  animation-play-state: paused;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 120px;
-  font-optical-sizing: auto;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  font-kerning: normal;
-  font-variant-ligatures: common-ligatures contextual;
-  font-family: var(--font-sans);
-}
-
-body {
-  color: var(--color-ink);
-  background-color: #ffffff;
+/* Prevent horizontal overflow */
+html, body {
   overflow-x: hidden;
-  font-size: var(--type-body);
-  line-height: var(--leading-body);
-  letter-spacing: 0.002em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
-
-/* Respect prefers-reduced-motion: freeze marquee, reveals, smooth scroll.
-   Counters render final values in HTML, so they stay correct without JS/animation. */
-/* Editorial hierarchy defaults — serif headings, calm weights */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
-  font-weight: 300;
-  line-height: var(--leading-h2);
-  letter-spacing: var(--tracking-h2);
-  text-wrap: balance;
-}
-h1 { font-size: var(--type-h1); line-height: var(--leading-h1); letter-spacing: var(--tracking-h1); }
-h2 { font-size: var(--type-h2); }
-h3 { font-size: var(--type-h3); font-weight: 400; line-height: var(--leading-h3); letter-spacing: var(--tracking-h3); }
-h4 { font-size: var(--type-h4); font-weight: 400; line-height: var(--leading-h4); letter-spacing: var(--tracking-h4); }
-h5, h6 { font-size: var(--type-h5); font-weight: 500; line-height: 1.45; letter-spacing: 0; }
-
-p {
-  font-family: var(--font-sans);
-  line-height: var(--leading-body);
-  letter-spacing: 0.002em;
-  text-wrap: pretty;
-}
-
-strong, b { font-weight: 650; }
-small { font-size: var(--type-caption); line-height: 1.6; }
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .animate-marquee {
-    animation: none !important;
-  }
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* ============================================================
    MOBILE RESPONSIVE FIXES
    ============================================================ */
-
 @media (max-width: 639px) {
 
   /* Prevent double padding */
@@ -2492,7 +2356,7 @@ small { font-size: var(--type-caption); line-height: 1.6; }
   }
 
   .container-main {
-    padding-inline: 1rem !important;
+    padding-inline: 1.25rem !important;
   }
 
   /* Reduce section padding on mobile */
@@ -2502,15 +2366,18 @@ small { font-size: var(--type-caption); line-height: 1.6; }
   }
 
   /* Hero mobile fixes */
+  .hero-clinical {
+    padding-top: 1rem !important;
+  }
   .hero-clinical h1 {
-    font-size: clamp(1.75rem, 6.5vw, 2.5rem) !important;
+    font-size: clamp(2rem, 8vw, 2.75rem) !important;
     line-height: 1.15 !important;
     max-width: 100% !important;
   }
 
   .hero-clinical .text-lead {
-    font-size: 0.9375rem !important;
-    line-height: 1.65 !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
     max-width: 100% !important;
   }
 
@@ -2525,17 +2392,18 @@ small { font-size: var(--type-caption); line-height: 1.6; }
     bottom: auto !important;
     left: auto !important;
     right: auto !important;
-    margin-top: 1rem !important;
+    margin-top: 1.5rem !important;
     border-radius: 0.75rem !important;
     width: 100% !important;
   }
 
   /* Credential badges: 2 columns */
   .grid.grid-cols-2.sm\:grid-cols-4 {
-    gap: 0.5rem !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem !important;
   }
   .grid.grid-cols-2.sm\:grid-cols-4 > div {
-    padding: 0.625rem !important;
+    padding: 0.75rem !important;
   }
 
   /* Clinic location image height */
@@ -2567,8 +2435,8 @@ small { font-size: var(--type-caption); line-height: 1.6; }
     padding: 1.25rem !important;
   }
   .bg-white.rounded-2xl.p-6.flex.flex-col.sm\:flex-row img {
-    width: 5rem !important;
-    height: 5rem !important;
+    width: 6rem !important;
+    height: 6rem !important;
   }
 
   /* Marquee review cards */
@@ -2583,7 +2451,7 @@ small { font-size: var(--type-caption); line-height: 1.6; }
 
   /* Heading sizes on mobile */
   h2, .text-h2 {
-    font-size: clamp(1.5rem, 5.5vw, 2rem) !important;
+    font-size: clamp(1.75rem, 6vw, 2.25rem) !important;
     line-height: 1.2 !important;
   }
 
@@ -2616,26 +2484,4 @@ small { font-size: var(--type-caption); line-height: 1.6; }
     margin-left: 0 !important;
     width: 100% !important;
   }
-}
-
-/* --- Small tablet --- */
-@media (min-width: 640px) and (max-width: 767px) {
-  .hero-clinical h1 {
-    font-size: clamp(2rem, 5vw, 2.75rem) !important;
-  }
-  .h-\[500px\] {
-    height: 380px !important;
-  }
-}
-
-/* --- Tablet --- */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .hero-clinical h1 {
-    font-size: clamp(2.25rem, 4.5vw, 3rem) !important;
-  }
-}
-
-/* Prevent horizontal overflow */
-html, body {
-  overflow-x: hidden;
 }
