@@ -150,65 +150,38 @@ const faqs = [
       </div>
     </section>
 
-    <!-- Advanced Diagnostics — Reference 4 Style -->
-    <section class="section bg-white border-b border-slate-200">
+        <!-- Advanced Diagnostics — Reference 2 Style -->
+    <section class="section bg-[#f8fbff] border-y border-slate-200" id="diagnostics">
       <div class="container-main">
         
-        <div class="max-w-2xl mb-12 md:mb-16 reveal">
-          <div class="inline-flex items-center gap-2 mb-4">
-            <span class="text-teal-600 font-bold text-xs">→</span>
-            <span class="text-label text-teal-700 tracking-[0.18em]">Diagnostic Accuracy</span>
-          </div>
-          <h2 class="text-h2 text-charcoal font-medium mb-3">Advanced Electrophysiology & Diagnostics</h2>
-          <p class="text-body text-graphite">Accurate diagnostic mapping is the cornerstone of effective neurological therapy.</p>
+        <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16 reveal">
+          <span class="text-xs font-bold tracking-widest text-[#0c4a8a] uppercase block mb-3">ACCURATE DIAGNOSIS. BETTER TREATMENT.</span>
+          <h2 class="text-h2 text-charcoal font-medium mb-4">Diagnostic Procedures</h2>
+          <p class="text-body text-graphite">We use modern, non-invasive diagnostic tools to accurately assess your condition and plan the right treatment. Each test is explained clearly, so you know what to expect.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {diagnosticTests.map((test, i) => (
-            <div class="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg hover:border-teal-200 transition-all duration-300 reveal flex flex-col" style={`transition-delay: ${i * 60}ms`}>
-              
-              <!-- Card Image with Number Badge -->
-              <div class="relative h-48 overflow-hidden bg-slate-100">
-                <img
-                  src={test.image}
-                  alt={test.name}
-                  width="600"
-                  height="400"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <!-- Number Badge -->
-                <div class="absolute top-4 left-4 w-8 h-8 rounded-full bg-white text-teal-700 font-bold flex items-center justify-center text-sm shadow-sm">
-                  {String(i + 1).padStart(2, '0')}
-                </div>
-                <!-- Duration Badge -->
-                <div class="absolute bottom-3 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-charcoal shadow-sm flex items-center gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                  {test.duration}
-                </div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col hover:shadow-[0_8px_30px_-4px_rgba(12,74,138,0.12)] hover:border-teal-200 transition-all duration-300 reveal" style={`transition-delay: ${i * 60}ms`}>
+              <div class="w-12 h-12 rounded-full bg-blue-50 text-[#0c4a8a] flex items-center justify-center mb-4 shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
               </div>
-
-              <!-- Content -->
-              <div class="p-6 flex-1 flex flex-col">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-xs font-bold tracking-wide text-teal-600 uppercase flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-teal-500" aria-hidden="true"></span> Available In-Clinic
-                  </span>
-                </div>
-                
-                <h3 class="text-h4 text-charcoal font-medium mb-3 leading-tight">{test.name}</h3>
-                <p class="text-body-sm text-graphite mb-5 flex-1">{test.desc}</p>
-                
-                <!-- Patient Prep -->
-                <div class="bg-teal-50/50 p-4 rounded-xl border border-teal-100/50 mt-auto">
-                  <p class="text-xs text-graphite">
-                    <strong class="text-teal-800 font-semibold block mb-1">Patient Prep:</strong> 
-                    {test.prep}
-                  </p>
-                </div>
+              <h3 class="text-[1.05rem] font-bold text-slate-900 mb-2 leading-tight">{test.name}</h3>
+              <p class="text-sm text-slate-600 mb-6 flex-1 leading-relaxed">{test.desc}</p>
+              
+              <div class="mt-auto">
+                <span class="inline-flex items-center text-[0.8rem] font-semibold text-[#0c4a8a] bg-blue-50 px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors cursor-help" title={`Prep: ${test.prep} | Duration: ${test.duration}`}>
+                  What to Expect &rarr;
+                </span>
               </div>
             </div>
           ))}
+        </div>
+
+        <div class="mt-12 text-center reveal">
+          <button data-open-modal="booking" class="btn bg-[#0c4a8a] text-white hover:bg-blue-900 px-8 py-3.5 rounded-full text-[15px] font-semibold transition-all inline-flex items-center justify-center shadow-md">
+            Explore All Diagnostic Procedures & Prep &rarr;
+          </button>
         </div>
 
       </div>
@@ -338,3 +311,4 @@ const faqs = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
+
