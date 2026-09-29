@@ -1,5 +1,4 @@
 ---
-// Mobile action bar with quick contact buttons
 import { CLINIC } from '../constants';
 import PhoneIcon from "./icons/PhoneIcon.astro";
 import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
@@ -8,34 +7,40 @@ const phoneHref = CLINIC.phoneHref;
 const whatsapp = CLINIC.whatsappUrl;
 ---
 
-<!-- Persistent Floating Mobile Action Bar: call & WhatsApp icons identically sized -->
-<div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-slate-200 p-2 shadow-md" role="region" aria-label="Quick contact actions">
-  <div class="grid grid-cols-2 gap-2 max-w-md mx-auto">
+<!-- Persistent Mobile Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 px-3 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]" role="region" aria-label="Quick contact actions">
+  <div class="grid grid-cols-3 gap-2 max-w-md mx-auto">
     
     <a
       href={phoneHref}
-      class="btn btn-charcoal flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-btn font-semibold active:scale-95 transition shadow-xs"
-      aria-label="Call the clinic directly"
+      class="flex flex-col items-center justify-center gap-1 py-2 px-2 rounded-xl text-slate-700 active:bg-slate-100 transition-colors"
+      aria-label="Call the clinic"
     >
-      <span class="text-teal-400 shrink-0" aria-hidden="true">
-        <PhoneIcon class="w-4 h-4" />
-      </span>
-      <span>Call Doctor</span>
+      <PhoneIcon class="w-5 h-5 text-[#0c4a8a]" />
+      <span class="text-[11px] font-semibold">Call</span>
     </a>
 
     <a
       href={whatsapp}
       target="_blank"
       rel="noopener noreferrer"
-      data-analytics-event="whatsapp_click"
-      class="btn btn-whatsapp flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-btn font-semibold active:scale-95 transition shadow-xs"
-      aria-label="Chat with the clinic on WhatsApp"
+      class="flex flex-col items-center justify-center gap-1 py-2 px-2 rounded-xl text-slate-700 active:bg-green-50 transition-colors"
+      aria-label="WhatsApp the clinic"
     >
-      <span class="text-white shrink-0" aria-hidden="true">
-        <WhatsAppIcon class="w-5 h-5" />
-      </span>
-      <span>WhatsApp</span>
+      <WhatsAppIcon class="w-5 h-5 text-[#25D366]" />
+      <span class="text-[11px] font-semibold">WhatsApp</span>
     </a>
+
+    <button
+      data-open-modal="booking"
+      class="flex flex-col items-center justify-center gap-1 py-2 px-2 rounded-xl bg-[#0c4a8a] text-white active:bg-[#0a3a6a] transition-colors"
+      aria-label="Book consultation"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      </svg>
+      <span class="text-[11px] font-semibold">Book</span>
+    </button>
 
   </div>
 </div>
