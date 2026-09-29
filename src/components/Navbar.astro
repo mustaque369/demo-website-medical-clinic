@@ -1,4 +1,4 @@
-﻿---
+---
 import { CLINIC } from '../constants';
 import { NAV_LINKS } from '../constants';
 import PhoneIcon from './icons/PhoneIcon.astro';
@@ -15,25 +15,29 @@ const phoneHref = CLINIC.phoneHref;
 const whatsapp = CLINIC.whatsappUrl;
 ---
 
-<header class="nav-header sticky top-0 z-40 bg-white border-b border-beige" aria-label="Main navigation">
+<header class="nav-header sticky top-0 z-40 bg-white border-b border-slate-200" aria-label="Main navigation">
   <div class="container-main">
     <div class="nav-inner">
       
       <!-- Brand -->
       <a href={import.meta.env.BASE_URL} class="nav-brand group">
         <div class="nav-logo" aria-hidden="true">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          <!-- Brain icon matching reference -->
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C9.5 2 7.5 3.5 7 5.5C5.5 5.8 4 7.5 4 9.5C4 11 4.8 12.3 6 13C5.7 14 6 15.5 7.5 16.5C7.3 17.5 7.8 19 9.5 19.5C10 21 11 22 12 22C13 22 14 21 14.5 19.5C16.2 19 16.7 17.5 16.5 16.5C18 15.5 18.3 14 18 13C19.2 12.3 20 11 20 9.5C20 7.5 18.5 5.8 17 5.5C16.5 3.5 14.5 2 12 2Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2V22" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 8C9.5 9 10 11 10 13" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 8C14.5 9 14 11 14 13" />
           </svg>
         </div>
         <div class="nav-brand-text">
-          <div class="nav-brand-name">Dr. Rajib Das <span class="nav-brand-badge">MBBS, MD</span></div>
-          <p class="nav-brand-role">Neurology &amp; Neurophysiology</p>
+          <div class="nav-brand-name">Dr. Rajib Das</div>
+          <p class="nav-brand-role">Neurologist</p>
         </div>
       </a>
 
       <!-- Desktop Links -->
-      <nav class="nav-links hidden md:flex" aria-label="Primary">
+      <nav class="nav-links hidden lg:flex" aria-label="Primary">
         {NAV_LINKS.map((link) => {
           const isActive = currentPage === link.href || (link.href !== '/' && currentPage.startsWith(link.href));
           return (
@@ -50,19 +54,17 @@ const whatsapp = CLINIC.whatsappUrl;
 
       <!-- Desktop Actions -->
       <div class="nav-actions hidden sm:flex">
-        <a href={phoneHref} aria-label="Call clinic" class="nav-icon-link">
-          <PhoneIcon class="w-4 h-4" />
-        </a>
-        <a href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="nav-icon-link whatsapp-color">
-          <WhatsAppIcon class="w-5 h-5" />
-        </a>
-        <button data-open-modal="booking" class="btn btn-teal px-5 py-2.5 text-sm ml-2">
-          Consultation
+        <button data-open-modal="booking" class="nav-cta-btn">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span>Book Consultation</span>
+          <span aria-hidden="true">→</span>
         </button>
       </div>
 
       <!-- Mobile Toggle -->
-      <button type="button" id="mobile-menu-btn" class="nav-mobile-toggle flex md:hidden" aria-label="Menu" aria-expanded="false">
+      <button type="button" id="mobile-menu-btn" class="nav-mobile-toggle flex lg:hidden" aria-label="Menu" aria-expanded="false">
         <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
@@ -75,7 +77,7 @@ const whatsapp = CLINIC.whatsappUrl;
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="nav-mobile-menu hidden md:hidden">
+  <div id="mobile-menu" class="nav-mobile-menu hidden lg:hidden">
     <div class="nav-mobile-inner">
       {NAV_LINKS.map((link) => {
         const isActive = currentPage === link.href || (link.href !== '/' && currentPage.startsWith(link.href));
@@ -91,11 +93,18 @@ const whatsapp = CLINIC.whatsappUrl;
       })}
       
       <div class="nav-mobile-actions">
-        <a href={phoneHref} class="btn btn-outline text-charcoal border-beige py-3 w-full justify-center">
+        <a href={phoneHref} class="btn btn-outline py-3 w-full justify-center rounded-xl">
           <PhoneIcon class="w-4 h-4" />
           Call Clinic
         </a>
-        <button data-open-modal="booking" class="btn btn-teal py-3 w-full justify-center mt-2">
+        <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp py-3 w-full justify-center rounded-xl mt-1">
+          <WhatsAppIcon class="w-4 h-4" />
+          WhatsApp
+        </a>
+        <button data-open-modal="booking" class="nav-cta-btn w-full justify-center mt-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
           Book Consultation
         </button>
       </div>
@@ -125,5 +134,3 @@ const whatsapp = CLINIC.whatsappUrl;
     });
   }
 </script>
-
-

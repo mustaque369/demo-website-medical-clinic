@@ -150,53 +150,60 @@ const faqs = [
       </div>
     </section>
 
-    <!-- Advanced Diagnostics -->
-    <section class="section bg-cream">
+    <!-- Advanced Diagnostics — Reference 4 Style -->
+    <section class="section bg-white border-b border-slate-200">
       <div class="container-main">
         
-        <div class="max-w-3xl mb-14 md:mb-20 reveal">
-          <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
-            Diagnostic Accuracy
-          </span>
-          <h2 class="text-h2 text-slate-900 mt-2">Electrophysiology & Diagnostics</h2>
-          <p class="text-body-sm text-slate-600 mt-1">Accurate diagnostic mapping is the cornerstone of effective neurological therapy.</p>
+        <div class="max-w-2xl mb-12 md:mb-16 reveal">
+          <div class="inline-flex items-center gap-2 mb-4">
+            <span class="text-teal-600 font-bold text-xs">→</span>
+            <span class="text-label text-teal-700 tracking-[0.18em]">Diagnostic Accuracy</span>
+          </div>
+          <h2 class="text-h2 text-charcoal font-medium mb-3">Advanced Electrophysiology & Diagnostics</h2>
+          <p class="text-body text-graphite">Accurate diagnostic mapping is the cornerstone of effective neurological therapy.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {diagnosticTests.map((test, i) => (
-            <div class="surface overflow-hidden medical-card-hover flex flex-col justify-between reveal" style={`transition-delay: ${i * 60}ms`}>
-              <div>
-                <div class="img-frame h-40 w-full">
-                  <img
-                    src={test.image}
-                    alt={test.name}
-                    width="600"
-                    height="400"
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div class="img-scrim absolute inset-0" aria-hidden="true"></div>
-                  <div class="absolute bottom-2.5 left-2.5 bg-white/95 px-2.5 py-0.5 rounded-lg text-label shadow-xs">
-                    Duration: {test.duration}
-                  </div>
+            <div class="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg hover:border-teal-200 transition-all duration-300 reveal flex flex-col" style={`transition-delay: ${i * 60}ms`}>
+              
+              <!-- Card Image with Number Badge -->
+              <div class="relative h-48 overflow-hidden bg-slate-100">
+                <img
+                  src={test.image}
+                  alt={test.name}
+                  width="600"
+                  height="400"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <!-- Number Badge -->
+                <div class="absolute top-4 left-4 w-8 h-8 rounded-full bg-white text-teal-700 font-bold flex items-center justify-center text-sm shadow-sm">
+                  {String(i + 1).padStart(2, '0')}
                 </div>
-
-                <div class="p-5">
-                  <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-caption text-emerald-700 font-semibold flex items-center gap-1">
-                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span> Available In-Clinic
-                    </span>
-                  </div>
-
-                  <h3 class="text-h4 text-slate-900 mb-1.5">{test.name}</h3>
-                  <p class="text-body-sm text-slate-600 mb-3">{test.desc}</p>
+                <!-- Duration Badge -->
+                <div class="absolute bottom-3 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-charcoal shadow-sm flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  {test.duration}
                 </div>
               </div>
 
-              <div class="p-5 pt-0">
-                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                  <p class="text-body-sm text-slate-600">
-                    <strong class="text-slate-900">Patient Prep:</strong> {test.prep}
+              <!-- Content -->
+              <div class="p-6 flex-1 flex flex-col">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold tracking-wide text-teal-600 uppercase flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal-500" aria-hidden="true"></span> Available In-Clinic
+                  </span>
+                </div>
+                
+                <h3 class="text-h4 text-charcoal font-medium mb-3 leading-tight">{test.name}</h3>
+                <p class="text-body-sm text-graphite mb-5 flex-1">{test.desc}</p>
+                
+                <!-- Patient Prep -->
+                <div class="bg-teal-50/50 p-4 rounded-xl border border-teal-100/50 mt-auto">
+                  <p class="text-xs text-graphite">
+                    <strong class="text-teal-800 font-semibold block mb-1">Patient Prep:</strong> 
+                    {test.prep}
                   </p>
                 </div>
               </div>
