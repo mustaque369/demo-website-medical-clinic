@@ -1,13 +1,13 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 @theme {
   /* Neutral Warm Medical Clinic Palette (Sage / Slate / Deep Hospital Teal) */
-  --color-medical-teal: #0f766e;        /* Deep Hospital Teal / Sage primary */
-  --color-medical-teal-dark: #115e59;   /* Hover teal */
-  --color-medical-teal-light: #f0fdfa;  /* Subtle tinted teal surface */
+  --color-medical-teal: #0c4a8a;        /* Deep Hospital Teal / Sage primary */
+  --color-medical-teal-dark: #0a3d72;   /* Hover teal */
+  --color-medical-teal-light: #eff6ff;  /* Subtle tinted teal surface */
   --color-medical-navy: #0f172a;        /* High-contrast headings */
   --color-medical-slate: #334155;       /* Refined text */
-  --color-medical-bg: #f8fafc;          /* Ultra clean clinical light */
+  --color-medical-bg: #ffffff;          /* Ultra clean clinical light */
   --color-medical-card: #ffffff;        /* Crisp card */
   --color-medical-border: #e2e8f0;      /* Subtle border */
   --color-whatsapp: #25D366;
@@ -45,72 +45,72 @@
      RESTRAINED CLINICAL PALETTE
      warm ivory · cream · beige · deep charcoal · muted teal · sage
      ========================================================== */
-  --color-ivory: #faf7f1;
-  --color-cream: #f4efe6;
-  --color-beige: #e8e0d3;
-  --color-beige-soft: #f0e9dd;
-  --color-charcoal: #1b1f1d;
-  --color-charcoal-soft: #2b312d;
-  --color-ink: #2f3633;
-  --color-graphite: #555d58;
-  --color-mist: #7c857f;
-  --color-teal-deep: #245046;
-  --color-teal-core: #35695e;
-  --color-teal-soft: #dde8e3;
-  --color-sage: #8aa08a;
-  --color-sage-soft: #e9efe7;
+  --color-ivory: #ffffff;
+  --color-cream: #f5f9ff;
+  --color-beige: #e2e8f0;
+  --color-beige-soft: #f0f4f8;
+  --color-charcoal: #0a1628;
+  --color-charcoal-soft: #132a4a;
+  --color-ink: #1a2332;
+  --color-graphite: #4a5568;
+  --color-mist: #718096;
+  --color-teal-deep: #0c4a8a;
+  --color-teal-core: #1e5faa;
+  --color-teal-soft: #e8f0fe;
+  --color-sage: #60a5fa;
+  --color-sage-soft: #eff6ff;
 
   /* Warm remap of the utility palette used throughout the markup */
-  --color-white: #fffdf9;
-  --color-slate-50: #f7f3ec;
-  --color-slate-100: #efe9df;
-  --color-slate-200: #e3dac9;
-  --color-slate-300: #cec4b3;
-  --color-slate-400: #a3aaa4;
-  --color-slate-500: #6f7872;
-  --color-slate-600: #5a625c;
-  --color-slate-700: #414844;
-  --color-slate-800: #2b312d;
-  --color-slate-900: #1b1f1d;
-  --color-teal-50: #eef3f0;
-  --color-teal-100: #dde8e3;
-  --color-teal-200: #c3d6cd;
-  --color-teal-300: #9dbfb3;
-  --color-teal-400: #6f9e90;
-  --color-teal-500: #468073;
-  --color-teal-600: #35695e;
-  --color-teal-700: #245046;
-  --color-teal-800: #1c4038;
-  --color-teal-900: #142f29;
-  --color-teal-950: #0d201c;
-  --color-emerald-400: #8fae86;
-  --color-emerald-500: #7a9e72;
-  --color-emerald-700: #4b6b46;
-  --color-amber-50: #f8f1e3;
-  --color-amber-100: #f0e3cc;
-  --color-amber-200: #e0cba4;
-  --color-amber-500: #c08a3e;
-  --color-amber-800: #6b4c1e;
-  --color-amber-900: #533b17;
-  --color-whatsapp: #1da851;
-  --color-whatsapp-hover: #178f45;
+  --color-white: #ffffff;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-teal-50: #eff6ff;
+  --color-teal-100: #dbeafe;
+  --color-teal-200: #bfdbfe;
+  --color-teal-300: #93c5fd;
+  --color-teal-400: #60a5fa;
+  --color-teal-500: #3b82f6;
+  --color-teal-600: #2563eb;
+  --color-teal-700: #0c4a8a;
+  --color-teal-800: #1e40af;
+  --color-teal-900: #1e3a8a;
+  --color-teal-950: #172554;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-700: #047857;
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-500: #f59e0b;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #1ebe5d;
 
   /* Crisp editorial radii (de-bubbled) */
-  --radius-xs: 0.0625rem;
-  --radius-sm: 0.125rem;
-  --radius-md: 0.1875rem;
-  --radius-lg: 0.25rem;
-  --radius-xl: 0.3125rem;
-  --radius-2xl: 0.375rem;
-  --radius-3xl: 0.5rem;
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.5rem;
 
   /* Warm, quiet elevation */
-  --shadow-2xs: 0 1px 1px rgba(27, 31, 29, 0.03);
-  --shadow-xs: 0 1px 2px rgba(27, 31, 29, 0.04);
-  --shadow-sm: 0 2px 6px -1px rgba(27, 31, 29, 0.05), 0 1px 2px rgba(27, 31, 29, 0.03);
-  --shadow-md: 0 6px 18px -6px rgba(27, 31, 29, 0.10), 0 2px 6px -2px rgba(27, 31, 29, 0.05);
-  --shadow-lg: 0 14px 40px -14px rgba(27, 31, 29, 0.14);
-  --shadow-xl: 0 24px 60px -24px rgba(27, 31, 29, 0.18);
+  --shadow-2xs: 0 1px 1px rgba(15, 23, 42, 0.03);
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 2px 6px -1px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 6px 18px -6px rgba(15, 23, 42, 0.10), 0 2px 6px -2px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 14px 40px -14px rgba(15, 23, 42, 0.15);
+  --shadow-xl: 0 24px 60px -24px rgba(15, 23, 42, 0.20);
   /* Premium editorial type scale - measured, never oversized */
   --type-display: clamp(2.25rem, 4vw + 1rem, 3.25rem);
   --type-h1: clamp(1.875rem, 3vw + 1rem, 2.75rem);
@@ -2390,7 +2390,7 @@ html {
 
 body {
   color: var(--color-ink);
-  background-color: var(--color-ivory);
+  background-color: #ffffff;
   overflow-x: hidden;
   font-size: var(--type-body);
   line-height: var(--leading-body);
