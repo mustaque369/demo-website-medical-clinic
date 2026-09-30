@@ -3,14 +3,12 @@ import { CLINIC } from '../constants';
 import { NAV_LINKS } from '../constants';
 import PhoneIcon from './icons/PhoneIcon.astro';
 import WhatsAppIcon from './icons/WhatsAppIcon.astro';
-import CalendarIcon from './icons/CalendarIcon.astro';
 
 interface Props {
   currentPage: string;
 }
 const { currentPage } = Astro.props;
 
-const phone = CLINIC.phone;
 const phoneHref = CLINIC.phoneHref;
 const whatsapp = CLINIC.whatsappUrl;
 ---

@@ -17,6 +17,7 @@ export default defineConfig({
   // Prefetch in-view links so internal navigation feels instant on mobile.
   prefetch: { prefetchAll: true, defaultStrategy: 'viewport' },
   vite: {
-    plugins: [tailwindcss()],
+    // @ts-expect-error - Vite version mismatch between Astro and @tailwindcss/vite
+    plugins: [...tailwindcss()],
   },
 });

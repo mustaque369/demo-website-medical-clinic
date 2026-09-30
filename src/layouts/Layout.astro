@@ -1,6 +1,3 @@
-<!--
-  Main layout: SEO/meta/PWA tags, structured data, analytics, scroll-reveal.
--->
 ---
 import "../styles/global.css";
 import Analytics from "../components/Analytics.astro";
@@ -14,7 +11,6 @@ interface Props {
   plausibleDomain?: string;
   ga4Id?: string;
   enableConsentBanner?: boolean;
-  /** Set on utility pages (404) so search engines keep them out of the index. */
   noindex?: boolean;
 }
 
@@ -28,11 +24,8 @@ const {
   noindex = false,
 } = Astro.props;
 
-// BASE_URL is "/" locally and "/<repo>/" on GitHub Pages, so every asset and
-// internal link must be prefixed with it.
 const base = import.meta.env.BASE_URL;
 const siteOrigin = Astro.site ? Astro.site.origin : "https://mustaque369.github.io";
-// Astro.url.pathname already includes the deploy base.
 const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
 const ogImageURL = ogImage;
 
@@ -79,7 +72,6 @@ const structuredData = {
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <!-- viewport-fit=cover enables env(safe-area-inset-*) on notched devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link rel="icon" href={`${base}favicon.ico`} sizes="any" />
@@ -92,7 +84,6 @@ const structuredData = {
     <meta name="author" content={CLINIC.doctor.name} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Mobile web-app behaviour (Android / iOS home-screen installs) -->
     <meta name="theme-color" content={themeColor} />
     <meta name="color-scheme" content="light" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -101,7 +92,6 @@ const structuredData = {
     <meta name="apple-mobile-web-app-title" content={CLINIC.doctor.name} />
     <meta name="format-detection" content="telephone=yes" />
 
-    <!-- Google Fonts: Inter (UI sans) + Lora (editorial serif) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -109,8 +99,6 @@ const structuredData = {
       rel="stylesheet"
     />
 
-    <!-- No-JS fallback: scroll-reveal starts at opacity 0, so without JavaScript
-         every .reveal section would stay invisible. Force them visible instead. -->
     <noscript>
       <style>
         .reveal {
@@ -120,7 +108,6 @@ const structuredData = {
       </style>
     </noscript>
 
-    <!-- Open Graph / Twitter -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -136,10 +123,8 @@ const structuredData = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
 
-    <!-- Schema.org JSON-LD for the clinic & physician -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
-    <!-- Analytics -->
     <Analytics
       plausibleDomain={plausibleDomain}
       ga4Id={ga4Id}
@@ -153,8 +138,6 @@ const structuredData = {
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <slot />
     <script>
-      // Scroll-reveal: adds .is-revealed to .reveal elements as they enter view.
-      // Skipped entirely for reduced-motion users (CSS also neutralises it).
       const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const revealEls = document.querySelectorAll<HTMLElement>(".reveal, .cine-statement");
       if (prefersReduced || !("IntersectionObserver" in window)) {

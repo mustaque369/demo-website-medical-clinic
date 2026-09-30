@@ -13,37 +13,6 @@ import CalendarIcon from '../components/icons/CalendarIcon.astro';
 const phoneHref = CLINIC.phoneHref;
 const whatsapp = whatsappLink();
 
-const diagnosticTests = [
-  {
-    name: "Digital Electroencephalography (EEG)",
-    duration: "45 - 60 mins",
-    desc: "Measures electrical activity in the brain. Essential for detecting epilepsy types, seizure foci, unexplained unconsciousness, sleep disorders, and encephalopathy.",
-    prep: "Wash hair cleanly prior to test without oils, styling gels, or sprays.",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    name: "Electromyography & Nerve Conduction (EMG / NCV)",
-    duration: "40 - 50 mins",
-    desc: "Evaluates the health of peripheral nerves and muscles. Accurately diagnoses carpal tunnel syndrome, radiculopathy, diabetic peripheral neuropathy, and motor neuron disease.",
-    prep: "Wear loose comfortable clothing; avoid oily lotions or creams on hands/legs.",
-    image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    name: "Visual & Somatosensory Evoked Potentials (VEP / SSEP)",
-    duration: "30 - 45 mins",
-    desc: "Tracks nerve electrical conduction along the sensory and visual pathways to the brain, critical in multiple sclerosis (MS) and optic neuritis evaluations.",
-    prep: "Bring prescription eyeglasses or contact lens details if applicable.",
-    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    name: "Neurocognitive & Memory Battery Screening",
-    duration: "60 mins",
-    desc: "Standardized clinical cognitive evaluation assessing memory retention, executive processing speed, early mild cognitive impairment (MCI), and Alzheimer's disease stages.",
-    prep: "Bring an accompanied family member or caregiver to assist with medical history.",
-    image: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=600&q=80"
-  }
-];
-
 const clinicalConditions = [
   {
     category: "Cerebrovascular & Stroke Care",
@@ -132,7 +101,7 @@ const clinicalConditions = [
             <span class="text-whatsapp shrink-0" aria-hidden="true">
               <WhatsAppIcon class="w-5 h-5" />
             </span>
-            <span>Inquire via WhatsApp</span>
+            <span>Connect Via WhatsApp</span>
           </a>
         </div>
       </div>
@@ -264,6 +233,7 @@ const clinicalConditions = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
+
 
 
 

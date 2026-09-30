@@ -1,4 +1,4 @@
----
+﻿---
 import { CLINIC } from '../constants';
 import PhoneIcon from "./icons/PhoneIcon.astro";
 import WhatsAppIcon from "./icons/WhatsAppIcon.astro";
@@ -9,10 +9,10 @@ const whatsapp = CLINIC.whatsappUrl;
 
 <footer class="footer-section bg-charcoal text-white" aria-label="Site footer">
   <div class="container-main">
-    <div class="footer-grid">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
       
       <!-- Brand & About -->
-      <div class="footer-brand-col">
+      <div class="space-y-6">
         <div class="footer-logo" aria-hidden="true">
           <svg class="w-5 h-5 text-teal-deep" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C9.5 2 7.5 3.5 7 5.5C5.5 5.8 4 7.5 4 9.5C4 11 4.8 12.3 6 13C5.7 14 6 15.5 7.5 16.5C7.3 17.5 7.8 19 9.5 19.5C10 21 11 22 12 22C13 22 14 21 14.5 19.5C16.2 19 16.7 17.5 16.5 16.5C18 15.5 18.3 14 18 13C19.2 12.3 20 11 20 9.5C20 7.5 18.5 5.8 17 5.5C16.5 3.5 14.5 2 12 2Z" />
@@ -31,47 +31,61 @@ const whatsapp = CLINIC.whatsappUrl;
       </div>
 
       <!-- Links -->
-      <nav class="footer-nav-col" aria-label="Quick links">
-        <h4 class="footer-heading">Navigation</h4>
-        <ul class="footer-list">
-          <li><a href={import.meta.env.BASE_URL}>Home</a></li>
-          <li><a href={`${import.meta.env.BASE_URL}about`}>Doctor Profile</a></li>
-          <li><a href={`${import.meta.env.BASE_URL}services`}>Clinical Services</a></li>
-          <li><a href={`${import.meta.env.BASE_URL}contact`}>Location &amp; Contact</a></li>
+      <nav class="space-y-4" aria-label="Quick links">
+        <h4 class="text-white font-semibold text-lg font-serif tracking-wide">Navigation</h4>
+        <ul class="space-y-3">
+          <li><a href={import.meta.env.BASE_URL} class="text-slate-300 hover:text-white transition-colors">Home</a></li>
+          <li><a href={`${import.meta.env.BASE_URL}about`} class="text-slate-300 hover:text-white transition-colors">Doctor Profile</a></li>
+          <li><a href={`${import.meta.env.BASE_URL}services`} class="text-slate-300 hover:text-white transition-colors">Clinical Services</a></li>
+          <li><a href={`${import.meta.env.BASE_URL}contact`} class="text-slate-300 hover:text-white transition-colors">Location &amp; Contact</a></li>
         </ul>
       </nav>
 
       <!-- Contact -->
-      <div class="footer-contact-col">
-        <h4 class="footer-heading">Connect</h4>
-        <ul class="footer-list">
+      <div class="space-y-4">
+        <h4 class="text-white font-semibold text-lg font-serif tracking-wide">Connect</h4>
+        <ul class="space-y-4">
           <li>
-            <a href={phoneHref} class="footer-contact-link">
-              <span class="footer-icon-wrap" aria-hidden="true"><PhoneIcon class="w-3.5 h-3.5" /></span>
-              {CLINIC.phone}
+            <a href={phoneHref} class="flex items-center gap-3 text-slate-300 hover:text-teal-300 transition-colors group">
+              <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-teal-900/50 shrink-0">
+                <PhoneIcon class="w-4 h-4 text-teal-400" />
+              </div>
+              <span class="font-medium">{CLINIC.phone}</span>
             </a>
           </li>
           <li>
-            <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="footer-contact-link">
-              <span class="footer-icon-wrap whatsapp-color" aria-hidden="true"><WhatsAppIcon class="w-5 h-5" /></span>
-              WhatsApp Message
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-[#25D366] transition-colors group">
+              <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-[#25D366]/20 shrink-0">
+                <WhatsAppIcon class="w-5 h-5 text-[#25D366]" />
+              </div>
+              <span class="font-medium">WhatsApp Message</span>
             </a>
           </li>
-          <li class="footer-contact-text">
-            Mon &ndash; Sat &middot; 9:00 AM &ndash; 7:00 PM
+          <li class="flex items-center gap-3 text-slate-400 mt-2">
+            <div class="w-10 h-10 rounded-full bg-transparent flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6l4 2m-6-10a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <span class="text-sm">Mon &ndash; Sat &middot; 9:00 AM &ndash; 7:00 PM</span>
           </li>
         </ul>
       </div>
 
       <!-- Location -->
-      <div class="footer-loc-col">
-        <h4 class="footer-heading">Clinic Address</h4>
-        <p class="footer-address">
-          {CLINIC.address.full}
-        </p>
-        <a href={CLINIC.googleMapsUrl} target="_blank" rel="noopener noreferrer" class="footer-dir-link">
-          Get Directions &rarr;
-        </a>
+      <div class="space-y-4">
+        <h4 class="text-white font-semibold text-lg font-serif tracking-wide">Clinic Address</h4>
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0 mt-1">
+            <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div>
+            <p class="text-slate-300 text-sm leading-relaxed mb-3">
+              {CLINIC.address.full}
+            </p>
+            <a href={CLINIC.googleMapsUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-teal-400 hover:text-teal-300 font-medium text-sm transition-colors">
+              Get Directions &rarr;
+            </a>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -81,3 +95,5 @@ const whatsapp = CLINIC.whatsappUrl;
     </div>
   </div>
 </footer>
+
+

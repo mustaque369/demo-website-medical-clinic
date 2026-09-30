@@ -116,7 +116,7 @@ const milestones = [
 
             <!-- Practice statistics — pure typography, no cards -->
             <div class="doc-stats">
-              {milestones.map((m, i) => (
+              {milestones.map((m) => (
                 <div class="doc-stat">
                   <span class="doc-stat-num">{m.count}</span>
                   <span class="doc-stat-label">{m.label}</span>
@@ -293,7 +293,7 @@ const milestones = [
 
         <div class="conversion-actions">
           <button type="button" data-open-modal="booking" class="btn btn-teal px-8 py-3.5 text-base">
-            Request Appointment
+            Book Appointment
           </button>
           
           <div class="conversion-secondary">
@@ -322,6 +322,7 @@ const milestones = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
+
 
 
 
