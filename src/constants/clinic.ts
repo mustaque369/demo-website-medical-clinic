@@ -21,7 +21,7 @@ export const CLINIC = {
   phoneHref: `tel:+${PHONE_DIGITS}`,
   whatsappUrl: `https://wa.me/${WHATSAPP_NUMBER}`,
   whatsappDefaultText: "Hello Dr. Kanika Clinic, I would like to schedule a neurology consultation.",
-  email: "info@drrajibdasclinic.com",
+  email: "info@drkanikaclinic.com",
   address: {
     line1: "Suite 402, Apex Neurosciences Center",
     line2: "Park View Medical Enclave, Main Arterial Road",
@@ -62,4 +62,5 @@ export const CLINIC = {
 export function whatsappLink(message: string = CLINIC.whatsappDefaultText): string {
   return `${CLINIC.whatsappUrl}?text=${encodeURIComponent(message)}`;
 }
+
 

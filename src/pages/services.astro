@@ -1,4 +1,4 @@
----
+﻿---
 import { ANALYTICS } from '../constants/analytics';
 import { CLINIC, FAQS, whatsappLink } from '../constants';
 import Layout from '../layouts/Layout.astro';
@@ -86,8 +86,8 @@ const clinicalConditions = [
 ---
 
 <Layout
-  title="Neurological Services & Diagnostic Procedures | Dr. Kanika"
-  description="Explore neurology services by Dr. Kanika: Stroke management, Chronic Migraine therapy, Epilepsy, Parkinson's, EEG, EMG/NCV diagnostics."
+  title="Neurological Services | Dr. Kanika"
+  description="Explore neurology services by Dr. Kanika: Stroke management, Chronic Migraine therapy, Epilepsy, Parkinson's, "
   currentPage="/services"
   plausibleDomain={ANALYTICS.plausibleDomain}
   ga4Id={ANALYTICS.ga4MeasurementId}
@@ -107,7 +107,7 @@ const clinicalConditions = [
         </div>
         
         <h1 class="text-4xl sm:text-5xl lg:text-6xl text-slate-900 font-medium leading-[1.1] mb-6" style="font-family: var(--font-serif);">
-          Comprehensive <span class="text-teal-700">Neurology Services</span> &amp; Diagnostics
+          Comprehensive <span class="text-teal-700">Neurology Services</span>
         </h1>
         
         <p class="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto">
@@ -264,6 +264,7 @@ const clinicalConditions = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
+
 
 
 

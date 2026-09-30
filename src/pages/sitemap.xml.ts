@@ -1,4 +1,4 @@
-import type { APIRoute } from 'astro';
+﻿import type { APIRoute } from 'astro';
 
 const pages = [
   { url: '', changefreq: 'weekly', priority: '1.0' },
@@ -8,7 +8,7 @@ const pages = [
 ];
 
 export const GET: APIRoute = ({ site }) => {
-  const base = (site ? site.toString() : 'https://drrajibdasneurology.com').replace(/\/$/, '');
+  const base = (site ? site.toString() : 'https://drkanikaneurology.com').replace(/\/$/, '');
   const now = new Date().toISOString().split('T')[0];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -31,3 +31,4 @@ ${pages
     },
   });
 };
+
