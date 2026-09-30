@@ -1,0 +1,39 @@
+
+> demo-website-medical-clinic@0.0.1 build
+> astro build
+
+[2m17:26:48[22m [34m[content][39m Syncing content
+[2m17:26:49[22m [34m[content][39m Synced content
+[2m17:26:49[22m [34m[types][39m Generated [2m2.33s[22m
+[2m17:26:49[22m [34m[build][39m output: [34m"static"[39m
+[2m17:26:49[22m [34m[build][39m mode: [34m"static"[39m
+[2m17:26:49[22m [34m[build][39m directory: [34mG:\My App Development\Website Building Business\demo website medical clinic\dist\[39m
+[2m17:26:49[22m [34m[build][39m Collecting build info...
+[2m17:26:49[22m [34m[build][39m [32m✓ Completed in 2.61s.[39m
+[2m17:26:49[22m [34m[build][39m Building static entrypoints...
+[2m17:27:11[22m [34m[vite][39m [32m✓ built in 21.05s[39m
+[2m17:27:11[22m [34m[build][39m [32m✓ Completed in 21.55s.[39m
+
+[42m[30m building client (vite) [39m[49m
+[2m17:27:11[22m [34m[vite][39m transforming...
+[2m17:27:12[22m [34m[vite][39m [32m✓[39m 11 modules transformed.
+[2m17:27:13[22m [34m[vite][39m rendering chunks...
+[2m17:27:13[22m [34m[vite][39m computing gzip size...
+[2m17:27:13[22m [34m[vite][39m [2mdist/[22m[36m_astro/page.sJrt8mpm.js  [39m[1m[2m2.25 kB[22m[1m[22m[2m │ gzip: 1.02 kB[22m
+[2m17:27:13[22m [34m[vite][39m [32m✓ built in 2.35s[39m
+
+[42m[30m generating static routes [39m[49m
+[2m17:27:13[22m [32m▶[39m src/pages/404.astro
+[2m17:27:13[22m   [34m└─[39m [2m/404.html[22m [2m(+189ms)[22m 
+[2m17:27:13[22m [32m▶[39m src/pages/about.astro
+[2m17:27:13[22m   [34m└─[39m [2m/about/index.html[22m [2m(+155ms)[22m 
+[2m17:27:14[22m [32m▶[39m src/pages/contact.astro
+[2m17:27:14[22m   [34m└─[39m [2m/contact/index.html[22m [2m(+190ms)[22m 
+[2m17:27:14[22m [32m▶[39m src/pages/index.astro
+[2m17:27:14[22m   [34m└─[39m [2m/index.html[22mphoneHref is not defined
+  [1mStack trace:[22m
+[2m    at Object.default (file:///G:/My%20App%20Development/Website%20Building%20Business/demo%20website%20medical%20clinic/dist/pages/index.astro.mjs?time=1790769434287:68:263)
+    at createAstroComponentInstance (file:///G:/My%20App%20Development/Website%20Building%20Business/demo%20website%20medical%20clinic/dist/chunks/astro/server_CUcvsLLn.mjs:1503:20)
+    at renderComponent (file:///G:/My%20App%20Development/Website%20Building%20Business/demo%20website%20medical%20clinic/dist/chunks/astro/server_CUcvsLLn.mjs:1882:12)
+    at index (file:///G:/My%20App%20Development/Website%20Building%20Business/demo%20website%20medical%20clinic/dist/chunks/astro/server_CUcvsLLn.mjs:139:12)
+    at renderToString (file:///G:/My%20App%20Development/Website%20Building%20Business/demo%20website%20medical%20clinic/node_modules/astro/dist/runtime/server/render/astro/render.js:14:32)[22m

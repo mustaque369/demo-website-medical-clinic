@@ -1,4 +1,4 @@
----
+﻿---
 import { ANALYTICS } from '../constants/analytics';
 import Layout from '../layouts/Layout.astro';
 import { CLINIC, whatsappLink } from '../constants/clinic';
@@ -10,6 +10,7 @@ import AppointmentModal from '../components/AppointmentModal.astro';
 import WhatsAppIcon from '../components/icons/WhatsAppIcon.astro';
 
 const phone = CLINIC.phone;
+const phoneHref = CLINIC.phoneHref;
 const whatsapp = whatsappLink();
 const base = import.meta.env.BASE_URL;
 /** Prefixes an internal route with the deploy base (GitHub Pages sub-path safe). */
@@ -81,130 +82,91 @@ const stats = [
   <Navbar currentPage="/" />
 
   <main id="main-content">
-    <!-- 1. Hero — Light split layout with doctor photo -->
-    <section class="hero-clinical relative overflow-hidden" aria-label="Welcome">
-      <!-- Subtle gradient background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-white via-white to-teal-50/80" aria-hidden="true"></div>
-      <!-- Faint brain watermark on right -->
-      <div class="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] opacity-[0.04]" aria-hidden="true">
-        <svg viewBox="0 0 200 200" fill="currentColor" class="w-full h-full text-teal-900">
-          <path d="M100 10C75 10 55 25 50 45C35 48 20 65 20 85C20 100 28 112 40 118C37 128 40 142 55 150C53 158 58 172 72 177C77 192 87 200 100 200C113 200 123 192 128 177C142 172 147 158 145 150C160 142 163 128 160 118C172 112 180 100 180 85C180 65 165 48 150 45C145 25 125 10 100 10Z"/>
+        <!-- 1. Hero - Redesigned for Trust-First Family Clinic -->
+    <section class="relative bg-white pt-20 pb-16 lg:pt-32 lg:pb-24 overflow-hidden" aria-label="Welcome">
+      <!-- Soft warm gradient background -->
+      <div class="absolute inset-0 bg-gradient-to-br from-white via-[#fcfaf8] to-[#f0f6fc] pointer-events-none" aria-hidden="true"></div>
+      
+      <!-- Faint Medical Cross / Star accent -->
+      <div class="absolute top-1/4 right-0 opacity-[0.03] pointer-events-none" aria-hidden="true">
+        <svg width="400" height="400" viewBox="0 0 100 100" fill="currentColor" class="text-teal-900">
+          <path d="M40 0h20v40h40v20H60v40H40V60H0V40h40V0z"/>
         </svg>
       </div>
 
-      <div class="relative z-10 container-main flex flex-col lg:flex-row items-center gap-10 lg:gap-12 pt-12 pb-16 md:py-20 lg:py-24">
-        
-        <!-- Left: Text Content -->
-        <div class="flex-1 space-y-6 text-center lg:text-left">
-          <!-- Eyebrow -->
-          <div class="inline-flex items-center gap-2.5">
-            <span class="text-teal-600 font-bold text-xs">✦</span>
-            <span class="text-label text-teal-700 tracking-[0.18em]">Senior Consultant Neurologist</span>
-          </div>
-
-          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-charcoal max-w-2xl leading-[1.1] font-medium tracking-tight">
-            Advanced Neurological Care,<br>
-            <span class="font-serif italic font-light text-[1.02em]">Guided by Precision &amp; Understanding</span>
-          </h1>
-
-          <p class="text-lead text-graphite max-w-[52ch] mx-auto lg:mx-0">
-            Expert diagnosis, advanced treatment and compassionate care for a healthier brain and a better tomorrow.
-          </p>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col w-full sm:w-auto sm:flex-row items-center lg:items-start gap-3 sm:gap-4 pt-2">
-            <button
-              type="button"
-              data-open-modal="booking"
-              class="nav-cta-btn btn-lg w-full sm:w-auto justify-center"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-              </svg>
-              Book Consultation
-              <span aria-hidden="true">→</span>
-            </button>
-            <a
-              href={`${base}#services`}
-              class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full border-2 border-slate-200 text-charcoal font-semibold hover:border-teal-600 hover:text-teal-700 transition-colors w-full sm:w-auto justify-center bg-white"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-              </svg>
-              View Services
-            </a>
-          </div>
-
-          <!-- Stats Badges -->
-          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-700">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-              </div>
-              <div>
-                <p class="text-charcoal font-bold text-sm">15+ Years</p>
-                <p class="text-mist text-xs">Clinical Experience</p>
-              </div>
+      <div class="relative z-10 container-main mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
+          <!-- Left: Content -->
+          <div class="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 border border-teal-100 mb-8">
+              <span class="flex w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+              <span class="text-xs font-semibold text-teal-800 uppercase tracking-wider">Trusted Family Neurologist</span>
             </div>
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-700">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-              </div>
-              <div>
-                <p class="text-charcoal font-bold text-sm">In-house EEG & EMG</p>
-                <p class="text-mist text-xs">Diagnostics</p>
-              </div>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-700">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-              </div>
-              <div>
-                <p class="text-charcoal font-bold text-sm">Trusted by</p>
-                <p class="text-mist text-xs">Thousands of Patients</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Doctor Photo + Profile Card -->
-        <div class="w-full max-w-sm mx-auto lg:mx-0 lg:max-w-lg shrink-0 relative reveal mb-8 sm:mb-0" style="transition-delay: 150ms;">
-          <!-- Doctor Photo -->
-          <div class="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=85" 
-              alt="Dr. Rajib Das — Senior Consultant Neurologist" 
-              class="w-full rounded-2xl object-cover shadow-lg"
-              width="800"
-              height="900"
-              loading="eager"
-            />
-            <!-- Small blue circle accent -->
-            <div class="absolute top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full border-2 border-teal-400 bg-white flex items-center justify-center" aria-hidden="true">
-              <div class="w-2 h-2 bg-teal-500 rounded-full"></div>
-            </div>
-          </div>
-
-          <!-- Floating Profile Card -->
-          <div class="absolute -bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:-bottom-6 bg-white rounded-2xl shadow-xl border border-slate-200 p-5 sm:w-72">
-            <div class="flex items-start justify-between">
-              <div>
-                <h2 class="text-charcoal font-bold text-base">Dr. Rajib Das</h2>
-                <p class="text-mist text-xs mt-0.5">MBBS, MD (Neurology)</p>
-                <p class="text-mist text-xs">Senior Consultant Neurologist</p>
-              </div>
-              <a href={`${import.meta.env.BASE_URL}about`} class="w-8 h-8 rounded-full bg-teal-700 text-white flex items-center justify-center shrink-0 hover:bg-teal-800 transition-colors" aria-label="View doctor profile">
-                <span aria-hidden="true">→</span>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl text-slate-900 font-medium leading-[1.1] tracking-tight mb-6" style="font-family: var(--font-serif);">
+              Expert Neurological Care,<br/>
+              <span class="text-teal-700">Tailored for You.</span>
+            </h1>
+            
+            <p class="text-lg sm:text-xl text-slate-600 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              We combine advanced medical expertise with compassionate, personalized care to treat complex neurological conditions for you and your loved ones.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+              <button data-open-modal="booking" class="w-full sm:w-auto px-8 py-4 bg-teal-700 hover:bg-teal-800 text-white rounded-full font-semibold text-base transition-all shadow-[0_8px_20px_-6px_rgba(12,74,138,0.4)] hover:shadow-[0_12px_24px_-6px_rgba(12,74,138,0.5)] flex items-center justify-center gap-2 group">
+                Book Consultation
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+              <a href={phoneHref} class="w-full sm:w-auto px-8 py-4 bg-white border-2 border-slate-200 hover:border-teal-600 text-slate-700 hover:text-teal-700 rounded-full font-semibold text-base transition-colors flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                {phone}
               </a>
             </div>
-            <!-- Signature -->
-            <div class="mt-3 pt-3 border-t border-slate-100">
-              <p class="font-serif italic text-sm text-slate-400">Dr. Rajib Das</p>
+            
+            <div class="mt-12 grid grid-cols-3 gap-4 border-t border-slate-200 pt-8">
+              <div>
+                <p class="text-3xl font-bold text-slate-900" style="font-family: var(--font-serif);">15+</p>
+                <p class="text-sm text-slate-500 font-medium">Years Exp.</p>
+              </div>
+              <div>
+                <p class="text-3xl font-bold text-slate-900" style="font-family: var(--font-serif);">5k+</p>
+                <p class="text-sm text-slate-500 font-medium">Happy Patients</p>
+              </div>
+              <div>
+                <p class="text-3xl font-bold text-slate-900" style="font-family: var(--font-serif);">4.9</p>
+                <p class="text-sm text-slate-500 font-medium">Rating (Practo)</p>
+              </div>
             </div>
           </div>
+          
+          <!-- Right: Image -->
+          <div class="relative reveal" style="transition-delay: 200ms;">
+            <!-- Decorative background shape -->
+            <div class="absolute inset-0 bg-teal-600/10 rounded-[3rem] transform rotate-3 scale-105 pointer-events-none"></div>
+            <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-white">
+              <img 
+                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1200&h=1400" 
+                alt="Doctor Rajib Das, Neurologist" 
+                class="w-full h-auto object-cover aspect-[4/5]"
+                loading="eager"
+                decoding="sync"
+              />
+              
+              <!-- Floating trust badge -->
+              <div class="absolute bottom-6 left-6 right-6 sm:left-auto sm:right-[-2rem] bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/50 flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center shrink-0">
+                  <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div>
+                  <p class="text-sm font-bold text-slate-900">Top Rated Care</p>
+                  <p class="text-xs text-slate-500">Recognized for excellence</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </div>
-
       </div>
     </section>
     <!-- 2. Full-horizon stats band (icons + counters that render final values without JS) -->
@@ -664,3 +626,5 @@ const counters = document.querySelectorAll<HTMLElement>('.counter-number');
 
   initCounters();
 </script>
+
+
