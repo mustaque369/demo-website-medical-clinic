@@ -1,4 +1,4 @@
-﻿---
+---
 import { ANALYTICS } from '../constants/analytics';
 import { CLINIC, FAQS, whatsappLink } from '../constants';
 import Layout from '../layouts/Layout.astro';
@@ -86,8 +86,8 @@ const clinicalConditions = [
 ---
 
 <Layout
-  title="Neurological Services & Diagnostic Procedures | Dr. Rajib Das"
-  description="Explore neurology services by Dr. Rajib Das: Stroke management, Chronic Migraine therapy, Epilepsy, Parkinson's, EEG, EMG/NCV diagnostics."
+  title="Neurological Services & Diagnostic Procedures | Dr. Kanika"
+  description="Explore neurology services by Dr. Kanika: Stroke management, Chronic Migraine therapy, Epilepsy, Parkinson's, EEG, EMG/NCV diagnostics."
   currentPage="/services"
   plausibleDomain={ANALYTICS.plausibleDomain}
   ga4Id={ANALYTICS.ga4MeasurementId}
@@ -97,7 +97,7 @@ const clinicalConditions = [
 
   <main id="main-content">
     <!-- Header Hero: single max-width (fixed former max-w-7xl + max-w-3xl conflict) -->
-    <section class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 bg-[#fcfaf8] border-b border-slate-200 overflow-hidden">
+    <section class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 bg-warm-50 border-b border-slate-200 overflow-hidden">
       <!-- Subtle Teal Glow -->
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-teal-100/30 rounded-full blur-[80px] pointer-events-none" aria-hidden="true"></div>
       
@@ -127,9 +127,9 @@ const clinicalConditions = [
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-full sm:w-auto px-8 py-3.5 bg-white border border-slate-200 hover:border-[#25D366] hover:bg-green-50 text-slate-700 hover:text-green-800 rounded-full font-semibold text-base transition-colors flex items-center justify-center gap-2"
+            class="w-full sm:w-auto px-8 py-3.5 bg-white border border-slate-200 hover:border-whatsapp hover:bg-teal-50 text-slate-700 hover:text-teal-800 rounded-full font-semibold text-base transition-colors flex items-center justify-center gap-2"
           >
-            <span class="text-[#25D366] shrink-0" aria-hidden="true">
+            <span class="text-whatsapp shrink-0" aria-hidden="true">
               <WhatsAppIcon class="w-5 h-5" />
             </span>
             <span>Inquire via WhatsApp</span>
@@ -138,50 +138,7 @@ const clinicalConditions = [
       </div>
     </section>
 
-        <!-- Advanced Diagnostics — Reference 2 Style -->
-    <section class="section bg-slate-50 border-y border-slate-200" id="diagnostics">
-      <div class="container-main">
         
-        <div class="text-center max-w-2xl mx-auto mb-8 md:mb-12 reveal">
-          <span class="text-xs font-bold tracking-widest text-teal-700 uppercase block mb-3">ACCURATE DIAGNOSIS. BETTER TREATMENT.</span>
-
-          <h2 class="text-h2 " style="font-family: var(--font-serif);" text-charcoal font-medium mb-4">Diagnostic Procedures</h2>
-          <p class="text-body text-graphite">We use modern, non-invasive diagnostic tools to accurately assess your condition and plan the right treatment. Each test is explained clearly, so you know what to expect.</p>
-        </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8">
-          {diagnosticTests.map((test, i) => (
-            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col sm:flex-row hover:shadow-[0_8px_30px_-4px_rgba(12,74,138,0.12)] hover:border-teal-200 transition-all duration-300 reveal group" style={`transition-delay: ${i * 60}ms`}>
-              <div class="sm:w-2/5 h-48 sm:h-auto shrink-0 relative overflow-hidden">
-                <img src={test.image} alt={test.name} width="600" height="400" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
-
-                <div class="absolute top-4 left-4 w-10 h-10 rounded-full bg-white text-teal-700 flex items-center justify-center shadow-md">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
-                </div>
-              </div>
-              <div class="p-6 flex flex-col flex-1">
-                <h3 class="text-xl font-bold text-slate-900 mb-2 leading-tight">{test.name}</h3>
-                <p class="text-[0.9375rem] text-slate-600 mb-6 flex-1 leading-relaxed">{test.desc}</p>
-                <div class="mt-auto space-y-2 border-t border-slate-100 pt-4">
-                  <p class="text-xs text-slate-600">
-                    <span class="font-semibold text-slate-800">Duration:</span> {test.duration}
-                  </p>
-                  <p class="text-xs text-slate-600">
-                    <span class="font-semibold text-slate-800">Preparation:</span> {test.prep}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div class="mt-12 text-center reveal">
-          <button type="button" data-open-modal="booking" class="btn btn-teal btn-lg">
-            Explore All Diagnostic Procedures &amp; Prep <span aria-hidden="true">→</span>
-          </button>
-        </div>
-
-      </div>
-    </section>
 
     <!-- Conditions We Treat -->
     <section class="section bg-white border-t border-slate-200">
@@ -191,7 +148,7 @@ const clinicalConditions = [
           <span class="text-label px-3 py-1 rounded-sm border border-teal-200">
             Clinical Management
           </span>
-          <h2 class="text-h2 " style="font-family: var(--font-serif);" font-sans text-slate-900 mt-2">Conditions We Treat</h2>
+          <h2 class="text-h2 text-slate-900 mt-2">Conditions We Treat</h2>
           <p class="text-body-sm text-slate-600 mt-1">Comprehensive protocols customized to individual patient profiles.</p>
         </div>
 
@@ -251,8 +208,8 @@ const clinicalConditions = [
           <span class="text-label-light text-teal-300 px-3 py-1 rounded-sm border border-teal-700">
             Answers for Patients
           </span>
-          <h2 class="text-h2 " style="font-family: var(--font-serif);" font-sans text-white mt-2">Frequently Asked Questions</h2>
-          <p class="text-slate-400 text-sm mt-1">Everything you need to know about your consultation with Dr. Rajib Das.</p>
+          <h2 class="text-h2 text-white mt-2">Frequently Asked Questions</h2>
+          <p class="text-slate-400 text-sm mt-1">Everything you need to know about your consultation with Dr. Kanika.</p>
         </div>
 
         <div class="space-y-3">
@@ -307,5 +264,7 @@ const clinicalConditions = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
+
+
 
 

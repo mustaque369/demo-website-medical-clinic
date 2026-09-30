@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Single source of truth for every clinic detail used across the site.
  * Never hardcode a phone number, address, or map link inside a page/component —
  * import it from here so the whole site stays consistent.
@@ -10,9 +10,9 @@ const PHONE_DISPLAY = "+91 90000 00000";
 const WHATSAPP_NUMBER = "919000000000";
 
 export const CLINIC = {
-  name: "Dr. Rajib Das Neurological Clinic & Brain Center",
+  name: "Dr. Kanika Neurological Clinic & Brain Center",
   doctor: {
-    name: "Dr. Rajib Das",
+    name: "Dr. Kanika",
     qualifications: "MBBS, MD (Neurology)",
     title: "Consultant Neurologist & Clinical Neurophysiologist",
     shortTitle: "Neurologist & Neurophysiologist",
@@ -20,7 +20,7 @@ export const CLINIC = {
   phone: PHONE_DISPLAY,
   phoneHref: `tel:+${PHONE_DIGITS}`,
   whatsappUrl: `https://wa.me/${WHATSAPP_NUMBER}`,
-  whatsappDefaultText: "Hello Dr. Rajib Das Clinic, I would like to schedule a neurology consultation.",
+  whatsappDefaultText: "Hello Dr. Kanika Clinic, I would like to schedule a neurology consultation.",
   email: "info@drrajibdasclinic.com",
   address: {
     line1: "Suite 402, Apex Neurosciences Center",
@@ -62,3 +62,4 @@ export const CLINIC = {
 export function whatsappLink(message: string = CLINIC.whatsappDefaultText): string {
   return `${CLINIC.whatsappUrl}?text=${encodeURIComponent(message)}`;
 }
+

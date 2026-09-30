@@ -1,6 +1,6 @@
----
+﻿---
 import { ANALYTICS } from '../constants/analytics';
-import { CLINIC, whatsappLink } from '../constants';
+import { CLINIC, whatsappLink } from '../constants/clinic';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
@@ -17,8 +17,8 @@ const whatsapp = whatsappLink();
   plausibleDomain={ANALYTICS.plausibleDomain}
   ga4Id={ANALYTICS.ga4MeasurementId}
   enableConsentBanner={ANALYTICS.enableConsentBanner}
-  title="Contact Dr. Rajib Das Clinic | Location, OPD Hours & Booking"
-  description="Contact Dr. Rajib Das, MBBS, MD (Neurology). Clinic address, interactive Google Maps directions, phone, WhatsApp, and online appointment request."
+  title="Contact Dr. Kanika Clinic | Location, OPD Hours & Booking"
+  description="Contact Dr. Kanika, MBBS, MD (Neurology). Clinic address, interactive Google Maps directions, phone, WhatsApp, and online appointment request."
   currentPage="/contact"
 >
   <Navbar currentPage="/contact" />
@@ -34,7 +34,7 @@ const whatsapp = whatsappLink();
           Appointments & Clinic Location
         </h1>
         <p class="text-body text-slate-600 mt-2.5">
-          Schedule your consultation with Dr. Rajib Das, MBBS, MD (Neurology) or connect with our clinic patient support team directly.
+          Schedule your consultation with Dr. Kanika, MBBS, MD (Neurology) or connect with our clinic patient support team directly.
         </p>
       </div>
     </section>
@@ -312,7 +312,7 @@ const whatsapp = whatsappLink();
                 </a>
               </div>
               <iframe
-                title="Google Maps location of Dr Rajib Das Clinic"
+                title="Google Maps location of Dr Kanika Clinic"
                 src={CLINIC.googleMapsEmbedUrl}
                 width="100%"
                 height="350"
@@ -387,7 +387,7 @@ const whatsapp = whatsappLink();
       const notes = (document.getElementById('contact-notes') as HTMLTextAreaElement)?.value || 'None';
 
       const message = [
-        'Hello Dr. Rajib Das Clinic,',
+        'Hello Dr. Kanika Clinic,',
         '',
         'I want to schedule an appointment:',
         `- Patient: ${name} (Age: ${age})`,
@@ -402,3 +402,4 @@ const whatsapp = whatsappLink();
     });
   }
 </script>
+
