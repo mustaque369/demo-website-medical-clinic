@@ -1,18 +1,16 @@
 ---
 import { ANALYTICS } from '../constants/analytics';
-import { CLINIC } from '../constants';
+import { CLINIC, whatsappLink } from '../constants';
 import Layout from '../layouts/Layout.astro';
-import ScrollArrow from '../components/ScrollArrow.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
 import AppointmentModal from '../components/AppointmentModal.astro';
 import PhoneIcon from '../components/icons/PhoneIcon.astro';
 import WhatsAppIcon from '../components/icons/WhatsAppIcon.astro';
-import CalendarIcon from '../components/icons/CalendarIcon.astro';
 
 const phoneHref = CLINIC.phoneHref;
-const whatsapp = CLINIC.whatsappUrl;
+const whatsapp = whatsappLink();
 ---
 
 <Layout
@@ -62,11 +60,11 @@ const whatsapp = CLINIC.whatsappUrl;
                 <div>
                   <h3 class="text-caption font-semibold text-slate-900">Clinic Address</h3>
                   <p class="text-body text-slate-600 mt-1">
-                    Suite 402, Apex Neurosciences Center,<br/>
-                    Park View Medical Enclave, Main Arterial Road,<br/>
-                    Metro City, Pin 700001
+                    {CLINIC.address.line1},<br/>
+                    {CLINIC.address.line2},<br/>
+                    {CLINIC.address.city}, Pin {CLINIC.address.postalCode}
                   </p>
-                  <p class="text-caption text-slate-500 mt-0.5">Landmark: Opposite City Health Park, 4th Floor</p>
+                  <p class="text-caption text-slate-500 mt-0.5">Landmark: {CLINIC.address.landmark}</p>
                 </div>
               </div>
 
@@ -78,7 +76,7 @@ const whatsapp = CLINIC.whatsappUrl;
                 </div>
                 <div>
                   <h3 class="text-caption font-semibold text-slate-900">OPD Consultation Hours</h3>
-                  <p class="text-sm text-slate-600 mt-0.5">Monday  Saturday: 9:00 AM  7:00 PM</p>
+                  <p class="text-sm text-slate-600 mt-0.5">Monday &ndash; Saturday: 9:00 AM &ndash; 7:00 PM</p>
                   <p class="text-body-sm text-slate-600">Sunday: Closed for Routine OPD (Emergency On-Call)</p>
                 </div>
               </div>
@@ -235,9 +233,9 @@ const whatsapp = CLINIC.whatsappUrl;
                       name="preferred-time"
                       class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:border-teal-600"
                     >
-                      <option value="Morning (10:00 AM - 01:00 PM)">Morning (10:00 AM  01:00 PM)</option>
-                      <option value="Afternoon (02:00 PM - 05:00 PM)">Afternoon (02:00 PM  05:00 PM)</option>
-                      <option value="Evening (05:00 PM - 07:00 PM)">Evening (05:00 PM  07:00 PM)</option>
+                      <option value="Morning (10:00 AM - 01:00 PM)">Morning (10:00 AM &ndash; 01:00 PM)</option>
+                      <option value="Afternoon (02:00 PM - 05:00 PM)">Afternoon (02:00 PM &ndash; 05:00 PM)</option>
+                      <option value="Evening (05:00 PM - 07:00 PM)">Evening (05:00 PM &ndash; 07:00 PM)</option>
                     </select>
                   </div>
                 </div>
@@ -300,22 +298,22 @@ const whatsapp = CLINIC.whatsappUrl;
                     </svg>
                   </span>
                   <div class="min-w-0">
-                    <p class="text-caption font-semibold text-slate-900 truncate">Apex Neurosciences Center</p>
-                    <p class="text-caption text-slate-500 truncate">Park View Medical Enclave, Metro City 700001</p>
+                    <p class="text-caption font-semibold text-slate-900 truncate">{CLINIC.address.line1}</p>
+                    <p class="text-caption text-slate-500 truncate">{CLINIC.address.line2}, {CLINIC.address.city} {CLINIC.address.postalCode}</p>
                   </div>
                 </div>
                 <a
-                  href="https://maps.google.com"
+                  href={CLINIC.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="text-caption font-semibold text-teal-700 hover:text-teal-900 flex items-center gap-1 shrink-0"
                 >
-                  Get Directions <span aria-hidden="true">?</span>
+                  Get Directions <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
               <iframe
                 title="Google Maps location of Dr Rajib Das Clinic"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117925.21689648937!2d88.26495046206148!3d22.535564937497746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f882db4908f667%3A0x43e330e68f6c2cbc!2sKolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                src={CLINIC.googleMapsEmbedUrl}
                 width="100%"
                 height="350"
                 style="border:0;"
@@ -353,7 +351,7 @@ const whatsapp = CLINIC.whatsappUrl;
             </div>
 
             <a
-              href="https://maps.google.com"
+              href={CLINIC.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="btn btn-charcoal block w-full text-center py-2.5 rounded-xl text-btn font-semibold"
@@ -388,18 +386,19 @@ const whatsapp = CLINIC.whatsappUrl;
       const time = (document.getElementById('contact-time') as HTMLSelectElement)?.value || '';
       const notes = (document.getElementById('contact-notes') as HTMLTextAreaElement)?.value || 'None';
 
-      const msg = `Hello Dr. Rajib Das Clinic,
+      const message = [
+        'Hello Dr. Rajib Das Clinic,',
+        '',
+        'I want to schedule an appointment:',
+        `- Patient: ${name} (Age: ${age})`,
+        `- Phone: ${phone}`,
+        `- Specialty: ${specialty}`,
+        `- Preferred Date & Time: ${date} (${time})`,
+        `- Symptoms/Notes: ${notes}`,
+      ].join('\n');
 
-I want to schedule an appointment:
-- Patient: ${name} (Age: ${age})
-- Phone: ${phone}
-- Specialty: ${specialty}
-- Preferred Date & Time: ${date} (${time})
-- Symptoms/Notes: ${notes}`;
-      const url = `https://wa.me/919000000000?text=${encodeURIComponent(msg)}`;
-      window.open(url, '_blank');
+      window.open(whatsappLink(message), '_blank', 'noopener,noreferrer');
+      form.reset();
     });
   }
 </script>
-
-

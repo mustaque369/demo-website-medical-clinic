@@ -1,4 +1,4 @@
-﻿export const SERVICES = [
+export const SERVICES = [
   {
     id: "stroke",
     title: "Stroke Care & Recovery",

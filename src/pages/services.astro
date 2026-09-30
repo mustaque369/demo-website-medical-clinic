@@ -1,8 +1,7 @@
 ---
 import { ANALYTICS } from '../constants/analytics';
-import { CLINIC } from '../constants';
+import { CLINIC, FAQS, whatsappLink } from '../constants';
 import Layout from '../layouts/Layout.astro';
-import ScrollArrow from '../components/ScrollArrow.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
@@ -12,7 +11,7 @@ import WhatsAppIcon from '../components/icons/WhatsAppIcon.astro';
 import CalendarIcon from '../components/icons/CalendarIcon.astro';
 
 const phoneHref = CLINIC.phoneHref;
-const whatsapp = CLINIC.whatsappUrl;
+const whatsapp = whatsappLink();
 
 const diagnosticTests = [
   {
@@ -84,24 +83,6 @@ const clinicalConditions = [
   }
 ];
 
-const faqs = [
-  {
-    q: "What documents should I bring for my first consultation with Dr. Rajib Das?",
-    a: "Please bring all prior medical records, recent brain or spine scans (MRI / CT films and reports), list of current medications with exact dosages, recent blood test results, and any previous EEG/EMG reports."
-  },
-  {
-    q: "Do I need to do an MRI before visiting the clinic?",
-    a: "Not necessarily. Dr. Rajib Das conducts a comprehensive clinical neurological exam first. If imaging is indicated, he will order the exact MRI sequence or CT scan required, avoiding unnecessary expenses."
-  },
-  {
-    q: "How can I book an urgent appointment for acute stroke or severe flare-ups?",
-    a: "For acute emergencies (sudden speech loss, facial weakness, severe seizure), visit an emergency hospital immediately or call our clinic emergency line directly at +91 90000 00000."
-  },
-  {
-    q: "Does the clinic offer EEG and EMG/NCV testing on-site?",
-    a: "Yes, our clinic center is equipped with modern digital electrophysiology suites allowing same-day or scheduled EEG and EMG/NCV studies conducted under Dr. Das's direct supervision."
-  }
-];
 ---
 
 <Layout
@@ -130,6 +111,7 @@ const faqs = [
 
         <div class="mt-6 flex flex-wrap justify-center gap-2.5">
           <button
+            type="button"
             data-open-modal="booking"
             class="btn btn-teal"
           >
@@ -152,11 +134,12 @@ const faqs = [
     </section>
 
         <!-- Advanced Diagnostics — Reference 2 Style -->
-    <section class="section bg-[#f8fbff] border-y border-slate-200" id="diagnostics">
+    <section class="section bg-slate-50 border-y border-slate-200" id="diagnostics">
       <div class="container-main">
         
         <div class="text-center max-w-2xl mx-auto mb-8 md:mb-12 reveal">
-          <span class="text-xs font-bold tracking-widest text-[#0c4a8a] uppercase block mb-3">ACCURATE DIAGNOSIS. BETTER TREATMENT.</span>
+          <span class="text-xs font-bold tracking-widest text-teal-700 uppercase block mb-3">ACCURATE DIAGNOSIS. BETTER TREATMENT.</span>
+
           <h2 class="text-h2 font-sans text-charcoal font-medium mb-4">Diagnostic Procedures</h2>
           <p class="text-body text-graphite">We use modern, non-invasive diagnostic tools to accurately assess your condition and plan the right treatment. Each test is explained clearly, so you know what to expect.</p>
         </div>
@@ -165,26 +148,30 @@ const faqs = [
           {diagnosticTests.map((test, i) => (
             <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col sm:flex-row hover:shadow-[0_8px_30px_-4px_rgba(12,74,138,0.12)] hover:border-teal-200 transition-all duration-300 reveal group" style={`transition-delay: ${i * 60}ms`}>
               <div class="sm:w-2/5 h-48 sm:h-auto shrink-0 relative overflow-hidden">
-                <img src={test.image.replace('.svg', '.jpg')} alt={test.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=400&q=80'" />
-                <div class="absolute top-4 left-4 w-10 h-10 rounded-full bg-white text-[#0c4a8a] flex items-center justify-center shadow-md">
+                <img src={test.image} alt={test.name} width="600" height="400" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+
+                <div class="absolute top-4 left-4 w-10 h-10 rounded-full bg-white text-teal-700 flex items-center justify-center shadow-md">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
                 </div>
               </div>
               <div class="p-6 flex flex-col flex-1">
                 <h3 class="text-xl font-bold text-slate-900 mb-2 leading-tight">{test.name}</h3>
                 <p class="text-[0.9375rem] text-slate-600 mb-6 flex-1 leading-relaxed">{test.desc}</p>
-                <div class="mt-auto">
-                  <span class="inline-flex items-center text-[0.85rem] font-bold text-[#0c4a8a] bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-100 transition-colors cursor-help" title={`Prep: ${test.prep} | Duration: ${test.duration}`}>
-                    What to Expect &rarr;
-                  </span>
+                <div class="mt-auto space-y-2 border-t border-slate-100 pt-4">
+                  <p class="text-xs text-slate-600">
+                    <span class="font-semibold text-slate-800">Duration:</span> {test.duration}
+                  </p>
+                  <p class="text-xs text-slate-600">
+                    <span class="font-semibold text-slate-800">Preparation:</span> {test.prep}
+                  </p>
                 </div>
               </div>
             </div>
           ))}
         </div>
         <div class="mt-12 text-center reveal">
-          <button data-open-modal="booking" class="btn bg-[#0c4a8a] text-white hover:bg-blue-900 px-8 py-3.5 rounded-full text-[15px] font-semibold transition-all inline-flex items-center justify-center shadow-md">
-            Explore All Diagnostic Procedures & Prep &rarr;
+          <button type="button" data-open-modal="booking" class="btn btn-teal btn-lg">
+            Explore All Diagnostic Procedures &amp; Prep <span aria-hidden="true">→</span>
           </button>
         </div>
 
@@ -237,6 +224,7 @@ const faqs = [
 
               <div class="p-4 pt-0">
                 <button
+                  type="button"
                   data-open-modal="booking"
                   class="btn btn-teal w-full py-2 rounded-xl text-caption font-semibold text-center cursor-pointer"
                 >
@@ -263,7 +251,7 @@ const faqs = [
         </div>
 
         <div class="space-y-3">
-          {faqs.map((faq) => (
+          {FAQS.map((faq) => (
             <details class="group bg-slate-800 rounded-2xl border border-slate-700 p-4 transition open:bg-slate-800/90">
               <summary class="flex justify-between items-center text-body font-semibold text-white cursor-pointer gap-3">
                 <span>{faq.q}</span>
@@ -291,16 +279,17 @@ const faqs = [
         
         <div class="mt-5 flex flex-wrap justify-center gap-2.5">
           <button
+            type="button"
             data-open-modal="booking"
-            class="btn btn-charcoal px-6 py-2.5 rounded-xl text-btn font-semibold cursor-pointer"
+            class="btn btn-light px-6 py-2.5 rounded-xl text-btn font-semibold cursor-pointer"
           >
             Book Appointment Slot
           </button>
           <a
             href={phoneHref}
-            class="btn btn-outline px-5 py-2.5 rounded-xl text-btn font-semibold flex items-center gap-1.5"
+            class="btn btn-outline-light px-5 py-2.5 rounded-xl text-btn font-semibold flex items-center gap-1.5"
           >
-            <span class="group-hover:text-[#0c4a8a] text-white transition-colors" aria-hidden="true"><PhoneIcon class="w-4 h-4" /></span>
+            <span aria-hidden="true"><PhoneIcon class="w-4 h-4" /></span>
             <span>Call {CLINIC.phone}</span>
           </a>
         </div>
@@ -313,7 +302,3 @@ const faqs = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
-
-
-
-

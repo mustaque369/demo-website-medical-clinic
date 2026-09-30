@@ -1,8 +1,7 @@
 ---
 import { ANALYTICS } from '../constants/analytics';
-import { CLINIC } from '../constants';
+import { CLINIC, whatsappLink } from '../constants';
 import Layout from '../layouts/Layout.astro';
-import ScrollArrow from '../components/ScrollArrow.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
@@ -10,10 +9,9 @@ import ReviewsSection from '../components/ReviewsSection.astro';
 import AppointmentModal from '../components/AppointmentModal.astro';
 import PhoneIcon from '../components/icons/PhoneIcon.astro';
 import WhatsAppIcon from '../components/icons/WhatsAppIcon.astro';
-import CalendarIcon from '../components/icons/CalendarIcon.astro';
 
 const phoneHref = CLINIC.phoneHref;
-const whatsapp = CLINIC.whatsappUrl;
+const whatsapp = whatsappLink();
 
 const credentials = [
   {
@@ -63,7 +61,7 @@ const milestones = [
   <main id="main-content">
 
     <!-- -----------------------------------------------------------
-         EDITORIAL DOCTOR PROFILE  full-width cinematic header
+         EDITORIAL DOCTOR PROFILE — full-width cinematic header
          ----------------------------------------------------------- -->
     <section class="doc-profile-hero section border-b border-beige" aria-label="Doctor profile">
       <div class="container-main">
@@ -95,16 +93,13 @@ const milestones = [
             <!-- Name -->
             <h1 class="doc-name">Dr. Rajib Das</h1>
 
-                <ScrollArrow />
-    <!-- 
-         CREDENTIALS line -->
             <p class="doc-credentials">MBBS (Distinction &amp; Gold Medal) &middot; MD in Neurology</p>
             <p class="doc-role">Consultant Neurologist &amp; Certified Clinical Neurophysiologist</p>
 
             <!-- Thin rule -->
             <hr class="doc-rule" />
 
-            <!-- Biography paragraphs  verbatim factual content -->
+            <!-- Biography paragraphs — verbatim factual content -->
             <div class="doc-bio">
               <p>
                 Dr. Rajib Das is an accomplished Senior Neurologist known for his analytical diagnostic approach and patient-centered communication with individuals facing complex neurological conditions.
@@ -114,12 +109,12 @@ const milestones = [
               </p>
             </div>
 
-            <!-- Philosophy pull-quote  verbatim from existing content -->
+            <!-- Philosophy pull-quote — verbatim from existing content -->
             <blockquote class="doc-philosophy">
-              <p>"In neurology, an illness rarely affects an isolated organ  it impacts an individual's independence, speech, mobility, and identity. Every patient deserves time, rigorous diagnostic inquiry, and complete reassurance on their treatment path."</p>
+              <p>"In neurology, an illness rarely affects an isolated organ — it impacts an individual's independence, speech, mobility, and identity. Every patient deserves time, rigorous diagnostic inquiry, and complete reassurance on their treatment path."</p>
             </blockquote>
 
-            <!-- Practice statistics  pure typography, no cards -->
+            <!-- Practice statistics — pure typography, no cards -->
             <div class="doc-stats">
               {milestones.map((m, i) => (
                 <div class="doc-stat">
@@ -131,7 +126,7 @@ const milestones = [
 
             <!-- CTA row -->
             <div class="doc-cta-row">
-              <button data-open-modal="booking" class="btn btn-teal px-8 py-3.5">
+              <button type="button" data-open-modal="booking" class="btn btn-teal px-8 py-3.5">
                 Book a Consultation
               </button>
               <a href={phoneHref} class="doc-phone-link">
@@ -148,7 +143,7 @@ const milestones = [
     </section>
 
     <!-- -----------------------------------------------------------
-         CREDENTIALS  editorial list, no cards
+         CREDENTIALS — editorial list, no cards
          ----------------------------------------------------------- -->
     <section class="section bg-ivory border-b border-beige" aria-label="Qualifications and credentials">
       <div class="container-main">
@@ -172,7 +167,7 @@ const milestones = [
                   <div class="doc-credential-body flex-1">
                     <div class="doc-credential-meta flex flex-wrap gap-2 items-center mb-2">
                       <h3 class="doc-credential-degree text-lg md:text-xl font-bold text-slate-900">{item.degree}</h3>
-                      <span class="doc-credential-badge text-xs font-semibold bg-blue-50 text-[#0c4a8a] px-3 py-1 rounded-full">{item.year}</span>
+                      <span class="doc-credential-badge text-xs font-semibold bg-teal-50 text-teal-700 px-3 py-1 rounded-full">{item.year}</span>
                     </div>
                     <p class="doc-credential-institution text-slate-700 font-semibold mb-2">{item.institution}</p>
                     <p class="doc-credential-desc text-slate-600 text-sm leading-relaxed">{item.desc}</p>
@@ -186,7 +181,7 @@ const milestones = [
     </section>
 
     <!-- -----------------------------------------------------------
-         MEMBERSHIPS  horizontal typography list, no icon cards
+         MEMBERSHIPS — horizontal typography list, no icon cards
          ----------------------------------------------------------- -->
     <section class="section bg-white border-b border-beige" aria-label="Professional memberships">
       <div class="container-main">
@@ -231,7 +226,7 @@ const milestones = [
     </section>
 
     <!-- -----------------------------------------------------------
-         CLINIC ENVIRONMENT  photography grid
+         CLINIC ENVIRONMENT — photography grid
          ----------------------------------------------------------- -->
     <section class="section bg-ivory" aria-label="Clinic environment">
       <div class="container-main">
@@ -300,7 +295,7 @@ const milestones = [
         <p class="conversion-desc">Schedule an in-depth neurological evaluation. Take the first step toward accurate diagnosis and targeted relief.</p>
 
         <div class="conversion-actions">
-          <button data-open-modal="booking" class="btn btn-teal px-8 py-3.5 text-base">
+          <button type="button" data-open-modal="booking" class="btn btn-teal px-8 py-3.5 text-base">
             Request Appointment
           </button>
           
@@ -330,11 +325,3 @@ const milestones = [
   <MobileActionBar />
   <AppointmentModal />
 </Layout>
-
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-﻿import type { APIRoute } from 'astro';
+import type { APIRoute } from 'astro';
 
 const pages = [
   { url: '', changefreq: 'weekly', priority: '1.0' },

@@ -1,18 +1,19 @@
-﻿---
+---
 import { ANALYTICS } from '../constants/analytics';
 import Layout from '../layouts/Layout.astro';
-import { CLINIC } from '../constants/clinic';
+import { CLINIC, whatsappLink } from '../constants/clinic';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
 import AppointmentModal from '../components/AppointmentModal.astro';
-import PhoneIcon from '../components/icons/PhoneIcon.astro';
 import WhatsAppIcon from '../components/icons/WhatsAppIcon.astro';
-import CalendarIcon from '../components/icons/CalendarIcon.astro';
 
 const phone = CLINIC.phone;
-const whatsapp = CLINIC.whatsappUrl + "?text=" + encodeURIComponent(CLINIC.whatsappDefaultText);
+const whatsapp = whatsappLink();
+const base = import.meta.env.BASE_URL;
+/** Prefixes an internal route with the deploy base (GitHub Pages sub-path safe). */
+const withBase = (path: string) => `${base}${path.replace(/^\//, '')}`;
 
 const services = [
   {
@@ -83,10 +84,10 @@ const stats = [
     <!-- 1. Hero — Light split layout with doctor photo -->
     <section class="hero-clinical relative overflow-hidden" aria-label="Welcome">
       <!-- Subtle gradient background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-white via-white to-blue-50/80" aria-hidden="true"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-white via-white to-teal-50/80" aria-hidden="true"></div>
       <!-- Faint brain watermark on right -->
       <div class="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] opacity-[0.04]" aria-hidden="true">
-        <svg viewBox="0 0 200 200" fill="currentColor" class="w-full h-full text-blue-900">
+        <svg viewBox="0 0 200 200" fill="currentColor" class="w-full h-full text-teal-900">
           <path d="M100 10C75 10 55 25 50 45C35 48 20 65 20 85C20 100 28 112 40 118C37 128 40 142 55 150C53 158 58 172 72 177C77 192 87 200 100 200C113 200 123 192 128 177C142 172 147 158 145 150C160 142 163 128 160 118C172 112 180 100 180 85C180 65 165 48 150 45C145 25 125 10 100 10Z"/>
         </svg>
       </div>
@@ -113,8 +114,9 @@ const stats = [
           <!-- CTA Buttons -->
           <div class="flex flex-col w-full sm:w-auto sm:flex-row items-center lg:items-start gap-3 sm:gap-4 pt-2">
             <button
+              type="button"
               data-open-modal="booking"
-              class="nav-cta-btn px-8 py-4 text-base w-full sm:w-auto justify-center shadow-lg shadow-teal-900/20"
+              class="nav-cta-btn btn-lg w-full sm:w-auto justify-center"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -123,8 +125,8 @@ const stats = [
               <span aria-hidden="true">→</span>
             </button>
             <a
-              href={`${import.meta.env.BASE_URL}#services`}
-              class="inline-flex items-center gap-2.5 px-6 py-4 rounded-full border-2 border-slate-200 text-charcoal font-semibold text-[0.9375rem] hover:border-teal-600 hover:text-teal-700 transition-colors w-full sm:w-auto justify-center bg-white"
+              href={`${base}#services`}
+              class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full border-2 border-slate-200 text-charcoal font-semibold hover:border-teal-600 hover:text-teal-700 transition-colors w-full sm:w-auto justify-center bg-white"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -185,7 +187,7 @@ const stats = [
           </div>
 
           <!-- Floating Profile Card -->
-          <div class="absolute -bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:-bottom-6 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-white/50 p-5 sm:w-72">
+          <div class="absolute -bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:-bottom-6 bg-white rounded-2xl shadow-xl border border-slate-200 p-5 sm:w-72">
             <div class="flex items-start justify-between">
               <div>
                 <h2 class="text-charcoal font-bold text-base">Dr. Rajib Das</h2>
@@ -270,7 +272,7 @@ const stats = [
                   <h3 class="text-h5 text-charcoal font-semibold">{item.title}</h3>
                 </div>
                 <p class="text-body-sm text-graphite mb-4 line-clamp-3">{item.desc}</p>
-                <a href={item.href} class="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-700 hover:text-teal-900 transition-colors">
+                <a href={withBase(item.href)} class="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-700 hover:text-teal-900 transition-colors">
                   Learn More <span aria-hidden="true">→</span>
                 </a>
               </div>
@@ -313,7 +315,7 @@ const stats = [
               loading="lazy"
             />
             <!-- Signature overlay -->
-            <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-sm" aria-hidden="true">
+            <div class="absolute bottom-4 left-4 bg-white rounded-lg px-4 py-2 shadow-sm border border-slate-200" aria-hidden="true">
               <p class="font-serif italic text-sm text-slate-500">Dr. Rajib Das</p>
               <p class="text-xs text-mist">Neurologist</p>
             </div>
@@ -365,7 +367,7 @@ const stats = [
               </div>
             </div>
 
-            <button data-open-modal="booking" class="nav-cta-btn px-8 py-3.5 text-base mt-2">
+            <button type="button" data-open-modal="booking" class="nav-cta-btn mt-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
               </svg>
@@ -445,7 +447,7 @@ const stats = [
           <div class="space-y-8 reveal" style="transition-delay: 150ms">
             <div>
               <div class="inline-flex items-center gap-2 mb-3">
-                <span class="text-xs font-bold tracking-widest text-[#0c4a8a] uppercase">VISIT OUR CLINIC</span>
+                <span class="text-xs font-bold tracking-widest text-teal-700 uppercase">VISIT OUR CLINIC</span>
                 <span class="w-12 h-px bg-slate-300"></span>
               </div>
               <h2 class="text-h2 text-slate-900 mb-3">Visit Dr. Rajib Das Clinic</h2>
@@ -457,19 +459,19 @@ const stats = [
               <div class="space-y-6">
                 <!-- Address -->
                 <div class="flex items-start gap-4">
-                  <div class="w-8 h-8 rounded-full bg-blue-50 text-[#0c4a8a] flex items-center justify-center shrink-0">
+                  <div class="w-8 h-8 rounded-full bg-teal-50 text-teal-700 flex items-center justify-center shrink-0">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   </div>
                   <div>
                     <h4 class="font-bold text-slate-900 mb-1">Address</h4>
                     <p class="text-sm text-slate-600 mb-2">{CLINIC.address.full}</p>
-                    <a href={CLINIC.googleMapsUrl} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-[#0c4a8a] hover:underline">View on Google Maps &rarr;</a>
+                    <a href={CLINIC.googleMapsUrl} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-teal-700 hover:underline">View on Google Maps &rarr;</a>
                   </div>
                 </div>
 
                 <!-- Hours -->
                 <div class="flex items-start gap-4">
-                  <div class="w-8 h-8 rounded-full bg-blue-50 text-[#0c4a8a] flex items-center justify-center shrink-0">
+                  <div class="w-8 h-8 rounded-full bg-teal-50 text-teal-700 flex items-center justify-center shrink-0">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                   </div>
                   <div>
@@ -481,13 +483,13 @@ const stats = [
 
                 <!-- Phone -->
                 <div class="flex items-start gap-4">
-                  <div class="w-8 h-8 rounded-full bg-blue-50 text-[#0c4a8a] flex items-center justify-center shrink-0">
+                  <div class="w-8 h-8 rounded-full bg-teal-50 text-teal-700 flex items-center justify-center shrink-0">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                   </div>
                   <div>
                     <h4 class="font-bold text-slate-900 mb-1">Phone / WhatsApp</h4>
                     <p class="text-sm text-slate-600 mb-2">{phone}</p>
-                    <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-[#0c4a8a] hover:underline">Call or WhatsApp &rarr;</a>
+                    <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-teal-700 hover:underline">Call or WhatsApp &rarr;</a>
                   </div>
                 </div>
               </div>
@@ -524,8 +526,8 @@ const stats = [
               </div>
               
               <div class="ml-auto flex gap-3 w-full sm:w-auto">
-                <a href={CLINIC.googleMapsUrl} target="_blank" rel="noopener noreferrer" class="btn bg-[#0c4a8a] text-white hover:bg-blue-900 px-6 py-3 rounded-full text-sm font-semibold transition-all inline-flex items-center justify-center shadow-md w-full sm:w-auto">
-                  Get Directions &rarr;
+                <a href={CLINIC.googleMapsUrl} target="_blank" rel="noopener noreferrer" class="btn btn-teal w-full sm:w-auto">
+                  Get Directions <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
             </div>
@@ -538,7 +540,7 @@ const stats = [
     <!-- 7. Bottom CTA (Book Consultation) - Match Mockup 2 -->
     <section class="section bg-white border-t border-slate-200" aria-label="Book Consultation">
       <div class="container-main">
-        <div class="bg-[#f5f9ff] rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 relative overflow-hidden border border-blue-100/50 reveal shadow-[0_20px_60px_-15px_rgba(12,74,138,0.08)]">
+        <div class="bg-teal-50 rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 relative overflow-hidden border border-teal-100/50 reveal shadow-[0_20px_60px_-15px_rgba(12,74,138,0.08)]">
           <!-- Background decoration -->
           <div class="absolute top-0 right-0 w-1/2 h-full bg-white/40 blur-3xl rounded-full transform translate-x-1/3 -translate-y-1/4 pointer-events-none"></div>
           
@@ -546,7 +548,7 @@ const stats = [
             <!-- Left: Text & Doctor Info -->
             <div class="lg:col-span-5 space-y-8">
               <div>
-                <span class="text-xs font-bold tracking-widest text-[#0c4a8a] uppercase block mb-3">YOUR HEALTH. OUR PRIORITY.</span>
+                <span class="text-xs font-bold tracking-widest text-teal-700 uppercase block mb-3">YOUR HEALTH. OUR PRIORITY.</span>
                 <h2 class="text-h2 text-slate-900 mb-4">Book Your Consultation</h2>
                 <p class="text-body text-slate-600">Take the first step towards better neurological health. Schedule an appointment with Dr. Rajib Das today.</p>
               </div>
@@ -561,17 +563,17 @@ const stats = [
                   </div>
                   <div class="flex gap-4">
                     <div class="text-center">
-                      <div class="text-[#0c4a8a] font-bold">15+</div>
+                      <div class="text-teal-700 font-bold">15+</div>
                       <div class="text-[10px] uppercase text-slate-500 tracking-wider">Years</div>
                     </div>
                     <div class="w-px h-8 bg-slate-200"></div>
                     <div class="text-center">
-                      <div class="text-[#0c4a8a] font-bold">MBBS</div>
+                      <div class="text-teal-700 font-bold">MBBS</div>
                       <div class="text-[10px] uppercase text-slate-500 tracking-wider">Medicine</div>
                     </div>
                     <div class="w-px h-8 bg-slate-200"></div>
                     <div class="text-center">
-                      <div class="text-[#0c4a8a] font-bold">MD</div>
+                      <div class="text-teal-700 font-bold">MD</div>
                       <div class="text-[10px] uppercase text-slate-500 tracking-wider">Neurology</div>
                     </div>
                   </div>
@@ -586,7 +588,7 @@ const stats = [
               <div class="space-y-6">
                 <div class="bg-slate-50 rounded-xl p-6 border border-slate-100">
                   <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-full bg-blue-100 text-[#0c4a8a] flex items-center justify-center shrink-0 mt-1">
+                    <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center shrink-0 mt-1">
                       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
                     <div>
@@ -597,10 +599,10 @@ const stats = [
                 </div>
 
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <button data-open-modal="booking" class="bg-[#0c4a8a] text-white hover:bg-[#0a3a6a] transition-colors py-4 rounded-xl font-bold shadow-md flex justify-center items-center gap-2 text-center">
-                    Book Consultation &rarr;
+                  <button type="button" data-open-modal="booking" class="btn btn-teal btn-lg w-full">
+                    Book Consultation <span aria-hidden="true">&rarr;</span>
                   </button>
-                  <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="bg-[#1da851] text-white hover:bg-[#15823e] transition-colors py-4 rounded-xl font-bold shadow-md flex justify-center items-center gap-2 text-center">
+                  <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg w-full">
                     <WhatsAppIcon class="w-5 h-5" />
                     WhatsApp
                   </a>
@@ -662,39 +664,3 @@ const counters = document.querySelectorAll<HTMLElement>('.counter-number');
 
   initCounters();
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

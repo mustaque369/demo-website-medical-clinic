@@ -1,4 +1,4 @@
-﻿export const CREDENTIALS = [
+export const CREDENTIALS = [
   {
     degree: "MBBS (Distinction & Gold Medal)",
     institution: "Premier Medical College & Hospital",

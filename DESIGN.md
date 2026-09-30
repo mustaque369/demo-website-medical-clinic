@@ -5,7 +5,7 @@
 - **Doctor:** Dr. Rajib Das, MBBS, MD (Neurology)
 - **Specialty:** Consultant Neurologist & Clinical Neurophysiologist
 - **Character:** Calm clinical authority, precision diagnostic focus, warm patient reassurance.
-- **Palette Identity:** Neutral Warm Hospital Teal & Sage, clinical crisp white, warm slate text.
+- **Palette Identity:** Clinical blue (#0c4a8a brand) with cool neutrals and clinical white, slate text.
 
 ---
 
@@ -14,12 +14,12 @@ Configured via Tailwind CSS v4 `@theme` in `src/styles/global.css`:
 
 ```css
 @theme {
-  --color-medical-teal: #0f766e;        /* Deep Hospital Teal / Sage primary */
-  --color-medical-teal-dark: #115e59;   /* Hover teal */
-  --color-medical-teal-light: #f0fdfa;  /* Subtle tinted teal surface */
+  --color-medical-teal: #0c4a8a;        /* Primary brand blue */
+  --color-medical-teal-dark: #0a3d72;   /* Hover */
+  --color-medical-teal-light: #eff6ff;  /* Subtle tinted surface */
   --color-medical-navy: #0f172a;        /* High-contrast headings */
   --color-medical-slate: #334155;       /* Refined text */
-  --color-medical-bg: #f8fafc;          /* Ultra clean clinical light */
+  --color-medical-bg: #ffffff;          /* Ultra clean clinical light */
   --color-medical-card: #ffffff;        /* Crisp card */
   --color-medical-border: #e2e8f0;      /* Subtle border */
   --color-whatsapp: #25D366;
@@ -30,14 +30,14 @@ Configured via Tailwind CSS v4 `@theme` in `src/styles/global.css`:
 ---
 
 ## 3. Typography
-- **Editorial Display Serif:** `Spectral`, Georgia, Cambria, serif — calm, screen-tuned editorial serif. Headings use weights **400-500 only** (never black) with negative tracking so they read sophisticated rather than oversized.
-- **Body, Navigation & UI:** `Plus Jakarta Sans`, system-ui, sans-serif — clean, modern, accessible interface typography for body copy, navigation, buttons, labels and form controls.
+- **Editorial Display Serif:** `Lora`, Georgia, Cambria, serif — calm, screen-tuned editorial serif. `.text-display/.text-h1/.text-h2` use weight **300**, `.text-h3/.text-h4` use **400**, card/body accents use **500** (never black), with negative tracking so they read sophisticated rather than oversized.
+- **Body, Navigation & UI:** `Inter`, system-ui, sans-serif — clean, modern, accessible interface typography for body copy, navigation, buttons, labels and form controls.
 - **Editorial Type Scale** (defined in `src/styles/global.css` via `@theme` tokens + `.text-*` utilities):
-  - Hero display: `.text-display` — clamp(2.5rem to 3.875rem) · weight 400 · tracking -0.022em · leading 1.08
-  - Page h1: `.text-h1` — clamp(2.125rem to 3.125rem) · leading 1.14 · tracking -0.02em
-  - Section h2: `.text-h2` — clamp(1.75rem to 2.375rem) · weight 400 · tracking -0.016em · leading 1.22
-  - Sub-headings / card titles: `.text-h3` · `.text-h4` · `.text-h5` — serif weight 500, leading 1.32-1.45
-  - Body copy: `.text-lead` (17-19px) · `.text-body` (16-17px, leading 1.75) · `.text-body-sm` (15px) · `.text-caption` (13px)
+  - Hero display: `.text-display` — `clamp(2.25rem, 4vw + 1rem, 3.25rem)` · weight 300 · tracking -0.03em · leading 1.05
+  - Page h1: `.text-h1` — `clamp(1.875rem, 3vw + 1rem, 2.75rem)` · leading 1.1 · tracking -0.025em
+  - Section h2: `.text-h2` — `clamp(1.625rem, 2vw + 1rem, 2.25rem)` · weight 300 · tracking -0.015em · leading 1.2
+  - Sub-headings / card titles: `.text-h3` · `.text-h4` · `.text-h5` — serif weight 400-500, leading 1.3-1.45
+  - Body copy: `.text-lead` (18-20px) · `.text-body` (16-17px, leading 1.8) · `.text-body-sm` (15px) · `.text-caption` (13px)
   - Labels / eyebrows: `.text-label` (uppercase, 12px, 600, tracking 0.16em) · `.text-form-label` (13px, 600, sentence case)
   - Navigation / buttons: `.text-nav` (15px, 500) · `.text-btn` (15px, 600, tracking 0.012em)
   - Brand lockup / metrics: `.text-brand` (serif 500) · `.text-stat` (serif 400, tabular figures)
@@ -47,13 +47,11 @@ Configured via Tailwind CSS v4 `@theme` in `src/styles/global.css`:
 
 ## 4. UI Components Architecture
 1. **Top Emergency & Contact Bar:**
-   - Accepting New Patients badge with live pulse indicator
-   - OPD schedule: `Mon – Sat: 9:00 AM – 7:00 PM`
-   - Direct phone link + matched WhatsApp button with official green badge
+   - Removed: emergency information now lives in the contact page's emergency protocol card and the booking modal footer.
 2. **Sticky Main Navigation:**
-   - Doctor credentials badge (`MBBS, MD`)
-   - Accessible hamburger drawer with `aria-expanded` and `aria-controls`
-   - Desktop sticky contact cluster (Phone + WhatsApp + Book Appointment) that persists after the top bar scrolls away
+   - Doctor brand lockup (`Dr. Rajib Das` · `Neurologist`)
+   - Accessible hamburger panel below desktop widths (`aria-expanded`, `aria-controls`, Escape to close, closes on navigation and on resize past the breakpoint)
+   - Desktop links appear from `xl` so the header can never overflow on tablets; a bordered "Book Consultation" pill shows from `sm`
 3. **Full-Horizon Statistics Band:**
    - 4 key metrics with SVG icon anchors:
      - 15+ Years Clinical Practice
@@ -70,9 +68,8 @@ Configured via Tailwind CSS v4 `@theme` in `src/styles/global.css`:
    - Neuropathy & Sciatica Relief
    - Memory Loss & Dementia
 5. **Patient Reviews Section:**
-   - Compact, auto-scrolling marquee with pause on `:hover` and `:focus-within`
-   - Exact mathematical loop seam (`calc(-50% - 0.5rem)`)
-   - Duplicate set marked with `aria-hidden="true"`
+   - Compact paged carousel: 1 card on mobile, 2 on tablet, 3 on desktop
+   - Prev/next buttons, generous touch-size page dots (`aria-current`), keyboard arrows, and touch swipe
    - Completely stopped under `prefers-reduced-motion`
 6. **Location & Transit Map Card:**
    - Branded card header with clinic address and "Get Directions" link
@@ -81,10 +78,13 @@ Configured via Tailwind CSS v4 `@theme` in `src/styles/global.css`:
    - Full `role="dialog"` and `aria-modal="true"` semantics
    - Escape-key close handler
    - Tab focus-trap within the modal
-   - Body scroll locking (`overflow: hidden`)
-   - Returns focus to trigger button on close
+   - Background scroll locking while open
+   - Returns focus to the trigger button on close
+   - Past dates blocked via `min` (today); form resets after submit
+   - Numbers/links come from `src/constants/clinic.ts` — never hardcoded
 8. **Persistent Mobile Bottom Bar:**
-   - Fixed thumb-friendly action bar on mobile with matched icon sizing (Call Doctor + WhatsApp)
+   - Fixed thumb-friendly action bar on phones (<768px): Call + WhatsApp + Book
+   - Safe-area-aware bottom padding; page content reserves matching space
 
 ---
 
@@ -101,33 +101,34 @@ Configured via Tailwind CSS v4 `@theme` in `src/styles/global.css`:
 ## 6. Visual Design System (Premium Editorial)
 Refined in `src/styles/global.css`. Tokens live in `@theme`; component classes live in `@layer utilities`.
 
-### 6.1 Restrained palette (warm, clinical, no neon)
+### 6.1 Restrained palette (clinical blue/slate, no neon)
 | Token | Value | Use |
 |---|---|---|
-| `--color-ivory` | `#faf7f1` | Page base, hero wash |
-| `--color-cream` | `#f4efe6` | Alternating sections, marquee surface |
-| `--color-beige` / `--color-beige-soft` | `#e8e0d3` / `#f0e9dd` | Hairlines, quiet buttons, image frames |
-| `--color-white` (overridden) | `#fffdf9` | Cards and panels (warm white, never pure white) |
-| `--color-charcoal` / `--color-charcoal-soft` | `#1b1f1d` / `#2b312d` | Dark sections, footer, primary text anchors |
-| `--color-ink` / `--color-graphite` / `--color-mist` | `#2f3633` / `#555d58` / `#7c857f` | Body, secondary, muted text |
-| `--color-teal-deep` (aka `teal-700`) | `#245046` | Brand actions, labels, focus rings |
-| `--color-teal-800` / `teal-950` | `#1c4038` / `#0d201c` | Stats band, dark feature sections |
-| `--color-sage` / `sage-soft` / `emerald-*` | `#8aa08a`, `#e9efe7`, `#8fae86`-`#4b6b46` | Availability & verified status (soft, not neon) |
-| `--color-amber-*` | `#f8f1e3` → `#533b17` | Emergency notice only |
+| `--color-ivory` | `#ffffff` | Page base, hero wash |
+| `--color-cream` | `#f5f9ff` | Alternating sections, marquee surface |
+| `--color-beige` / `--color-beige-soft` | `#e2e8f0` / `#f0f4f8` | Hairlines, quiet buttons, image frames |
+| `--color-white` (overridden) | `#ffffff` | Cards and panels |
+| `--color-charcoal` / `--color-charcoal-soft` | `#0a1628` / `#132a4a` | Dark sections, footer, primary text anchors |
+| `--color-ink` / `--color-graphite` / `--color-mist` | `#1a2332` / `#4a5568` / `#718096` | Body, secondary, muted text |
+| `--color-teal-deep` (aka `teal-700`) | `#0c4a8a` | Brand actions, labels, focus rings |
+| `--color-teal-800` / `teal-950` | `#1e40af` / `#172554` | Dark feature sections |
+| `--color-sage` / `sage-soft` | `#60a5fa` / `#eff6ff` | Soft accent tints |
+| `--color-emerald-*` | `#34d399` / `#10b981` / `#047857` | Verified/success accents |
+| `--color-amber-*` | `#fffbeb`-`#fef3c7` tints → `#92400e` / `#78350f` | Emergency notice only |
 | WhatsApp brand | `#1da851` / `#178f45` | Deepened from stock green to stay recognisable but not neon |
 
-The Tailwind utility palette used across the markup (`slate-*`, `teal-*`, `emerald-*`, `amber-*`, `white`) is **remapped in `@theme`** to the warm values above, so the entire site re-skins from tokens without touching markup.
+The Tailwind utility palette used across the markup (`slate-*`, `teal-*`, `emerald-*`, `amber-*`, `white`) is **remapped in `@theme`** to the cool values above, so the entire site re-skins from tokens without touching markup.
 
 ### 6.2 De-bubbled radii & quiet elevation
-- `--radius-xl` `0.3125rem` · `--radius-2xl` `0.375rem` · `--radius-3xl` `0.5rem` · `--radius-sm` `0.125rem` — crisp, print-like corners instead of 12-24px bubbles.
-- `--shadow-xs/sm/md/lg/xl` are warm (`rgba(27,31,29,…)`) and shallow: hairline separation, never floating glass panels.
+- `--radius-xl` `1rem` · `--radius-2xl` `1.25rem` · `--radius-3xl` `1.5rem` · `--radius-sm` `0.375rem` — crisp clinical corners.
+- `--shadow-xs/sm/md/lg/xl` are cool (`rgba(15,23,42,…)`) and shallow: hairline separation, never floating glass panels.
 
 ### 6.3 Buttons (solid, calm, editorial)
-`.btn` + variant `.btn-teal` · `.btn-charcoal` · `.btn-outline` · `.btn-quiet` · `.btn-whatsapp`, with `.btn-sm` / `.btn-lg` sizes.
+`.btn` + variant `.btn-teal` · `.btn-charcoal` · `.btn-outline` · `.btn-quiet` · `.btn-whatsapp` · `.btn-light` · `.btn-outline-light`, with `.btn-sm` / `.btn-lg` sizes.
 Flat fills, 1px borders, `radius-lg`, no glow shadows, no translate-on-hover, no backdrop blur. `box-shadow: none` is enforced so leftover utility shadows can never reintroduce glow. The legacy `btn-glass-*` names are kept as aliases so nothing breaks mid-migration.
 
 ### 6.4 Surfaces, cards & icon tiles
-- `.surface` / `.medical-card-enhanced`: warm white, 1px `slate-200` hairline, 6px radius, no resting shadow; hover only deepens the hairline to `slate-300` + `shadow-sm`.
+- `.surface` / `.medical-card-enhanced`: white, 1px `slate-200` hairline, 20px radius, no resting shadow; hover only deepens the hairline to `slate-300` + `shadow-sm`.
 - `.icon-badge-*`: hairline outlined squares with a deep-teal glyph (replaces filled colour chips).
 - Section headers use `.text-label` square tags (`rounded-sm`) instead of pill badges.
 
@@ -138,10 +139,10 @@ Flat fills, 1px borders, `radius-lg`, no glow shadows, no translate-on-hover, no
 - `.marquee-fade-l/r`: edge fades locked to `--color-cream` so they match the section surface exactly.
 
 ### 6.6 Section rhythm & containers
-- `.section` = `4.5rem` mobile / `6.5rem` md / `8rem` xl vertical padding; `.section-sm` = `3rem` / `4.5rem`.
+- `.section` = `3.5rem` mobile / `4.5rem` md / `5.5rem` xl vertical padding; `.section-sm` = `3rem` / `4.5rem`.
 - `.container-main` (78rem) and `.container-narrow` (46rem) replace ad-hoc `max-w-* px-*` combos for consistent gutters.
-- Backgrounds alternate on purpose: ivory hero → deep teal stats → cream → warm white → cream → warm white → charcoal CTA.
-- `.hero-wash`: single quiet radial over ivory - depth without a gradient stack.
+- Backgrounds alternate on purpose: white clinical hero → `teal-50` stats band → white services → `cream` doctor profile → `slate-50` reviews → white location/map → white booking CTA → charcoal footer.
+- `.hero-wash`: one quiet blue radial over white - depth without a gradient stack.
 - `.rule`: 1px `--color-beige` divider when a section needs separation without a surface change.
 
 ### 6.7 Deliberately avoided

@@ -4,6 +4,9 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
+import AppointmentModal from '../components/AppointmentModal.astro';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout
@@ -13,11 +16,12 @@ import MobileActionBar from '../components/MobileActionBar.astro';
   title="Page Not Found (404) | Dr. Rajib Das Neurology Clinic"
   description="The requested page could not be found. Return to Dr. Rajib Das Neurology Clinic home or book a consultation."
   currentPage="/404"
+  noindex
 >
   <Navbar currentPage="/404" />
 
   <main id="main-content" class="min-h-[60vh] flex items-center justify-center section bg-slate-50">
-    <div class="max-w-md mx-auto px-4 text-center">
+    <div class="container-narrow text-center">
       <span class="inline-block text-label px-3 py-1 rounded-sm border border-teal-200 mb-3">
         Error 404
       </span>
@@ -28,16 +32,10 @@ import MobileActionBar from '../components/MobileActionBar.astro';
         The page you are looking for might have been moved, renamed, or is temporarily unavailable.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5">
-        <a
-          href="/"
-          class="btn btn-teal w-full sm:w-auto"
-        >
+        <a href={base} class="btn btn-teal w-full sm:w-auto">
           Return to Home
         </a>
-        <a
-          href="/contact"
-          class="btn btn-outline w-full sm:w-auto"
-        >
+        <a href={`${base}contact`} class="btn btn-outline w-full sm:w-auto">
           Contact Clinic
         </a>
       </div>
@@ -46,4 +44,6 @@ import MobileActionBar from '../components/MobileActionBar.astro';
 
   <Footer />
   <MobileActionBar />
+  <!-- Without this, the "Book Consultation" buttons in the header do nothing. -->
+  <AppointmentModal />
 </Layout>

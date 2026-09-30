@@ -55,7 +55,8 @@ const reviews = [
 ];
 ---
 
-<section class="section bg-slate-50 border-t border-slate-200" aria-label="Patient Reviews">
+<section id="reviews" class="section bg-slate-50 border-t border-slate-200" aria-label="Patient Reviews">
+
   <div class="container-main">
     
     <!-- Header -->
@@ -69,7 +70,14 @@ const reviews = [
     </div>
 
     <!-- Reviews Carousel -->
-    <div class="reviews-carousel relative" data-carousel>
+    <div
+      class="reviews-carousel relative"
+      data-carousel
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Patient reviews"
+      tabindex="0"
+    >
       <div class="reviews-track overflow-hidden" data-track>
         <div class="reviews-slider flex transition-transform duration-500 ease-out" data-slider>
           {reviews.map((rev, i) => (
@@ -99,12 +107,12 @@ const reviews = [
 
       <!-- Carousel Controls -->
       <div class="flex items-center justify-center gap-4 mt-8">
-        <button class="review-prev w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-500 hover:border-teal-600 hover:text-teal-700 transition-colors" aria-label="Previous reviews" data-prev>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        <button type="button" class="review-prev w-11 h-11 rounded-full border border-slate-300 flex items-center justify-center text-slate-500 hover:border-teal-600 hover:text-teal-700 transition-colors" aria-label="Previous reviews" data-prev>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         </button>
-        <div class="flex items-center gap-2" data-dots></div>
-        <button class="review-next w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-500 hover:border-teal-600 hover:text-teal-700 transition-colors" aria-label="Next reviews" data-next>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="flex items-center" data-dots></div>
+        <button type="button" class="review-next w-11 h-11 rounded-full border border-slate-300 flex items-center justify-center text-slate-500 hover:border-teal-600 hover:text-teal-700 transition-colors" aria-label="Next reviews" data-next>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
@@ -113,62 +121,121 @@ const reviews = [
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const carousel = document.querySelector('[data-carousel]');
-    if (!carousel) return;
+  // Runs after the deferred module executes, so the markup already exists.
+  const carousel = document.querySelector<HTMLElement>('[data-carousel]');
 
-    const slider = carousel.querySelector('[data-slider]') as HTMLElement;
-    const slides = carousel.querySelectorAll('[data-slide]');
-    const dotsContainer = carousel.querySelector('[data-dots]');
-    const prevBtn = carousel.querySelector('[data-prev]');
-    const nextBtn = carousel.querySelector('[data-next]');
+  if (carousel) {
+    const slider = carousel.querySelector<HTMLElement>('[data-slider]');
+    const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[data-slide]'));
+    const dotsContainer = carousel.querySelector<HTMLElement>('[data-dots]');
+    const prevBtn = carousel.querySelector<HTMLButtonElement>('[data-prev]');
+    const nextBtn = carousel.querySelector<HTMLButtonElement>('[data-next]');
 
-    if (!slider || slides.length === 0) return;
+    if (slider && slides.length > 0) {
+      let currentIndex = 0;
+      let slidesPerView = 1;
 
-    let currentIndex = 0;
-    let slidesPerView = 1;
+      const totalPages = () => Math.max(1, Math.ceil(slides.length / slidesPerView));
 
-    function updateSlidesPerView() {
-      if (window.innerWidth >= 1024) slidesPerView = 3;
-      else if (window.innerWidth >= 768) slidesPerView = 2;
-      else slidesPerView = 1;
-    }
-
-    function totalPages() {
-      return Math.ceil(slides.length / slidesPerView);
-    }
-
-    function goTo(index: number) {
-      const maxIndex = totalPages() - 1;
-      currentIndex = Math.max(0, Math.min(index, maxIndex));
-      const slideWidth = (slides[0] as HTMLElement).offsetWidth;
-      slider.style.transform = `translateX(-${currentIndex * slidesPerView * slideWidth}px)`;
-      updateDots();
-    }
-
-    function updateDots() {
-      if (!dotsContainer) return;
-      dotsContainer.innerHTML = '';
-      const pages = totalPages();
-      for (let i = 0; i < pages; i++) {
-        const dot = document.createElement('button');
-        dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-teal-700 w-6' : 'bg-slate-300'}`;
-        dot.setAttribute('aria-label', `Page ${i + 1}`);
-        dot.addEventListener('click', () => goTo(i));
-        dotsContainer.appendChild(dot);
+      function updateSlidesPerView() {
+        if (window.innerWidth >= 1024) slidesPerView = 3;
+        else if (window.innerWidth >= 768) slidesPerView = 2;
+        else slidesPerView = 1;
       }
+
+      function updateControls() {
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex >= totalPages() - 1;
+        if (!dotsContainer) return;
+        Array.from(dotsContainer.children).forEach((child, i) => {
+          const dot = child.querySelector<HTMLElement>('[data-dot-visual]');
+          if (!dot) return;
+          const active = i === currentIndex;
+          dot.style.width = active ? '1.5rem' : '0.5rem';
+          dot.style.backgroundColor = active
+            ? 'var(--color-teal-700)'
+            : 'var(--color-slate-300)';
+          child.setAttribute('aria-current', active ? 'true' : 'false');
+        });
+      }
+
+      function goTo(index: number) {
+        currentIndex = Math.max(0, Math.min(index, totalPages() - 1));
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        slider!.style.transform = `translateX(-${currentIndex * slidesPerView * slideWidth}px)`;
+        updateControls();
+      }
+
+      function buildDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalPages(); i++) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          // Generous padding keeps the tap target usable on touch screens.
+          btn.className = 'p-3 bg-transparent border-0 cursor-pointer flex items-center justify-center';
+          btn.setAttribute('aria-label', `Go to reviews page ${i + 1}`);
+
+          const dot = document.createElement('span');
+          dot.setAttribute('data-dot-visual', '');
+          dot.className = 'block h-2 rounded-full transition-all duration-300';
+          dot.style.width = '0.5rem';
+          dot.style.backgroundColor = 'var(--color-slate-300)';
+
+          btn.appendChild(dot);
+          btn.addEventListener('click', () => goTo(i));
+          dotsContainer.appendChild(btn);
+        }
+      }
+
+      function refresh() {
+        updateSlidesPerView();
+        buildDots();
+        goTo(Math.min(currentIndex, totalPages() - 1));
+      }
+
+      refresh();
+
+      prevBtn?.addEventListener('click', () => goTo(currentIndex - 1));
+      nextBtn?.addEventListener('click', () => goTo(currentIndex + 1));
+
+      // Keyboard support (the carousel region itself is focusable).
+      carousel.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          goTo(currentIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          goTo(currentIndex + 1);
+        }
+      });
+
+      // Touch / pointer swipe.
+      let startX = 0;
+      let isDragging = false;
+
+      carousel.addEventListener('pointerdown', (e) => {
+        if (e.pointerType === 'mouse') return;
+        isDragging = true;
+        startX = e.clientX;
+      });
+
+      const endDrag = (e: PointerEvent) => {
+        if (!isDragging) return;
+        isDragging = false;
+        const delta = e.clientX - startX;
+        if (Math.abs(delta) > 40) goTo(delta < 0 ? currentIndex + 1 : currentIndex - 1);
+      };
+      carousel.addEventListener('pointerup', endDrag);
+      carousel.addEventListener('pointercancel', () => {
+        isDragging = false;
+      });
+
+      let resizeTimer: number | undefined;
+      window.addEventListener('resize', () => {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(refresh, 150);
+      });
     }
-
-    updateSlidesPerView();
-    updateDots();
-
-    prevBtn?.addEventListener('click', () => goTo(currentIndex - 1));
-    nextBtn?.addEventListener('click', () => goTo(currentIndex + 1));
-
-    window.addEventListener('resize', () => {
-      updateSlidesPerView();
-      goTo(Math.min(currentIndex, totalPages() - 1));
-    });
-  });
+  }
 </script>
-

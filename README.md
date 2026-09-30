@@ -1,43 +1,37 @@
-# Astro Starter Kit: Minimal
+# Dr. Rajib Das Neurological Clinic — Demo Website
 
-```sh
-npm create astro@latest -- --template minimal
-```
+A fast, mobile-first Astro + Tailwind CSS v4 demo site for a neurology clinic:
+Home, Doctor Profile, Services & Diagnostics, Contact & Booking, branded 404,
+sitemap, and an installable web-app manifest.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Commands
 
-## 🚀 Project Structure
+| Command | Action |
+|---|---|
+| `npm install` | Install dependencies |
+| `npm run dev` | Local dev server at `localhost:4321` |
+| `npm run build` | Production build into `./dist/` |
+| `npm run preview` | Preview the production build locally |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Hosting / sub-path deploys
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+The site is served from `/` locally and from `/demo-website-medical-clinic/`
+on GitHub Pages. `astro.config.mjs` reads the `DEPLOY_BASE` env var (see
+`.github/workflows/deploy.yml`); every internal link, asset, the manifest and
+the sitemap derive from it automatically — do not hardcode root-absolute
+paths in pages.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Conventions
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- Clinic data (phone, WhatsApp, address, hours, map links) lives in
+  `src/constants/clinic.ts` — pages and components must import from there.
+- Design tokens live in `src/styles/global.css` (`@theme` + `@layer utilities`);
+  the full spec is documented in `DESIGN.md`.
+- Mobile-first: the bottom action bar (<768px) plus the hamburger panel
+  (below `xl`) cover small screens; sticky-header anchor offsets, iOS
+  safe-area padding and a 16px mobile form font size are baked into the CSS.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Analytics (optional)
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Set `PUBLIC_PLAUSIBLE_DOMAIN` or `PUBLIC_GA4_ID` as env vars to enable
+analytics. GA4 only loads after consent when `enableConsentBanner` is on.

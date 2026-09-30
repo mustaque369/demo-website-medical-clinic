@@ -1,9 +1,11 @@
 <!--
-  Main layout with SEO, meta tags, and analytics
+  Main layout: SEO/meta/PWA tags, structured data, analytics, scroll-reveal.
 -->
 ---
 import "../styles/global.css";
 import Analytics from "../components/Analytics.astro";
+import { CLINIC } from "../constants/clinic";
+import { defaultDescription, defaultTitle, ogImage, siteName, themeColor } from "../constants/seo";
 
 interface Props {
   title?: string;
@@ -12,39 +14,100 @@ interface Props {
   plausibleDomain?: string;
   ga4Id?: string;
   enableConsentBanner?: boolean;
+  /** Set on utility pages (404) so search engines keep them out of the index. */
+  noindex?: boolean;
 }
 
 const {
-  title = "Dr. Rajib Das, MBBS, MD (Neurology) | Neurologist & Brain Specialist",
-  description = "Expert neurological care by Dr. Rajib Das, MBBS, MD (Neurology). Specialized treatment for Stroke, Migraine, Epilepsy, Parkinson&apos;s, Nerve Pain, EEG & EMG diagnostics. Book appointment or WhatsApp today.",
+  title = defaultTitle,
+  description = defaultDescription,
   currentPage = "/",
   plausibleDomain,
   ga4Id,
   enableConsentBanner = false,
+  noindex = false,
 } = Astro.props;
 
-const clinicPhone = "+91 98765 43210";
-// Canonical URL aware of DEPLOY_BASE: Astro.url.pathname already includes the base.
+// BASE_URL is "/" locally and "/<repo>/" on GitHub Pages, so every asset and
+// internal link must be prefixed with it.
+const base = import.meta.env.BASE_URL;
 const siteOrigin = Astro.site ? Astro.site.origin : "https://mustaque369.github.io";
+// Astro.url.pathname already includes the deploy base.
 const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
-const ogImageURL = "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1200&h=630&q=80";
+const ogImageURL = ogImage;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  name: CLINIC.doctor.name,
+  medicalSpecialty: "Neurology",
+  description,
+  url: canonicalURL.href,
+  image: ogImageURL,
+  telephone: CLINIC.phone,
+  email: CLINIC.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: CLINIC.address.line1,
+    addressLocality: CLINIC.address.city,
+    addressRegion: CLINIC.address.state,
+    postalCode: CLINIC.address.postalCode,
+    addressCountry: CLINIC.address.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: CLINIC.coordinates.latitude,
+    longitude: CLINIC.coordinates.longitude,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "09:00",
+      closes: "19:00",
+    },
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: CLINIC.reviewStats.rating,
+    reviewCount: "248",
+  },
+};
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- viewport-fit=cover enables env(safe-area-inset-*) on notched devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="icon" href={`${base}favicon.ico`} sizes="any" />
+    <link rel="apple-touch-icon" href={`${base}favicon.svg`} />
+    <link rel="manifest" href={`${base}manifest.webmanifest`} />
     <meta name="generator" content={Astro.generator} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content={CLINIC.doctor.name} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Google Fonts: Plus Jakarta Sans (sans UI) + Spectral (editorial serif headings, weights 300-600) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- Mobile web-app behaviour (Android / iOS home-screen installs) -->
+    <meta name="theme-color" content={themeColor} />
+    <meta name="color-scheme" content="light" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content={CLINIC.doctor.name} />
+    <meta name="format-detection" content="telephone=yes" />
+
+    <!-- Google Fonts: Inter (UI sans) + Lora (editorial serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- No-JS fallback: scroll-reveal starts at opacity 0, so without JavaScript
          every .reveal section would stay invisible. Force them visible instead. -->
@@ -57,58 +120,24 @@ const ogImageURL = "https://images.unsplash.com/photo-1622253692010-333f2da6031d
       </style>
     </noscript>
 
-
-    <!-- Open Graph / Meta -->
+    <!-- Open Graph / Twitter -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content="Dr. Rajib Das Neurological Clinic" />
+    <meta property="og:site_name" content={siteName} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:alt" content={`${CLINIC.doctor.name}, ${CLINIC.doctor.qualifications}`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
-    <meta name="theme-color" content="#0c4a8a" />
 
-    <!-- Schema.org JSON-LD for Medical Business & Physician -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Physician",
-      "name": "Dr. Rajib Das",
-      "medicalSpecialty": "Neurology",
-      "description": description,
-      "url": canonicalURL,
-      "telephone": clinicPhone,
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Suite 402, Apex Neurosciences Center, Park View Medical Enclave",
-        "addressLocality": "Metro City",
-        "addressRegion": "State",
-        "postalCode": "700001",
-        "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "22.5726",
-        "longitude": "88.3639"
-      },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "09:00",
-          "closes": "19:00"
-        }
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "248"
-      }
-    })} />
+    <!-- Schema.org JSON-LD for the clinic & physician -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <!-- Analytics -->
     <Analytics
@@ -117,12 +146,15 @@ const ogImageURL = "https://images.unsplash.com/photo-1622253692010-333f2da6031d
       enableConsentBanner={enableConsentBanner}
     />
   </head>
-  <body class="bg-white text-slate-700 antialiased flex flex-col min-h-screen pb-16 md:pb-0 font-sans selection:bg-blue-600 selection:text-white">
+  <body
+    class="page-with-mobile-bar bg-white text-slate-700 antialiased flex flex-col min-h-screen font-sans selection:bg-teal-700 selection:text-white"
+    data-page={currentPage}
+  >
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <slot />
     <script>
       // Scroll-reveal: adds .is-revealed to .reveal elements as they enter view.
-      // Skips animation entirely for reduced-motion users (CSS also neutralizes it).
+      // Skipped entirely for reduced-motion users (CSS also neutralises it).
       const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const revealEls = document.querySelectorAll<HTMLElement>(".reveal, .cine-statement");
       if (prefersReduced || !("IntersectionObserver" in window)) {
@@ -144,5 +176,3 @@ const ogImageURL = "https://images.unsplash.com/photo-1622253692010-333f2da6031d
     </script>
   </body>
 </html>
-
-

@@ -1,10 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="16" fill="#0B192C"/>
-  <circle cx="32" cy="32" r="24" stroke="#0284C7" stroke-width="2" stroke-opacity="0.4"/>
-  <path d="M32 18C27 18 23 21 23 25C20.5 25.5 18 28 18 31C18 34.5 20.5 37 23 37.5C23 41.5 26.5 45 31 45.5V47H33V45.5C37.5 45 41 41.5 41 37.5C43.5 37 46 34.5 46 31C46 28 43.5 25.5 41 25C41 21 37 18 32 18Z" fill="#0284C7" fill-opacity="0.2" stroke="#00A896" stroke-width="2.5" stroke-linejoin="round"/>
-  <circle cx="32" cy="28" r="2.5" fill="#38BDF8"/>
-  <circle cx="27" cy="34" r="2.5" fill="#38BDF8"/>
-  <circle cx="37" cy="34" r="2.5" fill="#38BDF8"/>
-  <circle cx="32" cy="40" r="2" fill="#38BDF8"/>
-  <path d="M32 28L27 34M32 28L37 34M27 34L32 40M37 34L32 40" stroke="#38BDF8" stroke-width="1.5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Dr. Rajib Das Neurological Clinic">
+  <rect width="64" height="64" rx="14" fill="#0c4a8a"/>
+  <g transform="translate(8 8) scale(2)" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2C9.5 2 7.5 3.5 7 5.5C5.5 5.8 4 7.5 4 9.5C4 11 4.8 12.3 6 13C5.7 14 6 15.5 7.5 16.5C7.3 17.5 7.8 19 9.5 19.5C10 21 11 22 12 22C13 22 14 21 14.5 19.5C16.2 19 16.7 17.5 16.5 16.5C18 15.5 18.3 14 18 13C19.2 12.3 20 11 20 9.5C20 7.5 18.5 5.8 17 5.5C16.5 3.5 14.5 2 12 2Z"/>
+    <path d="M12 2V22"/>
+    <path d="M8 8C9.5 9 10 11 10 13"/>
+    <path d="M16 8C14.5 9 14 11 14 13"/>
+  </g>
 </svg>

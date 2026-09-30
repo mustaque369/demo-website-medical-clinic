@@ -7,16 +7,21 @@ const phoneHref = CLINIC.phoneHref;
 const whatsapp = CLINIC.whatsappUrl;
 ---
 
-<!-- Persistent Mobile Action Bar -->
-<div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 px-3 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]" role="region" aria-label="Quick contact actions">
+<!-- Persistent mobile action bar (thumb-reachable primary actions).
+     Bottom padding respects the iOS home-indicator safe area. -->
+<div
+  class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-slate-200 shadow-[0_-4px_20px_rgba(15,23,42,0.08)] px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]"
+  role="region"
+  aria-label="Quick contact actions"
+>
   <div class="grid grid-cols-3 gap-2 max-w-md mx-auto">
-    
+
     <a
       href={phoneHref}
       class="flex flex-col items-center justify-center gap-1 py-2 px-2 rounded-xl text-slate-700 active:bg-slate-100 transition-colors"
-      aria-label="Call the clinic"
+      aria-label={`Call the clinic at ${CLINIC.phone}`}
     >
-      <PhoneIcon class="w-5 h-5 text-[#0c4a8a]" />
+      <PhoneIcon class="w-5 h-5 text-teal-700" />
       <span class="text-[11px] font-semibold">Call</span>
     </a>
 
@@ -24,17 +29,18 @@ const whatsapp = CLINIC.whatsappUrl;
       href={whatsapp}
       target="_blank"
       rel="noopener noreferrer"
-      class="flex flex-col items-center justify-center gap-1 py-2 px-2 rounded-xl text-slate-700 active:bg-green-50 transition-colors"
-      aria-label="WhatsApp the clinic"
+      class="flex flex-col items-center justify-center gap-1 py-2 px-2 rounded-xl text-slate-700 active:bg-emerald-500/10 transition-colors"
+      aria-label="Message the clinic on WhatsApp"
     >
-      <WhatsAppIcon class="w-5 h-5 text-[#25D366]" />
+      <WhatsAppIcon class="w-5 h-5 whatsapp-color" />
       <span class="text-[11px] font-semibold">WhatsApp</span>
     </a>
 
     <button
+      type="button"
       data-open-modal="booking"
-      class="flex flex-col items-center justify-center gap-1 py-2 px-2 rounded-xl bg-[#0c4a8a] text-white active:bg-[#0a3a6a] transition-colors"
-      aria-label="Book consultation"
+      class="flex flex-col items-center justify-center gap-1 py-2 px-2 rounded-xl bg-teal-700 text-white active:bg-teal-800 transition-colors"
+      aria-label="Book a consultation"
     >
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>

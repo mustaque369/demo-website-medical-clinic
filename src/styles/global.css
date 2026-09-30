@@ -1,10 +1,10 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 @theme {
-  /* Neutral Warm Medical Clinic Palette (Sage / Slate / Deep Hospital Teal) */
-  --color-medical-teal: #0c4a8a;        /* Deep Hospital Teal / Sage primary */
-  --color-medical-teal-dark: #0a3d72;   /* Hover teal */
-  --color-medical-teal-light: #eff6ff;  /* Subtle tinted teal surface */
+  /* Clinical blue/slate palette (remapped Tailwind scales below). */
+  --color-medical-teal: #0c4a8a;        /* Primary brand blue (--color-teal-deep) */
+  --color-medical-teal-dark: #0a3d72;   /* Hover */
+  --color-medical-teal-light: #eff6ff;  /* Subtle tinted surface */
   --color-medical-navy: #0f172a;        /* High-contrast headings */
   --color-medical-slate: #334155;       /* Refined text */
   --color-medical-bg: #ffffff;          /* Ultra clean clinical light */
@@ -43,7 +43,7 @@
 
   /* ==========================================================
      RESTRAINED CLINICAL PALETTE
-     warm ivory · cream · beige · deep charcoal · muted teal · sage
+     white · cool cream · slate · deep navy · brand blue · softened blue
      ========================================================== */
   --color-ivory: #ffffff;
   --color-cream: #f5f9ff;
@@ -229,8 +229,8 @@
   }
 
   /* Marquee edge fades bound to the cream surface */
-  .marquee-fade-l { background: linear-gradient(to right, var(--color-cream) 22%, rgba(244, 239, 230, 0)); }
-  .marquee-fade-r { background: linear-gradient(to left, var(--color-cream) 22%, rgba(244, 239, 230, 0)); }
+  .marquee-fade-l { background: linear-gradient(to right, var(--color-cream) 22%, rgba(245, 249, 255, 0)); }
+  .marquee-fade-r { background: linear-gradient(to left, var(--color-cream) 22%, rgba(245, 249, 255, 0)); }
 
   /* ==========================================================
      SECTION RHYTHM — generous, consistent whitespace
@@ -325,6 +325,29 @@
     color: var(--color-charcoal);
   }
   .btn.btn-quiet:hover { background-color: var(--color-beige); }
+
+  /* Variants for dark surfaces (dark CTA strips / slate-900 sections).
+     Charcoal-on-dark was previously unreadable. */
+  .btn.btn-light {
+    background-color: var(--color-white);
+    border-color: var(--color-white);
+    color: var(--color-charcoal);
+  }
+  .btn.btn-light:hover {
+    background-color: var(--color-beige-soft);
+    border-color: var(--color-beige-soft);
+    color: var(--color-charcoal);
+  }
+  .btn.btn-outline-light {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.55);
+    color: var(--color-white);
+  }
+  .btn.btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: var(--color-white);
+    color: var(--color-white);
+  }
   .btn.btn-whatsapp, .btn.btn-glass-whatsapp, .btn-glass-whatsapp.btn-glass-whatsapp {
     background-color: #1da851;
     border-color: #1da851;
@@ -373,7 +396,7 @@
   }
   /* ==========================================================
      EDITORIAL TYPOGRAPHY SYSTEM
-     Spectral (serif) for headings · Plus Jakarta Sans for UI text
+     Lora (serif) for headings & numerals · Inter for UI/body text
      ========================================================== */
 
   /* Display & major headings — measured editorial weight */
@@ -1851,9 +1874,6 @@
     color: var(--color-graphite);
   }
 
-}
-
-
   /* ==========================================================
      CONVERSION SECTION — bottom CTA
      ========================================================== */
@@ -2022,11 +2042,16 @@
     font-weight: 400;
   }
 
-  /* Desktop Links */
+  /* Desktop Links — display is owned here (not by a utility class) so that
+     `hidden`-style utilities in the markup can never fight this rule.
+     Shown from xl: below that the header would overflow with 6 links + CTA. */
   .nav-links {
-    display: flex;
+    display: none;
     align-items: center;
-    gap: 1.75rem;
+    gap: 1.5rem;
+  }
+  @media (min-width: 1280px) {
+    .nav-links { display: flex; }
   }
 
   .nav-link {
@@ -2036,8 +2061,9 @@
     color: var(--color-graphite);
     text-decoration: none;
     transition: color 200ms ease;
-    padding: 0.5rem 0;
+    padding: 0.75rem 0.125rem;
     position: relative;
+    white-space: nowrap;
   }
   .nav-link:hover {
     color: var(--color-charcoal);
@@ -2076,6 +2102,10 @@
     transition: background-color 200ms ease, box-shadow 200ms ease;
     white-space: nowrap;
   }
+  .nav-cta-btn.btn-lg {
+    padding: 0.9375rem 1.875rem;
+    font-size: var(--type-body);
+  }
   .nav-cta-btn:hover {
     background-color: var(--color-teal-800);
     box-shadow: 0 4px 12px rgba(12, 74, 138, 0.25);
@@ -2085,11 +2115,14 @@
     outline-offset: 2px;
   }
 
-  /* Actions */
+  /* Actions — visible from sm (tablet and up) */
   .nav-actions {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 0.75rem;
+  }
+  @media (min-width: 640px) {
+    .nav-actions { display: flex; }
   }
 
   /* Mobile */
@@ -2103,16 +2136,33 @@
   }
 
   .nav-mobile-menu {
-    background-color: #ffffff;
+    background-color: var(--color-white);
     border-bottom: 1px solid var(--color-beige);
     padding: 0;
+    /* Never let the panel run past the viewport on short/landscape phones. */
+    max-height: calc(100dvh - 4.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .nav-mobile-inner {
-    padding: 1.5rem 1.5rem 2.5rem 1.5rem;
+    /* Bottom padding clears the fixed mobile action bar. */
+    padding: 1.5rem 1.5rem 6.5rem 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+  }
+  @media (min-width: 768px) {
+    .nav-mobile-inner { padding-bottom: 2.5rem; }
+  }
+
+  .nav-mobile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-beige);
   }
 
   .nav-mobile-link {
@@ -2218,6 +2268,8 @@
   }
 
   .footer-list a {
+    display: inline-block;
+    padding-block: 0.25rem;
     font-family: var(--font-sans);
     font-size: var(--type-body-sm);
     color: var(--color-mist);
@@ -2284,6 +2336,7 @@
   @media (min-width: 768px) {
     .footer-bottom { text-align: center; }
   }
+} /* end @layer utilities */
 
 @layer base {
   /* Skip link — first tab stop, visible only on focus */
@@ -2304,11 +2357,11 @@
     top: 0;
   }
 
-  /* Consistent visible keyboard focus everywhere */
+  /* Consistent visible keyboard focus everywhere.
+     Note: no border-radius here — it used to reshape every focused element. */
   :focus-visible {
     outline: 2px solid var(--color-teal-deep);
     outline-offset: 2px;
-    border-radius: 4px;
   }
 
   /* Hide Safari's native details marker */
@@ -2318,30 +2371,72 @@
   summary {
     list-style: none;
   }
+}
 
-  }
+/* ==========================================================
+   RESPONSIVE / DEVICE FOUNDATIONS
+   (unlayered on purpose: these are defensive overrides)
+   ========================================================== */
 
-/* --- Small tablet --- */
-@media (min-width: 640px) and (max-width: 767px) {
-  .hero-clinical h1 {
-    font-size: clamp(2rem, 5vw, 2.75rem) !important;
-  }
-  .h-\[500px\] {
-    height: 380px !important;
+/* Anchor links must not land underneath the sticky header. */
+html {
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* iOS Safari auto-zooms any focused form control below 16px. */
+@media (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
   }
 }
 
-/* --- Tablet --- */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .hero-clinical h1 {
-    font-size: clamp(2.25rem, 4.5vw, 3rem) !important;
+/* Reserve room for the fixed mobile action bar (incl. iOS safe area). */
+.page-with-mobile-bar {
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 768px) {
+  .page-with-mobile-bar {
+    padding-bottom: 0;
   }
 }
 
-/* Prevent horizontal overflow */
-html, body {
+/* Belt-and-braces against accidental horizontal scroll.
+   `clip` is preferred over `hidden` because it does not create a
+   scroll container (which can break position: sticky). */
+html,
+body {
   overflow-x: hidden;
 }
+@supports (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+/* Honour the OS "reduce motion" setting for every decorative animation. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal,
+  .cine-statement {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 
 
 

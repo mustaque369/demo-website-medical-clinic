@@ -5,7 +5,11 @@ interface Props {
   enableConsentBanner?: boolean;
 }
 
-const { plausibleDomain, ga4Id, enableConsentBanner } = Astro.props;
+const { plausibleDomain, ga4Id, enableConsentBanner = false } = Astro.props;
+
+// A consent gate is only meaningful when there is actually a GA4 property to
+// gate, otherwise the demo site would nag visitors for nothing.
+const requiresConsent = Boolean(enableConsentBanner && ga4Id);
 ---
 
 {plausibleDomain && (
@@ -16,19 +20,84 @@ const { plausibleDomain, ga4Id, enableConsentBanner } = Astro.props;
   />
 )}
 
-{ga4Id && (
+{ga4Id && !requiresConsent && (
   <>
-    <script
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
-    />
-    <script is:inline>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`} />
+    <script is:inline define:vars={{ ga4Id }}>
       window.dataLayer = window.dataLayer || [];
-      function gtag(...args: unknown[]) {
-        window.dataLayer.push(args);
-      }
+      function gtag() { window.dataLayer.push(arguments); }
       gtag('js', new Date());
       gtag('config', ga4Id);
+    </script>
+  </>
+)}
+
+{requiresConsent && (
+  <>
+    <div
+      id="analytics-consent"
+      class="hidden fixed inset-x-0 bottom-0 z-[60] bg-white border-t border-slate-200 shadow-lg px-4 py-4"
+      role="region"
+      aria-label="Analytics consent"
+    >
+      <div class="container-main flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6">
+        <p class="text-body-sm text-slate-600 flex-1">
+          We use privacy-friendly analytics to understand how patients find our clinic information.
+          You can accept or decline — the site works either way.
+        </p>
+        <div class="flex gap-2.5 shrink-0">
+          <button type="button" id="analytics-decline" class="btn btn-outline btn-sm">Decline</button>
+          <button type="button" id="analytics-accept" class="btn btn-teal btn-sm">Accept</button>
+        </div>
+      </div>
+    </div>
+    <script is:inline define:vars={{ ga4Id }}>
+      (function () {
+        var STORAGE_KEY = 'analytics-consent';
+        var banner = document.getElementById('analytics-consent');
+
+        function loadAnalytics() {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { window.dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', ga4Id);
+        }
+
+        var stored = null;
+        try {
+          stored = window.localStorage.getItem(STORAGE_KEY);
+        } catch (err) {
+          stored = null;
+        }
+
+        if (stored === 'granted') {
+          loadAnalytics();
+          return;
+        }
+        if (stored === 'denied') return;
+        if (banner) banner.classList.remove('hidden');
+
+        function decide(value) {
+          try {
+            window.localStorage.setItem(STORAGE_KEY, value);
+          } catch (err) {
+            /* storage blocked — fall back to session-only behaviour */
+          }
+          if (banner) banner.classList.add('hidden');
+          if (value === 'granted') loadAnalytics();
+        }
+
+        document.getElementById('analytics-accept')?.addEventListener('click', function () {
+          decide('granted');
+        });
+        document.getElementById('analytics-decline')?.addEventListener('click', function () {
+          decide('denied');
+        });
+      })();
     </script>
   </>
 )}

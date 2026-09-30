@@ -36,8 +36,8 @@ const whatsapp = CLINIC.whatsappUrl;
         </div>
       </a>
 
-      <!-- Desktop Links -->
-      <nav class="nav-links hidden lg:flex" aria-label="Primary">
+      <!-- Desktop Links (visible from xl; CSS owns the display so utilities can't fight it) -->
+      <nav class="nav-links" aria-label="Primary">
         {NAV_LINKS.map((link) => {
           const isActive = currentPage === link.href || (link.href !== '/' && currentPage.startsWith(link.href));
           return (
@@ -53,8 +53,8 @@ const whatsapp = CLINIC.whatsappUrl;
       </nav>
 
       <!-- Desktop Actions -->
-      <div class="nav-actions hidden sm:flex">
-        <button data-open-modal="booking" class="nav-cta-btn">
+      <div class="nav-actions">
+        <button type="button" data-open-modal="booking" class="nav-cta-btn">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
           </svg>
@@ -64,7 +64,14 @@ const whatsapp = CLINIC.whatsappUrl;
       </div>
 
       <!-- Mobile Toggle -->
-      <button type="button" id="mobile-menu-btn" class="nav-mobile-toggle flex lg:hidden" aria-label="Menu" aria-expanded="false">
+      <button
+        type="button"
+        id="mobile-menu-btn"
+        class="nav-mobile-toggle flex xl:hidden"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
         <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
@@ -77,7 +84,7 @@ const whatsapp = CLINIC.whatsappUrl;
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="nav-mobile-menu hidden lg:hidden">
+  <div id="mobile-menu" class="nav-mobile-menu hidden xl:hidden">
     <div class="nav-mobile-inner">
       {NAV_LINKS.map((link) => {
         const isActive = currentPage === link.href || (link.href !== '/' && currentPage.startsWith(link.href));
@@ -86,6 +93,7 @@ const whatsapp = CLINIC.whatsappUrl;
             href={`${import.meta.env.BASE_URL}${link.href.replace(/^\//, '')}`}
             aria-current={isActive ? "page" : undefined}
             class={`nav-mobile-link ${isActive ? 'is-active' : ''}`}
+            data-nav-link
           >
             {link.label}
           </a>
@@ -101,7 +109,7 @@ const whatsapp = CLINIC.whatsappUrl;
           <WhatsAppIcon class="w-4 h-4" />
           WhatsApp
         </a>
-        <button data-open-modal="booking" class="nav-cta-btn w-full justify-center">
+        <button type="button" data-open-modal="booking" class="nav-cta-btn w-full justify-center">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
           </svg>
@@ -116,21 +124,38 @@ const whatsapp = CLINIC.whatsappUrl;
   const menuBtn = document.getElementById("mobile-menu-btn");
   const menu = document.getElementById("mobile-menu");
   const hamburger = document.getElementById("hamburger-icon");
-  const close = document.getElementById("close-icon");
+  const closeIcon = document.getElementById("close-icon");
 
-  if (menuBtn && menu && hamburger && close) {
-    menuBtn.addEventListener("click", () => {
-      const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
-      menuBtn.setAttribute("aria-expanded", String(!isExpanded));
-      if (isExpanded) {
-        menu.classList.add("hidden");
-        hamburger.classList.remove("hidden");
-        close.classList.add("hidden");
-      } else {
-        menu.classList.remove("hidden");
-        hamburger.classList.add("hidden");
-        close.classList.remove("hidden");
+  if (menuBtn && menu && hamburger && closeIcon) {
+    const isOpen = () => menuBtn.getAttribute("aria-expanded") === "true";
+
+    function setOpen(open: boolean) {
+      menuBtn!.setAttribute("aria-expanded", String(open));
+      menuBtn!.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+      menu!.classList.toggle("hidden", !open);
+      hamburger!.classList.toggle("hidden", open);
+      closeIcon!.classList.toggle("hidden", !open);
+    }
+
+    menuBtn.addEventListener("click", () => setOpen(!isOpen()));
+
+    // Close after choosing a destination so the next page isn't left with an open panel.
+    menu.querySelectorAll("[data-nav-link]").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    // Escape always closes the panel (keyboard accessibility).
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen()) {
+        setOpen(false);
+        menuBtn.focus();
       }
+    });
+
+    // If the viewport grows past the mobile breakpoint, reset the panel state.
+    const desktopQuery = window.matchMedia("(min-width: 1280px)");
+    desktopQuery.addEventListener("change", (e) => {
+      if (e.matches) setOpen(false);
     });
   }
 </script>

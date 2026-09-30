@@ -1,133 +1,138 @@
-﻿---
+---
 import { CLINIC } from '../constants';
 import WhatsAppIcon from './icons/WhatsAppIcon.astro';
 
 const phone = CLINIC.phone;
 const phoneHref = CLINIC.phoneHref;
+// Today (ISO) so patients cannot request a date in the past.
+const today = new Date().toISOString().split('T')[0];
+const inputClass =
+  "w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 placeholder-slate-500 focus:bg-white focus:outline-none focus:border-teal-600";
 ---
 
 <div
   id="booking-modal"
-  class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 p-4 flex items-center justify-center"
+  class="fixed inset-0 z-50 hidden overflow-y-auto overscroll-contain bg-slate-900/60 p-3 sm:p-4"
   role="dialog"
   aria-modal="true"
   aria-labelledby="booking-modal-title"
 >
-  <div class="relative w-full max-w-lg bg-white rounded-3xl shadow-xl p-6 sm:p-7 text-slate-800 border border-slate-200">
-    
-    <button
-      id="close-modal-btn"
-      class="absolute top-4 right-4 text-slate-500 hover:text-slate-800 p-2 rounded-sm hover:bg-slate-100 transition"
-      aria-label="Close appointment dialog"
-    >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
-    </button>
-
-    <div class="mb-4">
-      <span class="text-label px-2.5 py-1 rounded-sm border border-teal-200">
-        Direct Scheduling
-      </span>
-      <h3 id="booking-modal-title" class="text-h3 mt-1.5 text-slate-900">Request Doctor Consultation</h3>
-      <p class="text-caption text-slate-500 mt-1">Dr. Rajib Das, MBBS, MD (Neurology) • Senior Consultant Neurologist</p>
-    </div>
-
-    <form id="consult-modal-form" class="space-y-3.5">
-      <div>
-        <label for="modal-patient-name" class="block text-form-label mb-1.5">Patient Full Name *</label>
-        <input
-          type="text"
-          id="modal-patient-name"
-          name="patient-name"
-          required
-          autocomplete="name"
-          placeholder="e.g. Ramesh Chandra"
-          class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 placeholder-slate-500 focus:bg-white focus:outline-none focus:border-teal-600"
-        />
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div>
-          <label for="modal-phone" class="block text-form-label mb-1.5">Phone / WhatsApp *</label>
-          <input
-            type="tel"
-            id="modal-phone"
-            name="patient-phone"
-            required
-            autocomplete="tel"
-            placeholder="+91 98765 XXXXX"
-            class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 placeholder-slate-500 focus:bg-white focus:outline-none focus:border-teal-600"
-          />
-        </div>
-        <div>
-          <label for="modal-condition" class="block text-form-label mb-1.5">Neurological Concern *</label>
-          <select
-            id="modal-condition"
-            name="concern"
-            class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:border-teal-600"
-          >
-            <option value="Severe Headache / Migraine">Migraine & Headache</option>
-            <option value="Stroke & Brain Recovery">Stroke Recovery</option>
-            <option value="Epilepsy & Seizures">Epilepsy / Seizures</option>
-            <option value="Parkinson's & Tremors">Parkinson's & Tremors</option>
-            <option value="Nerve Pain & Neuropathy">Neuropathy & Sciatica</option>
-            <option value="Memory Loss & Dementia">Memory & Dementia</option>
-            <option value="EEG / EMG Diagnostics Test">EEG / EMG Test</option>
-            <option value="General Neuro Checkup">General Neuro Checkup</option>
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label for="modal-date" class="block text-form-label mb-1.5">Preferred Consultation Date</label>
-        <input
-          type="date"
-          id="modal-date"
-          name="preferred-date"
-          class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:border-teal-600"
-        />
-      </div>
+  <!-- min-h-full + items-center keeps the panel centred while still allowing
+       the whole dialog to scroll on short/landscape screens. -->
+  <div class="flex min-h-full items-center justify-center">
+    <div class="relative w-full max-w-lg bg-white rounded-2xl shadow-xl p-5 sm:p-7 text-slate-800 border border-slate-200">
 
       <button
-        type="submit"
-        class="btn btn-whatsapp w-full mt-2 py-3 px-4 rounded-xl text-btn font-semibold flex items-center justify-center gap-2 cursor-pointer"
+        type="button"
+        id="close-modal-btn"
+        class="absolute top-3 right-3 text-slate-500 hover:text-slate-800 p-2 rounded-md hover:bg-slate-100 transition"
+        aria-label="Close appointment dialog"
       >
-        <span class="text-white shrink-0" aria-hidden="true">
-          <WhatsAppIcon class="w-3 h-3" />
-        </span>
-        <span>Send Request via WhatsApp</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
       </button>
 
-      <p class="pt-1 text-center text-caption text-slate-500">
-        Emergency OPD direct line: <a href={phoneHref} class="text-teal-700 font-semibold underline">{phone}</a>
-      </p>
-    </form>
+      <div class="mb-4 pr-10">
+        <span class="text-label px-2.5 py-1 rounded-sm border border-teal-200">
+          Direct Scheduling
+        </span>
+        <h3 id="booking-modal-title" class="text-h3 mt-1.5 text-slate-900">Request Doctor Consultation</h3>
+        <p class="text-caption text-slate-500 mt-1">{CLINIC.doctor.name}, {CLINIC.doctor.qualifications} • {CLINIC.doctor.title}</p>
+      </div>
+
+      <form id="consult-modal-form" class="space-y-3.5">
+        <div>
+          <label for="modal-patient-name" class="block text-form-label mb-1.5">Patient Full Name *</label>
+          <input
+            type="text"
+            id="modal-patient-name"
+            name="patient-name"
+            required
+            autocomplete="name"
+            placeholder="e.g. Ramesh Chandra"
+            class={inputClass}
+          />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="modal-phone" class="block text-form-label mb-1.5">Phone / WhatsApp *</label>
+            <input
+              type="tel"
+              id="modal-phone"
+              name="patient-phone"
+              required
+              autocomplete="tel"
+              placeholder={CLINIC.phone}
+              class={inputClass}
+            />
+          </div>
+          <div>
+            <label for="modal-condition" class="block text-form-label mb-1.5">Neurological Concern *</label>
+            <select id="modal-condition" name="concern" class={inputClass}>
+              <option value="Severe Headache / Migraine">Migraine &amp; Headache</option>
+              <option value="Stroke &amp; Brain Recovery">Stroke Recovery</option>
+              <option value="Epilepsy &amp; Seizures">Epilepsy / Seizures</option>
+              <option value="Parkinson's &amp; Tremors">Parkinson's &amp; Tremors</option>
+              <option value="Nerve Pain &amp; Neuropathy">Neuropathy &amp; Sciatica</option>
+              <option value="Memory Loss &amp; Dementia">Memory &amp; Dementia</option>
+              <option value="EEG / EMG Diagnostics Test">EEG / EMG Test</option>
+              <option value="General Neuro Checkup">General Neuro Checkup</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="modal-date" class="block text-form-label mb-1.5">Preferred Consultation Date</label>
+          <input type="date" id="modal-date" name="preferred-date" min={today} class={inputClass} />
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-whatsapp w-full mt-2 py-3 px-4 rounded-xl text-btn font-semibold flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <span class="text-white shrink-0" aria-hidden="true">
+            <WhatsAppIcon class="w-3 h-3" />
+          </span>
+          <span>Send Request via WhatsApp</span>
+        </button>
+
+        <p class="pt-1 text-center text-caption text-slate-500">
+          Emergency OPD direct line: <a href={phoneHref} class="text-teal-700 font-semibold underline">{phone}</a>
+        </p>
+      </form>
+    </div>
   </div>
 </div>
 
 <script>
+  import { whatsappLink } from '../constants/clinic';
+
   const modal = document.getElementById('booking-modal');
-  const closeBtn = document.getElementById('close-modal-btn') as HTMLButtonElement;
-  const form = document.getElementById('consult-modal-form') as HTMLFormElement;
+  const closeBtn = document.getElementById('close-modal-btn') as HTMLButtonElement | null;
+  const form = document.getElementById('consult-modal-form') as HTMLFormElement | null;
   let lastFocused: HTMLElement | null = null;
 
-  const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  const FOCUSABLE =
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  const isOpen = () => Boolean(modal) && !modal!.classList.contains('hidden');
 
   function openModal(trigger?: HTMLElement) {
     if (!modal) return;
-    lastFocused = trigger ?? (document.activeElement as HTMLElement);
+    lastFocused = trigger ?? (document.activeElement as HTMLElement | null);
     modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-    const firstInput = modal.querySelector<HTMLInputElement>('#modal-patient-name');
-    firstInput?.focus();
+    // Lock background scroll while the dialog is open.
+    document.documentElement.style.overflow = 'hidden';
+    modal.querySelector<HTMLInputElement>('#modal-patient-name')?.focus();
   }
 
   function closeModal() {
     if (!modal) return;
     modal.classList.add('hidden');
-    document.body.style.overflow = '';
-    lastFocused?.focus();
+    document.documentElement.style.overflow = '';
+    lastFocused?.focus?.();
     lastFocused = null;
   }
 
@@ -140,18 +145,21 @@ const phoneHref = CLINIC.phoneHref;
 
   closeBtn?.addEventListener('click', closeModal);
 
+  // Clicking the scrim (never the panel) closes the dialog.
   modal?.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
   });
 
   document.addEventListener('keydown', (e) => {
-    if (!modal || modal.classList.contains('hidden')) return;
+    if (!isOpen()) return;
+
     if (e.key === 'Escape') {
       closeModal();
       return;
     }
+
     if (e.key === 'Tab') {
-      const focusables = Array.from(modal.querySelectorAll<HTMLElement>(FOCUSABLE));
+      const focusables = Array.from(modal!.querySelectorAll<HTMLElement>(FOCUSABLE));
       if (focusables.length === 0) return;
       const first = focusables[0];
       const last = focusables[focusables.length - 1];
@@ -165,18 +173,29 @@ const phoneHref = CLINIC.phoneHref;
     }
   });
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = (document.getElementById('modal-patient-name') as HTMLInputElement)?.value || '';
-      const phone = (document.getElementById('modal-phone') as HTMLInputElement)?.value || '';
-      const condition = (document.getElementById('modal-condition') as HTMLSelectElement)?.value || '';
-      const date = (document.getElementById('modal-date') as HTMLInputElement)?.value || 'Earliest available';
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-      const msg = `Hello Dr. Rajib Das Clinic,\n\nI want to schedule a neurology consultation:\n- Patient: ${name}\n- Phone: ${phone}\n- Concern: ${condition}\n- Preferred Date: ${date}`;
-      const url = `https://wa.me/919000000000?text=${encodeURIComponent(msg)}`;
-      window.open(url, '_blank');
-      closeModal();
-    });
-  }
+    const value = (id: string) =>
+      (document.getElementById(id) as HTMLInputElement | HTMLSelectElement | null)?.value.trim() ?? '';
+
+    const name = value('modal-patient-name');
+    const phone = value('modal-phone');
+    const condition = value('modal-condition');
+    const date = value('modal-date') || 'Earliest available';
+
+    const message = [
+      'Hello Dr. Rajib Das Clinic,',
+      '',
+      'I want to schedule a neurology consultation:',
+      `- Patient: ${name}`,
+      `- Phone: ${phone}`,
+      `- Concern: ${condition}`,
+      `- Preferred Date: ${date}`,
+    ].join('\n');
+
+    window.open(whatsappLink(message), '_blank', 'noopener,noreferrer');
+    form.reset();
+    closeModal();
+  });
 </script>

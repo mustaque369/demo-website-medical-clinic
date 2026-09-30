@@ -12,9 +12,10 @@ const siteOrigin = 'https://mustaque369.github.io';
 
 // https://astro.build/config
 export default defineConfig({
-  viewTransitions: true,
   site: `${siteOrigin}${deployBase === '/' ? '' : deployBase.replace(/\/$/, '')}`,
   base: deployBase,
+  // Prefetch in-view links so internal navigation feels instant on mobile.
+  prefetch: { prefetchAll: true, defaultStrategy: 'viewport' },
   vite: {
     plugins: [tailwindcss()],
   },

@@ -1,3 +1,5 @@
+import { CLINIC } from './clinic';
+
 export const FAQS = [
   {
     q: "What documents should I bring for my first consultation with Dr. Rajib Das?",
@@ -9,7 +11,7 @@ export const FAQS = [
   },
   {
     q: "How can I book an urgent appointment for acute stroke or severe flare-ups?",
-    a: "For acute emergencies (sudden speech loss, facial weakness, severe seizure), visit an emergency hospital immediately or call our clinic emergency line directly at +91 98765 43210."
+    a: `For acute emergencies (sudden speech loss, facial weakness, severe seizure), visit an emergency hospital immediately or call our clinic emergency line directly at ${CLINIC.phone}.`
   },
   {
     q: "Does the clinic offer EEG and EMG/NCV testing on-site?",

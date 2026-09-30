@@ -1,4 +1,4 @@
-﻿export const CLINICAL_CONDITIONS = [
+export const CLINICAL_CONDITIONS = [
   {
     id: "stroke",
     category: "Cerebrovascular",
